@@ -5,15 +5,22 @@
         <v-list-tile-content>
           <v-list-tile-title v-if="!editable"
             >
-            {{product}}
-            <!-- {{ product.quantity }}x - {{ product.title }} -->
+            {{product.quantity}} x {{product.name}}
           </v-list-tile-title>
-          <!-- <input v-model="product.quantity" v-if="editable" /> -->
-          <input v-model="product.title" v-if="editable" />
+          <input v-model="product.quantity" v-if="editable" />
+          <input v-model="product.name" v-if="editable" />
         </v-list-tile-content>
-        <v-icon @click="editProduct();">edit</v-icon>
-        <v-list-tile-action>
-          <!-- <v-checkbox v-model="product.completed"></v-checkbox> -->
+        <v-btn v-if="!editable" color="warning" icon dark @click="editProduct()" >
+            <v-icon dark>edit</v-icon>
+        </v-btn>
+        <v-btn v-if="editable" color="warning" dark @click="editProduct()" >
+            Cancel
+        </v-btn>
+        <v-btn v-if="editable" color="success" dark >
+            Save
+        </v-btn>
+        <v-list-tile-action v-if="!editable">
+          <v-checkbox @change="completeProduct(product)" v-model="product.completed"></v-checkbox>
         </v-list-tile-action>
       </v-list-tile>
     </v-list>
@@ -21,18 +28,36 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: "Product",
   props: ["product"],
   data() {
     return {
-      editable: false
+      editable: false,
     };
   },
   methods: {
-    editProduct() {
+  editProduct() {
       this.editable = !this.editable;
-    }
+  },
+
+    completeProduct(product) {
+            axios.put('api/shopping-list/update/' + product.id)
+                .then(response => {
+                    this.$emit('updateShoppingList')
+                })
+                .catch(function(error) {
+                    // handle error
+                    console.log(error);
+                })
+                .then(function() {
+
+                });
+        },
+        
   }
+
 };
 </script>

@@ -1763,6 +1763,8 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -1785,6 +1787,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Product",
   props: ["product"],
@@ -1796,6 +1806,16 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     editProduct: function editProduct() {
       this.editable = !this.editable;
+    },
+    completeProduct: function completeProduct(product) {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.put('api/shopping-list/update/' + product.id).then(function (response) {
+        _this.$emit('updateShoppingList');
+      }).catch(function (error) {
+        // handle error
+        console.log(error);
+      }).then(function () {});
     }
   }
 });
@@ -1840,17 +1860,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ShoppingList",
   data: function data() {
     return {
-      shoppingList: []
+      shoppingList: [],
+      product: {}
     };
   },
   components: {
@@ -1870,6 +1887,19 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
       }).then(function () {// always executed
       });
+    },
+    addProductToShoppingList: function addProductToShoppingList(product) {
+      var _this2 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('api/shopping-list/create', product).then(function (response) {
+        _this2.getShoppingList();
+      }).catch(function (error) {
+        // handle error
+        console.log(error);
+      }).then(function () {
+        product.quantity = '';
+        product.name = '';
+      });
     }
   }
 });
@@ -1886,6 +1916,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _layout_navbar_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../layout/navbar.vue */ "./resources/js/layout/navbar.vue");
+//
+//
 //
 //
 //
@@ -2055,7 +2087,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\na{\n    color: #fff;\n    text-decoration: none;\n}\n\n", ""]);
+exports.push([module.i, "\na{\n    color: #fff !important;\n    text-decoration: none;\n}\n\n", ""]);
 
 // exports
 
@@ -3268,7 +3300,11 @@ var render = function() {
                   !_vm.editable
                     ? _c("v-list-tile-title", [
                         _vm._v(
-                          "\n          " + _vm._s(_vm.product) + "\n          "
+                          "\n          " +
+                            _vm._s(_vm.product.quantity) +
+                            " x " +
+                            _vm._s(_vm.product.name) +
+                            "\n        "
                         )
                       ])
                     : _vm._e(),
@@ -3279,17 +3315,43 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.product.title,
-                            expression: "product.title"
+                            value: _vm.product.quantity,
+                            expression: "product.quantity"
                           }
                         ],
-                        domProps: { value: _vm.product.title },
+                        domProps: { value: _vm.product.quantity },
                         on: {
                           input: function($event) {
                             if ($event.target.composing) {
                               return
                             }
-                            _vm.$set(_vm.product, "title", $event.target.value)
+                            _vm.$set(
+                              _vm.product,
+                              "quantity",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.editable
+                    ? _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.product.name,
+                            expression: "product.name"
+                          }
+                        ],
+                        domProps: { value: _vm.product.name },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.product, "name", $event.target.value)
                           }
                         }
                       })
@@ -3298,19 +3360,65 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c(
-                "v-icon",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.editProduct()
-                    }
-                  }
-                },
-                [_vm._v("edit")]
-              ),
+              !_vm.editable
+                ? _c(
+                    "v-btn",
+                    {
+                      attrs: { color: "warning", icon: "", dark: "" },
+                      on: {
+                        click: function($event) {
+                          return _vm.editProduct()
+                        }
+                      }
+                    },
+                    [_c("v-icon", { attrs: { dark: "" } }, [_vm._v("edit")])],
+                    1
+                  )
+                : _vm._e(),
               _vm._v(" "),
-              _c("v-list-tile-action")
+              _vm.editable
+                ? _c(
+                    "v-btn",
+                    {
+                      attrs: { color: "warning", dark: "" },
+                      on: {
+                        click: function($event) {
+                          return _vm.editProduct()
+                        }
+                      }
+                    },
+                    [_vm._v("\n          Cancel\n      ")]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.editable
+                ? _c("v-btn", { attrs: { color: "success", dark: "" } }, [
+                    _vm._v("\n          Save\n      ")
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              !_vm.editable
+                ? _c(
+                    "v-list-tile-action",
+                    [
+                      _c("v-checkbox", {
+                        on: {
+                          change: function($event) {
+                            return _vm.completeProduct(_vm.product)
+                          }
+                        },
+                        model: {
+                          value: _vm.product.completed,
+                          callback: function($$v) {
+                            _vm.$set(_vm.product, "completed", $$v)
+                          },
+                          expression: "product.completed"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                : _vm._e()
             ],
             1
           )
@@ -3380,19 +3488,51 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _vm._l(_vm.shoppingList, function(product) {
-                    return _c("Product", { attrs: { product: product } })
+                    return _c("Product", {
+                      ref: "product1",
+                      refInFor: true,
+                      attrs: { product: product },
+                      on: { updateShoppingList: _vm.getShoppingList }
+                    })
                   }),
                   _vm._v(" "),
                   _c(
                     "v-card-actions",
                     [
-                      _c("v-text-field", { attrs: { label: "Product" } }),
+                      _c("v-text-field", {
+                        attrs: { label: "Product" },
+                        model: {
+                          value: _vm.product.name,
+                          callback: function($$v) {
+                            _vm.$set(_vm.product, "name", $$v)
+                          },
+                          expression: "product.name"
+                        }
+                      }),
                       _vm._v(" "),
-                      _c("v-text-field", { attrs: { label: "Amount" } }),
+                      _c("v-text-field", {
+                        attrs: { label: "Amount" },
+                        model: {
+                          value: _vm.product.quantity,
+                          callback: function($$v) {
+                            _vm.$set(_vm.product, "quantity", $$v)
+                          },
+                          expression: "product.quantity"
+                        }
+                      }),
                       _vm._v(" "),
-                      _c("v-btn", { attrs: { color: "cyan", dark: "" } }, [
-                        _vm._v("Add")
-                      ])
+                      _c(
+                        "v-btn",
+                        {
+                          attrs: { color: "cyan", dark: "" },
+                          on: {
+                            click: function($event) {
+                              return _vm.addProductToShoppingList(_vm.product)
+                            }
+                          }
+                        },
+                        [_vm._v("Add")]
+                      )
                     ],
                     1
                   )
@@ -3497,9 +3637,15 @@ var render = function() {
     [
       _c("navbar"),
       _vm._v(" "),
-      _c("v-content", [
-        _c("div", { staticClass: "container" }, [_c("router-view")], 1)
-      ])
+      _c(
+        "v-app",
+        [
+          _c("v-content", [
+            _c("div", { staticClass: "container" }, [_c("router-view")], 1)
+          ])
+        ],
+        1
+      )
     ],
     1
   )

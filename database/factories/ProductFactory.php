@@ -18,7 +18,8 @@ use Faker\Generator as Faker;
 $factory->define(Product::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
-        'price' => $faker->randomNumber,
+        'price' => $faker->numberBetween($min = 9, $max = 199),
+        'quantity' => $faker->numberBetween($min = 1, $max = 4),
         'completed' => $faker->boolean($chanceOfGettingTrue = 50),
     ];
 });
