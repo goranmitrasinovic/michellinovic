@@ -63,9 +63,16 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function update(Request $request, $id)
     {
-        //
+        $product = Product::findOrFail($id);
+        $product = $product->update($request->all());
+
+
+        // $product->update([
+        //     "quantity" => 23
+        // ]);
+        // echo($product);
     }
 
     /**
@@ -75,7 +82,7 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function completePurchase(Request $request, $id)
     {
         $product = Product::find($id);
         $product->completed = 1;

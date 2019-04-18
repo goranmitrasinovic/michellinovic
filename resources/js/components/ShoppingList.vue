@@ -13,19 +13,28 @@
                     </v-btn>
                 </v-toolbar>
                 <Product ref="product1" @updateShoppingList="getShoppingList" v-for="product in shoppingList" :product="product"> </Product>
-                <v-card-actions>
-                    <v-text-field label="Product" v-model="product.name"></v-text-field>
-                    <v-text-field label="Amount" v-model="product.quantity"></v-text-field>
-                    <v-btn color="cyan" @click="addProductToShoppingList(product)" dark>Add</v-btn>
-                </v-card-actions>
+
+
+                <v-form>
+                    <v-container>
+                        <v-layout row>
+                            <v-text-field label="Add product" v-model="product.name"></v-text-field>
+                            <v-text-field label="Amount" v-model="product.quantity"></v-text-field>
+                            <v-btn color="cyan" @click="addProductToShoppingList(product)" dark>Add</v-btn>
+                        </v-layout>
+                    </v-container>
+                </v-form>
             </v-card>
+            <Alert ref='alert'>Added product to list! </Alert>
         </v-flex>
     </v-layout>
+
 </div>
 </template>
 
 <script>
 import Product from "./Product.vue";
+import Alert from './Alert.vue';
 import axios from 'axios';
 
 export default {
@@ -33,16 +42,21 @@ export default {
     data() {
         return {
             shoppingList: [],
-            product: {}
+            product: {},
         };
     },
     components: {
-        Product
+        Product,
+        Alert
     },
     mounted() {
         this.getShoppingList();
     },
     methods: {
+
+        changeAlertState(){
+            this.$refs.alert.showTheAlert();
+        },
 
         getShoppingList() {
             axios.get('api/shopping-list/uncompleted')
@@ -62,6 +76,7 @@ export default {
             axios.post('api/shopping-list/create', product)
                 .then(response => {
                     this.getShoppingList();
+                    this.changeAlertState();
                 })
                 .catch(function(error) {
                     // handle error

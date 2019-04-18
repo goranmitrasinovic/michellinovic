@@ -11,7 +11,7 @@ import Shopping from './views/Shopping'
 import Home from './views/Home'
 import Competition from './views/Competition'
 
-import 'vuetify/dist/vuetify.min.css'
+// import 'vuetify/dist/vuetify.min.css'
 
 const router = new VueRouter({
     mode: 'history',
