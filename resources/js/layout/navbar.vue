@@ -8,7 +8,7 @@
     </v-toolbar>
 </template>
 
-<style>
+<style scoped>
 
 a{
     color: #fff !important;

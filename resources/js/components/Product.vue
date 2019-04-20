@@ -1,14 +1,14 @@
 <template>
 <div>
 <div>
-    <v-list two-line subheader>
+    <v-list two-line>
         <v-list-tile>
             <v-list-tile-action v-if="!editable">
                 <v-icon color="indigo">add_shopping_cart</v-icon>
             </v-list-tile-action>
             <v-list-tile-content v-if="!editable">
                 <v-list-tile-title>
-                    {{product.quantity}} x {{product.name}}
+                    {{product.name}} ({{product.quantity}} units)
                 </v-list-tile-title>
             </v-list-tile-content>
             <v-btn v-if="!editable" color="warning" icon dark @click="editProduct()">
@@ -33,9 +33,7 @@
         <v-divider></v-divider>
     </v-list>
 </div>
-<div>
 <Alert ref='alert'>You have removed a product!</Alert>
-</div>
 </div>
 </template>
 

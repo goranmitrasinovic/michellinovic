@@ -3,7 +3,7 @@
     <v-layout row>
         <v-flex xs12 sm6 offset-sm3>
             <v-card>
-                <v-toolbar color="cyan" dark>
+                <v-toolbar color="purple" dark>
                     <v-toolbar-side-icon></v-toolbar-side-icon>
                     <v-toolbar-title class="text-xs-center">Shopping list</v-toolbar-title>
                     <v-spacer></v-spacer>
@@ -18,16 +18,25 @@
                 <v-form>
                     <v-container>
                         <v-layout row>
-                            <v-text-field label="Add product" v-model="product.name"></v-text-field>
+                            <v-combobox
+                           v-model="product.name"
+                           :items="products"
+                           persistent-hint
+                           item-text="name"
+                           item-value="name"
+                           label="Name"
+                           color="cyan"
+                         >
+                     </v-combobox>
                             <v-text-field label="Amount" v-model="product.quantity"></v-text-field>
                             <v-btn color="cyan" @click="addProductToShoppingList(product)" dark>Add</v-btn>
                         </v-layout>
                     </v-container>
                 </v-form>
             </v-card>
-            <Alert ref='alert'>Added product to list! </Alert>
         </v-flex>
     </v-layout>
+    <Alert ref='alert'>Added product to list! </Alert>
 
 </div>
 </template>
@@ -42,7 +51,9 @@ export default {
     data() {
         return {
             shoppingList: [],
+            products: [],
             product: {},
+            model: null
         };
     },
     components: {
@@ -51,6 +62,7 @@ export default {
     },
     mounted() {
         this.getShoppingList();
+        this.getAllProducts();
     },
     methods: {
 
@@ -72,6 +84,20 @@ export default {
                 });
         },
 
+        getAllProducts() {
+            axios.get('api/products')
+                .then(response => {
+                    this.products = response.data;
+                })
+                .catch(function(error) {
+                    // handle error
+                    console.log(error);
+                })
+                .then(function() {
+                    // always executed
+                });
+        },
+
         addProductToShoppingList(product) {
             axios.post('api/shopping-list/create', product)
                 .then(response => {
@@ -79,7 +105,7 @@ export default {
                     this.changeAlertState();
                 })
                 .catch(function(error) {
-                    // handle error
+                    console.log("heeej");
                     console.log(error);
                 })
                 .then(function() {

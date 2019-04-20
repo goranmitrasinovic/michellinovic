@@ -10,9 +10,13 @@
 export default {
     name: "Alert",
 
+    props: {
+        type: String
+    },
+
     data() {
         return {
-            alert: false
+            alert: false,
         };
     },
 
@@ -33,4 +37,5 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
 </style>
