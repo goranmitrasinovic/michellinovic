@@ -1,14 +1,15 @@
 <template>
 <div>
+    {{product}}
     <v-layout row>
         <v-flex xs12 sm6 offset-sm3>
             <v-card>
                 <v-toolbar color="purple" dark>
-                    <v-toolbar-side-icon></v-toolbar-side-icon>
+                    <v-toolbar-side-icon color="purple"></v-toolbar-side-icon>
                     <v-toolbar-title class="text-xs-center">Shopping list</v-toolbar-title>
                     <v-spacer></v-spacer>
 
-                    <v-btn icon>
+                    <v-btn icon color="purple">
                         <v-icon>search</v-icon>
                     </v-btn>
                 </v-toolbar>
@@ -19,15 +20,14 @@
                     <v-container>
                         <v-layout row>
                             <v-combobox
-                           v-model="product.name"
-                           :items="products"
-                           persistent-hint
-                           item-text="name"
-                           item-value="name"
-                           label="Name"
-                           color="cyan"
-                         >
-                     </v-combobox>
+          v-model="product.name"
+          :items="products"
+          label="Name"
+        item-text="name"
+
+          :return-object="false"
+
+        ></v-combobox>
                             <v-text-field label="Amount" v-model="product.quantity"></v-text-field>
                             <v-btn color="cyan" @click="addProductToShoppingList(product)" dark>Add</v-btn>
                         </v-layout>
@@ -99,6 +99,8 @@ export default {
         },
 
         addProductToShoppingList(product) {
+            this.product.name = product.name
+            console.log();
             axios.post('api/shopping-list/create', product)
                 .then(response => {
                     this.getShoppingList();
