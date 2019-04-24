@@ -29,7 +29,7 @@
 
         ></v-combobox>
                             <v-text-field label="Amount" v-model="product.quantity"></v-text-field>
-                            <v-btn color="cyan" @click="addProductToShoppingList(product)" dark>Add</v-btn>
+                            <v-btn color="cyan" @click="addProductToShoppingList(product)" dark >Add</v-btn>
                         </v-layout>
                     </v-container>
                 </v-form>
@@ -99,8 +99,8 @@ export default {
         },
 
         addProductToShoppingList(product) {
-            this.product.name = product.name
-            console.log();
+            // this.product.name = product.name
+            // console.log();
             axios.post('api/shopping-list/create', product)
                 .then(response => {
                     this.getShoppingList();

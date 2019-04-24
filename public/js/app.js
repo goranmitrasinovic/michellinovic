@@ -2005,8 +2005,8 @@ __webpack_require__.r(__webpack_exports__);
     addProductToShoppingList: function addProductToShoppingList(product) {
       var _this3 = this;
 
-      this.product.name = product.name;
-      console.log();
+      // this.product.name = product.name
+      // console.log();
       axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('api/shopping-list/create', product).then(function (response) {
         _this3.getShoppingList();
 

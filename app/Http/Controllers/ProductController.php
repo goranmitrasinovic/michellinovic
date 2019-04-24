@@ -42,8 +42,8 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $product = Product::create($request->all());
-
+        $product = Product::updateOrCreate(['name' => $request->name],
+        ['name' => $request->name, 'completed' => 0, 'quantity' => $request->quantity]);
     }
 
     /**
