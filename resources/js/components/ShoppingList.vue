@@ -1,6 +1,5 @@
 <template>
 <div>
-    {{product}}
     <v-layout row>
         <v-flex xs12 sm6 offset-sm3>
             <v-card>
@@ -13,31 +12,23 @@
                         <v-icon>search</v-icon>
                     </v-btn>
                 </v-toolbar>
-                <Product ref="product1" @updateShoppingList="getShoppingList" v-for="product in shoppingList" :product="product"> </Product>
-
+                <transition-group name="card">
+                        <Product ref="product1" @updateShoppingList="getShoppingList" v-for="product in shoppingList" :product="product" :key="product.id">
+                        </Product>
+                </transition-group>
 
                 <v-form>
                     <v-container>
                         <v-layout row>
-                            <v-combobox
-          v-model="product.name"
-          :items="products"
-          label="Name"
-        item-text="name"
-
-          :return-object="false"
-
-        ></v-combobox>
+                            <v-combobox v-model="product.name" :items="products" label="Name" item-text="name" :return-object="false"></v-combobox>
                             <v-text-field label="Amount" v-model="product.quantity"></v-text-field>
-                            <v-btn color="cyan" @click="addProductToShoppingList(product)" dark >Add</v-btn>
+                            <v-btn color="cyan" @click="addProductToShoppingList(product)" dark>Add</v-btn>
                         </v-layout>
                     </v-container>
                 </v-form>
             </v-card>
         </v-flex>
     </v-layout>
-    <Alert ref='alert'>Added product to list! </Alert>
-
 </div>
 </template>
 
@@ -53,7 +44,7 @@ export default {
             shoppingList: [],
             products: [],
             product: {},
-            model: null
+            model: null,
         };
     },
     components: {
@@ -66,7 +57,7 @@ export default {
     },
     methods: {
 
-        changeAlertState(){
+        changeAlertState() {
             this.$refs.alert.showTheAlert();
         },
 
@@ -99,12 +90,9 @@ export default {
         },
 
         addProductToShoppingList(product) {
-            // this.product.name = product.name
-            // console.log();
-            axios.post('api/shopping-list/create', product)
+            axios.post('api/product/create', product)
                 .then(response => {
                     this.getShoppingList();
-                    this.changeAlertState();
                 })
                 .catch(function(error) {
                     console.log("heeej");
@@ -119,3 +107,21 @@ export default {
 
 };
 </script>
+
+<style>
+
+
+ .card-enter-active{
+  position: absolute;
+}
+
+.card-leave-active{
+    position: absolute;
+    bottom: 0;
+}
+
+.card-move {
+  transition: all 1s;
+}
+
+</style>
