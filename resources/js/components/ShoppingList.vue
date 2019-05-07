@@ -22,7 +22,7 @@
         </v-list-tile>
       </v-list>
     </v-menu>
-                    <v-toolbar-title class="text-xs-center">Shopping list</v-toolbar-title>
+                    <v-toolbar-title class="text-xs-center">Shopping list ({{shoppingList.length}} items)</v-toolbar-title>
                     <v-spacer></v-spacer>
                     <v-btn icon color="purple">
                         <v-icon>search</v-icon>
@@ -39,7 +39,7 @@
                         <v-layout row>
                             <v-combobox v-model="product.name" :items="products" label="Name" item-text="name" :return-object="false"></v-combobox>
                             <v-text-field label="Amount" v-model="product.quantity"></v-text-field>
-                            <v-btn color="cyan" @click="addProductToShoppingList(product)" dark>Add</v-btn>
+                            <v-btn color="cyan" @click="addProductToShoppingList(product)" :disabled="(!product.name || !product.quantity)">Add</v-btn>
                         </v-layout>
                     </v-container>
                 </v-form>

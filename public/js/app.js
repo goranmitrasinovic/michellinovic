@@ -3851,7 +3851,11 @@ var render = function() {
                       ),
                       _vm._v(" "),
                       _c("v-toolbar-title", { staticClass: "text-xs-center" }, [
-                        _vm._v("Shopping list")
+                        _vm._v(
+                          "Shopping list (" +
+                            _vm._s(_vm.shoppingList.length) +
+                            " items)"
+                        )
                       ]),
                       _vm._v(" "),
                       _c("v-spacer"),
@@ -3921,7 +3925,11 @@ var render = function() {
                               _c(
                                 "v-btn",
                                 {
-                                  attrs: { color: "cyan", dark: "" },
+                                  attrs: {
+                                    color: "cyan",
+                                    disabled:
+                                      !_vm.product.name || !_vm.product.quantity
+                                  },
                                   on: {
                                     click: function($event) {
                                       return _vm.addProductToShoppingList(
