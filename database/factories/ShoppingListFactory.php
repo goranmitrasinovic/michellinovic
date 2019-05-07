@@ -18,6 +18,5 @@ use Faker\Generator as Faker;
 $factory->define(ShoppingList::class, function (Faker $faker) {
     return [
         'product_id' => $faker->randomNumber,
-        // 'price' => $faker->randomNumber,
     ];
 });

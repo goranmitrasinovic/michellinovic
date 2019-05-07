@@ -4,13 +4,30 @@
         <v-flex xs12 sm6 offset-sm3>
             <v-card>
                 <v-toolbar color="purple" dark>
-                    <v-toolbar-side-icon color="purple"></v-toolbar-side-icon>
+                    <v-menu offset-y>
+      <template v-slot:activator="{ on }">
+        <v-toolbar-side-icon
+          v-on="on"
+        >
+          <v-icon>menu</v-icon>
+      </v-toolbar-side-icon>
+      </template>
+      <v-list>
+        <v-list-tile
+          v-for="(item, index) in menuItems"
+          :key="index"
+          @click="clearList(shoppingList)"
+        >
+          <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+        </v-list-tile>
+      </v-list>
+    </v-menu>
                     <v-toolbar-title class="text-xs-center">Shopping list</v-toolbar-title>
                     <v-spacer></v-spacer>
-
                     <v-btn icon color="purple">
                         <v-icon>search</v-icon>
                     </v-btn>
+
                 </v-toolbar>
                 <transition-group name="card">
                         <Product ref="product1" @updateShoppingList="getShoppingList" v-for="product in shoppingList" :product="product" :key="product.id">
@@ -44,7 +61,9 @@ export default {
             shoppingList: [],
             products: [],
             product: {},
-            model: null,
+            menuItems: [
+            { title: 'Clear list' }
+      ]
         };
     },
     components: {
@@ -59,6 +78,17 @@ export default {
 
         changeAlertState() {
             this.$refs.alert.showTheAlert();
+        },
+
+        clearList(shoppingList){
+            axios.put('api/shopping-list/clear-list', shoppingList)
+                .then(response => {
+                    this.getShoppingList();
+                })
+                .catch(function(error) {
+                })
+                .then(function() {
+                });
         },
 
         getShoppingList() {
@@ -117,11 +147,12 @@ export default {
 
 .card-leave-active{
     position: absolute;
-    bottom: 0;
+    display: none;
+    right: 0;
 }
 
 .card-move {
-  transition: all 1s;
+  transition: all .5s;
 }
 
 </style>

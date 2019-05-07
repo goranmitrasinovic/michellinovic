@@ -52,10 +52,11 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function clearShoppingListOfProducts(Request $request)
     {
-        //
+        $products = Product::where('completed', 0)->update(['completed' => 1]);
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -67,12 +68,6 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
         $product = $product->update($request->all());
-
-
-        // $product->update([
-        //     "quantity" => 23
-        // ]);
-        // echo($product);
     }
 
     /**
