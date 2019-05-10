@@ -18,9 +18,9 @@
                 <v-btn v-if="!editable" color="warning" icon dark @click="editProduct()">
                     <v-icon dark>edit</v-icon>
                 </v-btn>
+                <v-text-field v-model="product.name" label="Name" v-if="editable"></v-text-field>
                 <v-text-field v-model="product.quantity" label="Amount" v-if="editable"></v-text-field>
 
-                <v-text-field v-model="product.name" label="Name" v-if="editable"></v-text-field>
 
                 <v-btn v-if="editable" color="warning" dark @click="editProduct()">
                     Cancel

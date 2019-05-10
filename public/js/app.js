@@ -3653,19 +3653,6 @@ var render = function() {
                   _vm._v(" "),
                   _vm.editable
                     ? _c("v-text-field", {
-                        attrs: { label: "Amount" },
-                        model: {
-                          value: _vm.product.quantity,
-                          callback: function($$v) {
-                            _vm.$set(_vm.product, "quantity", $$v)
-                          },
-                          expression: "product.quantity"
-                        }
-                      })
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.editable
-                    ? _c("v-text-field", {
                         attrs: { label: "Name" },
                         model: {
                           value: _vm.product.name,
@@ -3673,6 +3660,19 @@ var render = function() {
                             _vm.$set(_vm.product, "name", $$v)
                           },
                           expression: "product.name"
+                        }
+                      })
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.editable
+                    ? _c("v-text-field", {
+                        attrs: { label: "Amount" },
+                        model: {
+                          value: _vm.product.quantity,
+                          callback: function($$v) {
+                            _vm.$set(_vm.product, "quantity", $$v)
+                          },
+                          expression: "product.quantity"
                         }
                       })
                     : _vm._e(),
@@ -3995,27 +3995,13 @@ var render = function() {
       _c(
         "v-toolbar-items",
         [
-          _c(
-            "v-btn",
-            { attrs: { flat: "", dark: "" } },
-            [
-              _c("router-link", { attrs: { to: "/shopping-list" } }, [
-                _vm._v(" Shopping list")
-              ])
-            ],
-            1
-          ),
+          _c("v-btn", { attrs: { flat: "", dark: "", to: "/shopping-list" } }, [
+            _vm._v(" Shopping list")
+          ]),
           _vm._v(" "),
-          _c(
-            "v-btn",
-            { attrs: { flat: "", dark: "" } },
-            [
-              _c("router-link", { attrs: { to: "/competition" } }, [
-                _vm._v(" Competition")
-              ])
-            ],
-            1
-          )
+          _c("v-btn", { attrs: { flat: "", dark: "", to: "/competition" } }, [
+            _vm._v(" Competition")
+          ])
         ],
         1
       )
