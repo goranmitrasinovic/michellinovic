@@ -22,5 +22,8 @@ Route::get('/shopping-list/uncompleted', 'ProductController@getUnCompletedProduc
 Route::put('/shopping-list/product/{id}', 'ProductController@completePurchase');
 Route::put('/shopping-list/edit-product/{id}', 'ProductController@update');
 Route::put('/shopping-list/clear-list', 'ProductController@clearShoppingListOfProducts');
+
 Route::post('/product/create', 'ProductController@store');
 Route::get('/products', 'ProductController@index');
+
+Route::get('/users', 'UserController@index');

@@ -2079,6 +2079,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -2126,19 +2128,53 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      users: [],
       results: [{
-        name: 'name',
-        sport: 'sport',
-        score: '1 - 2'
-      }, {
-        name: 'name2',
-        sport: 'sport2',
-        score: '23 - 12'
-      }]
+        sport: 'Soccer',
+        score: "2-1"
+      }],
+      user1: {
+        name: 'Goran Mitrasinovic'
+      },
+      user2: {
+        name: 'Michelle Anton'
+      }
     };
+  },
+  mounted: function mounted() {
+    this.getUsers();
+  },
+  methods: {
+    getUsers: function getUsers() {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('api/users').then(function (response) {
+        _this.users = response.data;
+      }).catch(function (error) {
+        // handle error
+        console.log(error);
+      }).then(function () {// always executed
+      });
+    }
   }
 });
 
@@ -4111,70 +4147,104 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "v-list",
-                _vm._l(_vm.results, function(result) {
-                  return _c(
-                    "div",
+                [
+                  _c(
+                    "v-list-tile",
                     [
+                      _c("v-list-tile-action", [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(_vm.user2.name) +
+                            "\n                  "
+                        )
+                      ]),
+                      _vm._v(" "),
                       _c(
-                        "v-list-tile",
+                        "v-list-tile-content",
                         [
-                          _c(
-                            "v-list-tile-action",
-                            [
-                              _c("v-icon", { attrs: { color: "red" } }, [
-                                _vm._v("star")
-                              ])
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-list-tile-action",
-                            [
-                              _c("v-icon", { attrs: { color: "blue" } }, [
-                                _vm._v("person")
-                              ])
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-list-tile-content",
-                            [
-                              _c("v-list-tile-title", [
-                                _vm._v(_vm._s(result.score))
-                              ])
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-list-tile-action",
-                            [
-                              _c("v-icon", { attrs: { color: "pink" } }, [
-                                _vm._v("person")
-                              ])
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-list-tile-action",
-                            [
-                              _c("v-icon", { attrs: { color: "red" } }, [
-                                _vm._v("star")
-                              ])
-                            ],
-                            1
-                          )
+                          _c("v-list-tile-title", { staticClass: "bold" }, [
+                            _vm._v("Result")
+                          ])
                         ],
                         1
-                      )
+                      ),
+                      _vm._v(" "),
+                      _c("v-list-tile-action", [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(_vm.user2.name) +
+                            "\n                  "
+                        )
+                      ])
                     ],
                     1
-                  )
-                }),
-                0
+                  ),
+                  _vm._v(" "),
+                  _vm._l(_vm.results, function(result) {
+                    return _c(
+                      "div",
+                      [
+                        _c(
+                          "v-list-tile",
+                          [
+                            _c(
+                              "v-list-tile-action",
+                              [
+                                _c("v-icon", { attrs: { color: "red" } }, [
+                                  _vm._v("star")
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-list-tile-action",
+                              [
+                                _c("v-icon", { attrs: { color: "blue" } }, [
+                                  _vm._v("person")
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-list-tile-content",
+                              [
+                                _c("v-list-tile-title", [
+                                  _vm._v(_vm._s(result.score))
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-list-tile-action",
+                              [
+                                _c("v-icon", { attrs: { color: "pink" } }, [
+                                  _vm._v("person")
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-list-tile-action",
+                              [
+                                _c("v-icon", { attrs: { color: "red" } }, [
+                                  _vm._v("star")
+                                ])
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  })
+                ],
+                2
               )
             ],
             1
