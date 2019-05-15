@@ -2294,7 +2294,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\na[data-v-980152f2]{\n    color: #fff !important;\n    text-decoration: none;\n}\n\n", ""]);
+exports.push([module.i, "\n.v-btn--active[data-v-980152f2]:before, .v-btn[data-v-980152f2]:focus:before{\n    background-color: none;\n}\n\n\n", ""]);
 
 // exports
 
@@ -4024,20 +4024,30 @@ var render = function() {
     "v-toolbar",
     { staticClass: "deep-purple" },
     [
-      _c("v-toolbar-title", { staticClass: "white--text" }, [
+      _c("v-toolbar-title", { staticClass: "white--text mr-5" }, [
         _vm._v("Michellinovic")
       ]),
       _vm._v(" "),
       _c(
         "v-toolbar-items",
         [
-          _c("v-btn", { attrs: { flat: "", dark: "", to: "/shopping-list" } }, [
-            _vm._v(" Shopping list")
-          ]),
+          _c(
+            "v-btn",
+            {
+              staticClass: "px-3 mx-2",
+              attrs: { flat: "", dark: "", to: "/shopping-list" }
+            },
+            [_vm._v(" Shopping list")]
+          ),
           _vm._v(" "),
-          _c("v-btn", { attrs: { flat: "", dark: "", to: "/competition" } }, [
-            _vm._v(" Competition")
-          ])
+          _c(
+            "v-btn",
+            {
+              staticClass: "px-3 mx-2",
+              attrs: { flat: "", dark: "", to: "/competition" }
+            },
+            [_vm._v(" Competition")]
+          )
         ],
         1
       )
