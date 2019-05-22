@@ -33,7 +33,7 @@
                 <div v-for="event in events">
                     <v-list-tile>
                         <v-list-tile-action>
-                            <v-icon color="red">{{event.icon}}</v-icon>
+                            <v-icon>{{event.icon}}</v-icon>
                         </v-list-tile-action>
                         <v-list-tile-action>
                             <v-icon v-if="event.score_home > event.score_away" color="green">mood</v-icon>
@@ -49,7 +49,7 @@
                             <v-icon v-if="event.score_home > event.score_away" color="red">mood_bad</v-icon>
                         </v-list-tile-action>
                         <v-list-tile-action>
-                            <v-icon color="red">{{event.icon}}</v-icon>
+                            <v-icon>{{event.icon}}</v-icon>
                         </v-list-tile-action>
                     </v-list-tile>
                     <v-divider></v-divider>

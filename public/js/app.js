@@ -4443,11 +4443,7 @@ var render = function() {
                           [
                             _c(
                               "v-list-tile-action",
-                              [
-                                _c("v-icon", { attrs: { color: "red" } }, [
-                                  _vm._v(_vm._s(event.icon))
-                                ])
-                              ],
+                              [_c("v-icon", [_vm._v(_vm._s(event.icon))])],
                               1
                             ),
                             _vm._v(" "),
@@ -4507,11 +4503,7 @@ var render = function() {
                             _vm._v(" "),
                             _c(
                               "v-list-tile-action",
-                              [
-                                _c("v-icon", { attrs: { color: "red" } }, [
-                                  _vm._v(_vm._s(event.icon))
-                                ])
-                              ],
+                              [_c("v-icon", [_vm._v(_vm._s(event.icon))])],
                               1
                             )
                           ],
