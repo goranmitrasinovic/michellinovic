@@ -5,33 +5,22 @@
             <v-card>
                 <v-toolbar color="purple" dark>
                     <v-menu offset-y>
-      <template v-slot:activator="{ on }">
-        <v-toolbar-side-icon
-          v-on="on"
-        >
-          <v-icon>menu</v-icon>
-      </v-toolbar-side-icon>
-      </template>
-      <v-list>
-        <v-list-tile
-          v-for="(item, index) in menuItems"
-          :key="index"
-          @click="clearList(shoppingList)"
-        >
-          <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-        </v-list-tile>
-      </v-list>
-    </v-menu>
+                        <template v-slot:activator="{ on }">
+                            <v-toolbar-side-icon v-on="on">
+                                <v-icon>menu</v-icon>
+                            </v-toolbar-side-icon>
+                        </template>
+                        <v-list>
+                            <v-list-tile v-for="(item, index) in menuItems" :key="index" @click="clearList(shoppingList)">
+                                <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+                            </v-list-tile>
+                        </v-list>
+                    </v-menu>
                     <v-toolbar-title class="text-xs-center">Shopping list ({{shoppingList.length}} items)</v-toolbar-title>
-                    <v-spacer></v-spacer>
-                    <v-btn icon color="purple">
-                        <v-icon>search</v-icon>
-                    </v-btn>
-
                 </v-toolbar>
                 <transition-group name="card">
-                        <Product ref="product1" @updateShoppingList="getShoppingList" v-for="product in shoppingList" :product="product" :key="product.id">
-                        </Product>
+                    <Product ref="product1" @updateShoppingList="getShoppingList" v-for="product in shoppingList" :product="product" :key="product.id">
+                    </Product>
                 </transition-group>
 
                 <v-form>
@@ -61,9 +50,9 @@ export default {
             shoppingList: [],
             products: [],
             product: {},
-            menuItems: [
-            { title: 'Clear list' }
-      ]
+            menuItems: [{
+                title: 'Clear list'
+            }]
         };
     },
     components: {
@@ -80,15 +69,13 @@ export default {
             this.$refs.alert.showTheAlert();
         },
 
-        clearList(shoppingList){
+        clearList(shoppingList) {
             axios.put('api/shopping-list/clear-list', shoppingList)
                 .then(response => {
                     this.getShoppingList();
                 })
-                .catch(function(error) {
-                })
-                .then(function() {
-                });
+                .catch(function(error) {})
+                .then(function() {});
         },
 
         getShoppingList() {
@@ -125,7 +112,6 @@ export default {
                     this.getShoppingList();
                 })
                 .catch(function(error) {
-                    console.log("heeej");
                     console.log(error);
                 })
                 .then(function() {
@@ -139,20 +125,17 @@ export default {
 </script>
 
 <style>
-
-
- .card-enter-active{
-  position: absolute;
+.card-enter-active {
+    position: absolute;
 }
 
-.card-leave-active{
+.card-leave-active {
     position: absolute;
     display: none;
     right: 0;
 }
 
 .card-move {
-  transition: all .5s;
+    transition: all .5s;
 }
-
 </style>

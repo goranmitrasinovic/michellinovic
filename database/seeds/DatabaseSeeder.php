@@ -15,5 +15,10 @@ class DatabaseSeeder extends Seeder
         $this->call(ProductsTableSeeder::class);
         $this->call(ShoppingListsTableSeeder::class);
         $this->call(UsersTableSeeder::class);
+
+        // $users = factory(App\User::class,2)->create();
+        // $events = factory(App\Event::class,2)->create();
+        //
+        // $users->first()->events()->sync($events);
     }
 }

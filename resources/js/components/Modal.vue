@@ -1,0 +1,61 @@
+<template>
+<v-layout row justify-center>
+    <v-dialog v-model="dialog" persistent max-width="600px">
+        <template v-slot:activator="{ on }">
+            <v-btn color="primary" dark v-on="on">Open Dialog</v-btn>
+        </template>
+        <v-card>
+            <v-card-title>
+                <span class="headline">{{title}}</span>
+            </v-card-title>
+            <v-container>
+            <slot name="introduction"></slot>
+            <Event :event="event">
+            </Event>
+        </v-container>
+
+            <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="blue darken-1" flat @click="dialog = false">Close</v-btn>
+                <v-btn color="blue darken-1" flat @click="createEvent(event)">Save</v-btn>
+            </v-card-actions>
+        </v-card>
+    </v-dialog>
+</v-layout>
+</template>
+
+<script>
+import axios from 'axios';
+import Event from './Event';
+
+export default {
+    data: () => ({
+        dialog: false,
+        event: {}
+    }),
+
+    components: {
+        Event,
+    },
+
+    methods: {
+    createEvent(event) {
+        axios.post('api/events/create', event)
+            .then(response => {
+                console.log(response);
+            })
+            .catch(function(error) {
+                // handle error
+                console.log(error);
+            })
+            .then(function() {
+                // always executed'
+            });
+    }
+},
+
+    props: {
+        title: String,
+    }
+}
+</script>

@@ -27,3 +27,6 @@ Route::post('/product/create', 'ProductController@store');
 Route::get('/products', 'ProductController@index');
 
 Route::get('/users', 'UserController@index');
+
+Route::post('/events/create', 'EventController@create');
+Route::get('/events', 'EventController@index');

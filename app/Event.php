@@ -12,6 +12,13 @@ class Event extends Model
      * @var array
      */
     protected $fillable = [
-        'sport'
+        'sport',
+        'icon',
+        'score_home',
+        'score_away',
     ];
+
+    public function users(){
+        return $this->belongsToMany('App/User', 'event_user', 'event_id', 'user_one_id', 'user_two_id');
+    }
 }

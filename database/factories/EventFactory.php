@@ -19,5 +19,8 @@ $factory->define(Event::class, function (Faker $faker) {
     return [
         'id' => $faker->randomNumber,
         'sport' => $faker->jobTitle,
+        'icon' => 'golf_course',
+        'score_home' => $faker->randomNumber,
+        'score_away' => $faker->randomNumber
     ];
 });

@@ -13,4 +13,10 @@ class EventController extends Controller
         $events = Event::all();
         return $events;
     }
+
+    public function create(Request $request)
+    {
+        $event = Event::Create(['sport' => $request->sport]);
+
+    }
 }
