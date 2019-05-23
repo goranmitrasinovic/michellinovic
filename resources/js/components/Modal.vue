@@ -10,7 +10,7 @@
             </v-card-title>
             <v-container>
             <slot name="introduction"></slot>
-            <Event :event="event">
+            <Event :event="event" :user1="user1" :user2="user2">
             </Event>
         </v-container>
 
@@ -56,6 +56,8 @@ export default {
 
     props: {
         title: String,
+        user1: Object,
+        user2: Object
     }
 }
 </script>

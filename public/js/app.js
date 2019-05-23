@@ -1813,9 +1813,49 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Event",
-  props: ["event"]
+  data: function data() {
+    return {
+      icons: [{
+        name: 'Basketball',
+        icon: ''
+      }, {
+        name: 'Boardgame',
+        icon: 'casino'
+      }, {
+        name: 'Bowling',
+        icon: ''
+      }, {
+        name: 'Golf',
+        icon: 'golf_course'
+      }, {
+        name: 'Video game',
+        icon: 'golf_course'
+      }]
+    };
+  },
+  props: {
+    event: Object,
+    user1: Object,
+    user2: Object
+  }
 });
 
 /***/ }),
@@ -1882,7 +1922,9 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   props: {
-    title: String
+    title: String,
+    user1: Object,
+    user2: Object
   }
 });
 
@@ -3693,18 +3735,100 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "div",
+    "v-layout",
+    { attrs: { row: "", "justify-center": "" } },
     [
-      _c("v-text-field", {
-        attrs: { label: "sport" },
-        model: {
-          value: _vm.event.sport,
-          callback: function($$v) {
-            _vm.$set(_vm.event, "sport", $$v)
-          },
-          expression: "event.sport"
-        }
-      })
+      _c(
+        "v-container",
+        { attrs: { "grid-list-md": "" } },
+        [
+          _c(
+            "v-layout",
+            { attrs: { wrap: "" } },
+            [
+              _c(
+                "v-flex",
+                { attrs: { xs8: "" } },
+                [
+                  _c("v-text-field", {
+                    attrs: { label: "sport" },
+                    model: {
+                      value: _vm.event.sport,
+                      callback: function($$v) {
+                        _vm.$set(_vm.event, "sport", $$v)
+                      },
+                      expression: "event.sport"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-flex",
+                { attrs: { xs4: "" } },
+                [
+                  _c("v-select", {
+                    attrs: {
+                      items: _vm.icons,
+                      label: "Icon",
+                      "item-text": "name",
+                      "item-value": "icon"
+                    },
+                    model: {
+                      value: _vm.event.icon,
+                      callback: function($$v) {
+                        _vm.$set(_vm.event, "icon", $$v)
+                      },
+                      expression: "event.icon"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-flex",
+                { attrs: { xs12: "", sm6: "", md6: "" } },
+                [
+                  _c("v-text-field", {
+                    attrs: { label: _vm.user1.name + " score" },
+                    model: {
+                      value: _vm.event.score_home,
+                      callback: function($$v) {
+                        _vm.$set(_vm.event, "score_home", $$v)
+                      },
+                      expression: "event.score_home"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-flex",
+                { attrs: { xs12: "", sm6: "", md6: "" } },
+                [
+                  _c("v-text-field", {
+                    attrs: { label: _vm.user2.name + " score" },
+                    model: {
+                      value: _vm.event.score_away,
+                      callback: function($$v) {
+                        _vm.$set(_vm.event, "score_away", $$v)
+                      },
+                      expression: "event.score_away"
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v("\n    " + _vm._s(_vm.event) + "\n")
+        ],
+        1
+      )
     ],
     1
   )
@@ -3778,7 +3902,13 @@ var render = function() {
                 [
                   _vm._t("introduction"),
                   _vm._v(" "),
-                  _c("Event", { attrs: { event: _vm.event } })
+                  _c("Event", {
+                    attrs: {
+                      event: _vm.event,
+                      user1: _vm.user1,
+                      user2: _vm.user2
+                    }
+                  })
                 ],
                 2
               ),
@@ -4369,7 +4499,7 @@ var render = function() {
         { attrs: { xs12: "", sm6: "", "offset-sm3": "" } },
         [
           _c("Modal", {
-            attrs: { title: "Add event" },
+            attrs: { title: "Add event", user1: _vm.user1, user2: _vm.user2 },
             scopedSlots: _vm._u([
               {
                 key: "introduction",
