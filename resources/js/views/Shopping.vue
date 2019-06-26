@@ -1,7 +1,6 @@
 <template>
 <div>
     <Shoppinglist> </Shoppinglist>
-    <!-- <button @click="addProduct"> lägg till produkt </button> -->
 </div>
 </template>
 

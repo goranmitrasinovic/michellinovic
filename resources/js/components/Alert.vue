@@ -1,41 +1,36 @@
 <template>
-    <div>
-        <v-alert v-model="alert" type="success" outline transition="scale-transition">
-          <slot></slot>
-        </v-alert>
-    </div>
+  <div>
+    <v-alert v-model="alert" type="success" outline transition="scale-transition">
+      <slot></slot>
+    </v-alert>
+  </div>
 </template>
 
 <script>
 export default {
-    name: "Alert",
+  name: "Alert",
 
-    props: {
-        type: String
-    },
+  props: {
+    type: String
+  },
 
-    data() {
-        return {
-            alert: false,
-        };
-    },
+  data() {
+    return {
+      alert: false
+    };
+  },
 
-    mounted() {
-        // showTheAlert()
-    },
-
-    methods: {
-        showTheAlert(){
-            this.alert = !this.alert;
-            this.$emit('showTheAlert');
-            setTimeout(()=>{
-               this.alert = !this.alert;
-           },1500);
-        },
+  methods: {
+    showTheAlert() {
+      this.alert = !this.alert;
+      this.$emit("showTheAlert");
+      setTimeout(() => {
+        this.alert = !this.alert;
+      }, 1500);
     }
-}
+  }
+};
 </script>
 
 <style lang="css" scoped>
-
 </style>
