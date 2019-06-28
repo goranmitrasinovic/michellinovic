@@ -2078,9 +2078,14 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     createEvent: function createEvent(event) {
+      var _this = this;
+
       this.dialog = false;
-      this.$emit("update");
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("api/events/create", event).then(function (response) {//   console.log(response);
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("api/events/create", event).then(function (response) {
+        //   console.log(response);
+        _this.$emit("update");
+
+        _this.event = {};
       }).catch(function (error) {
         // handle error
         console.log(error);

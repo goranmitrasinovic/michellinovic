@@ -41,11 +41,12 @@ export default {
   methods: {
     createEvent(event) {
       this.dialog = false;
-      this.$emit("update");
       axios
         .post("api/events/create", event)
         .then(response => {
           //   console.log(response);
+          this.$emit("update");
+          this.event = {};
         })
         .catch(function(error) {
           // handle error
