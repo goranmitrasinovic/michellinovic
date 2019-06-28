@@ -48,9 +48,9 @@
             </v-container>
           </v-form>
           <!-- If list of products is empty -->
-          <div v-if="shoppingList.length < 1" style="text-align: center; padding: 50px;">
-            <v-icon size="250px" color="green">shopping_cart</v-icon>
-            <p style="font-size: 32px; color: grey">No items in your shoppinglist. Good job!</p>
+          <div v-if="shoppingList.length < 1" class="empty-cart-container">
+            <v-icon class="empty-cart-icon" color="green">shopping_cart</v-icon>
+            <p class="empty-cart-text">No items in your shoppinglist. Good job!</p>
           </div>
           <transition-group name="card">
             <Product
@@ -189,5 +189,19 @@ export default {
 .theme--light.v-sheet {
   background-color: #e7f4ff;
   border: 1px solid #570fc1;
+}
+
+.empty-cart-icon {
+  font-size: 250px;
+}
+
+.empty-cart-text {
+  color: grey;
+  font-size: 32px;
+}
+
+.empty-cart-container {
+  text-align: center;
+  padding: 50px;
 }
 </style>
