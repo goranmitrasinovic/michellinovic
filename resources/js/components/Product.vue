@@ -15,16 +15,14 @@
           >{{product.name}} ({{product.quantity}} units)</v-list-tile-title>
         </v-list-tile-content>
 
-        <gmButton v-if="!editable" type="warning" icon="edit" @click="editProduct"/>
-
         <v-text-field v-model="product.name" label="Name" v-if="editable"></v-text-field>
         <v-text-field v-model="product.quantity" label="Amount" v-if="editable"></v-text-field>
 
+        <v-divider class="mx-3" inset vertical></v-divider>
         <gmButton v-if="editable" type="warning" @click="editProduct">Cancel</gmButton>
 
         <gmButton v-if="editable" type="success" @click="updateProduct(product)">Save</gmButton>
-
-        <v-divider v-if="!editable" class="mx-3" inset vertical></v-divider>
+        <gmButton v-if="!editable" type="warning" icon="edit" @click="editProduct"/>
         <v-list-tile-action v-if="!editable">
           <gmButton
             type="success"
@@ -33,22 +31,26 @@
           >Complete</gmButton>
         </v-list-tile-action>
       </v-list-tile>
-      <v-divider></v-divider>
     </v-list>
+    <gmSnackbar ref="snackbar" text="Saved"></gmSnackbar>
   </div>
 </template>
 
 <script>
 import axios from "axios";
 import gmButton from "../base_components/gmButton";
+import gmSnackbar from "../base_components/gmSnackbar";
+import { log } from "util";
 
 export default {
   name: "Product",
   props: ["product"],
 
   components: {
-    gmButton
+    gmButton,
+    gmSnackbar
   },
+
   data() {
     return {
       editable: false,
@@ -62,6 +64,7 @@ export default {
     },
 
     completeProduct(product) {
+      this.$refs.snackbar.toogleSnackbar();
       this.saving = true;
       axios
         .put("api/shopping-list/product/" + product.id)
@@ -76,6 +79,7 @@ export default {
     },
 
     updateProduct(product) {
+      this.$refs.snackbar.toogleSnackbar();
       axios
         .put("api/shopping-list/edit-product/" + product.id, product)
         .then(response => {
@@ -92,7 +96,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .slide-fade-enter-active {
   transition: all 1s ease;
 }
@@ -107,5 +111,16 @@ export default {
 
 .completed {
   text-decoration: line-through;
+}
+
+.theme--light.v-list {
+  background: white;
+  border-radius: 10px;
+  margin: 10px;
+  border: 1px solid #570fc1;
+}
+
+.v-list__tile__title {
+  letter-spacing: 0.5px;
 }
 </style>

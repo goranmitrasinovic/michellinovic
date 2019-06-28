@@ -3,7 +3,7 @@
     <v-layout row>
       <v-flex xs12 sm6 offset-sm3>
         <v-card>
-          <v-toolbar color="purple" dark>
+          <v-toolbar color="indigo" dark>
             <v-menu offset-y>
               <template v-slot:activator="{ on }">
                 <v-toolbar-side-icon v-on="on">
@@ -47,6 +47,11 @@
               </v-layout>
             </v-container>
           </v-form>
+          <!-- If list of products is empty -->
+          <div v-if="shoppingList.length < 1" style="text-align: center; padding: 50px;">
+            <v-icon size="250px" color="green">shopping_cart</v-icon>
+            <p style="font-size: 32px; color: grey">No items in your shoppinglist. Good job!</p>
+          </div>
           <transition-group name="card">
             <Product
               ref="product1"
@@ -58,6 +63,7 @@
           </transition-group>
         </v-card>
       </v-flex>
+      <gmSnackbar ref="snackbar" text="Added product"></gmSnackbar>
     </v-layout>
   </div>
 </template>
@@ -65,6 +71,7 @@
 <script>
 import Product from "./Product.vue";
 import Alert from "./Alert.vue";
+import gmSnackbar from "../base_components/gmSnackbar";
 import gmButton from "../base_components/gmButton";
 import axios from "axios";
 
@@ -85,7 +92,8 @@ export default {
   components: {
     Product,
     Alert,
-    gmButton
+    gmButton,
+    gmSnackbar
   },
   mounted() {
     this.getShoppingList();
@@ -133,6 +141,7 @@ export default {
     },
 
     addProductToShoppingList(product) {
+      this.$refs.snackbar.toogleSnackbar();
       axios
         .post("api/product/create", product)
         .then(response => {
@@ -150,7 +159,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .bounce {
   -webkit-animation-name: bounce;
   animation-name: bounce;
@@ -159,8 +168,8 @@ export default {
 }
 
 .add-product {
-  background: #f6f0ff;
-  border-bottom: 2px solid #570fc1;
+  background: #fff;
+  border-bottom: 2px solid #3f51b5;
 }
 
 .card-enter-active {
@@ -175,5 +184,10 @@ export default {
 
 .card-move {
   transition: all 0.5s;
+}
+
+.theme--light.v-sheet {
+  background-color: #e7f4ff;
+  border: 1px solid #570fc1;
 }
 </style>

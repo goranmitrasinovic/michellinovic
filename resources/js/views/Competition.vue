@@ -147,8 +147,8 @@ export default {
 }
 
 .filter-container {
-  background: #f6f0ff;
-  border-bottom: 2px solid #570fc1;
+  background: #fff;
+  border-bottom: 2px solid #3f51b5;
   padding: 10px;
 }
 </style>
