@@ -2036,6 +2036,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Event__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Event */ "./resources/js/components/Event.vue");
+/* harmony import */ var util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! util */ "./node_modules/util/util.js");
+/* harmony import */ var util__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(util__WEBPACK_IMPORTED_MODULE_2__);
 //
 //
 //
@@ -2061,7 +2063,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2076,8 +2078,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     createEvent: function createEvent(event) {
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('api/events/create', event).then(function (response) {
-        console.log(response);
+      this.dialog = false;
+      this.$emit("update");
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("api/events/create", event).then(function (response) {//   console.log(response);
       }).catch(function (error) {
         // handle error
         console.log(error);
@@ -2469,6 +2472,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2685,7 +2694,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.bounce[data-v-28c1d9de] {\n  -webkit-animation-name: bounce;\n  animation-name: bounce;\n  -webkit-transform-origin: center bottom;\n  transform-origin: center bottom;\n}\n.add-product[data-v-28c1d9de] {\n  background: #fff;\n  border-bottom: 2px solid #3f51b5;\n}\n.card-enter-active[data-v-28c1d9de] {\n  position: absolute;\n}\n.card-leave-active[data-v-28c1d9de] {\n  position: absolute;\n  display: none;\n  right: 0;\n}\n.card-move[data-v-28c1d9de] {\n  transition: all 0.5s;\n}\n.theme--light.v-sheet[data-v-28c1d9de] {\n  background-color: #e7f4ff;\n  border: 1px solid #570fc1;\n}\n", ""]);
+exports.push([module.i, "\n.bounce[data-v-28c1d9de] {\n  -webkit-animation-name: bounce;\n  animation-name: bounce;\n  -webkit-transform-origin: center bottom;\n  transform-origin: center bottom;\n}\n.add-product[data-v-28c1d9de] {\n  background: #fff;\n  border-bottom: 2px solid #3f51b5;\n}\n.card-enter-active[data-v-28c1d9de] {\n  position: absolute;\n}\n.card-leave-active[data-v-28c1d9de] {\n  position: absolute;\n  display: none;\n  right: 0;\n}\n.card-move[data-v-28c1d9de] {\n  transition: all 0.5s;\n}\n.theme--light.v-sheet[data-v-28c1d9de] {\n  background-color: #e7f4ff;\n  border: 1px solid #570fc1;\n}\n.empty-cart-icon[data-v-28c1d9de] {\n  font-size: 250px;\n}\n.empty-cart-text[data-v-28c1d9de] {\n  color: grey;\n  font-size: 32px;\n}\n.empty-cart-container[data-v-28c1d9de] {\n  text-align: center;\n  padding: 50px;\n}\n", ""]);
 
 // exports
 
@@ -5601,29 +5610,20 @@ var render = function() {
                   _vm.shoppingList.length < 1
                     ? _c(
                         "div",
-                        {
-                          staticStyle: {
-                            "text-align": "center",
-                            padding: "50px"
-                          }
-                        },
+                        { staticClass: "empty-cart-container" },
                         [
                           _c(
                             "v-icon",
-                            { attrs: { size: "250px", color: "green" } },
+                            {
+                              staticClass: "empty-cart-icon",
+                              attrs: { color: "green" }
+                            },
                             [_vm._v("shopping_cart")]
                           ),
                           _vm._v(" "),
-                          _c(
-                            "p",
-                            {
-                              staticStyle: {
-                                "font-size": "32px",
-                                color: "grey"
-                              }
-                            },
-                            [_vm._v("No items in your shoppinglist. Good job!")]
-                          )
+                          _c("p", { staticClass: "empty-cart-text" }, [
+                            _vm._v("No items in your shoppinglist. Good job!")
+                          ])
                         ],
                         1
                       )
@@ -5808,6 +5808,7 @@ var render = function() {
               user1: _vm.user1,
               user2: _vm.user2
             },
+            on: { update: _vm.getEvents },
             scopedSlots: _vm._u([
               {
                 key: "introduction",
