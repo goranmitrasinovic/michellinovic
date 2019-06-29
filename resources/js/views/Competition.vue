@@ -40,7 +40,7 @@
 
             <v-list-tile-action>{{user1.name}}</v-list-tile-action>
           </v-list-tile>
-          <div v-for="event in events">
+          <div v-for="event in events" class="event-list-item">
             <v-list-tile>
               <v-list-tile-action>
                 <v-icon>{{event.icon}}</v-icon>
@@ -164,5 +164,17 @@ export default {
   background: #fff;
   border-bottom: 2px solid #3f51b5;
   padding: 10px;
+}
+
+.theme--light.v-list {
+  background: #e7f4ff;
+  border: 1px solid #570fc1;
+}
+
+.event-list-item {
+  margin: 10px;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid #570fc1;
 }
 </style>

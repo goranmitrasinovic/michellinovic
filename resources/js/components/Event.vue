@@ -46,4 +46,9 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.v-list__tile {
+  margin: 10px;
+  border-radius: 10px;
+  background: #fff;
+}
 </style>
