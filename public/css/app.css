@@ -10,6 +10,11 @@ a:hover {
   text-decoration: none;
 }
 
+.mirrored {
+  -webkit-transform: scaleX(-1);
+          transform: scaleX(-1);
+}
+
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);

@@ -7,6 +7,7 @@
       <v-toolbar-items>
         <v-btn class="px-3 mx-2" flat dark to="/shopping-list">Shopping list</v-btn>
         <v-btn class="px-3 mx-2" flat dark to="/competition">Competition</v-btn>
+        <v-btn class="px-3 mx-2" flat dark to="/calendar">Calendar</v-btn>
       </v-toolbar-items>
     </v-toolbar>
   </nav>

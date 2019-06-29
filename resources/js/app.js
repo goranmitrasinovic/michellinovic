@@ -10,6 +10,7 @@ import App from './views/App'
 import Shopping from './views/Shopping'
 import Home from './views/Home'
 import Competition from './views/Competition'
+import Calendar from './views/Calendar'
 
 import 'vuetify/dist/vuetify.min.css'
 
@@ -30,6 +31,11 @@ const router = new VueRouter({
             path: '/competition',
             name: 'competition',
             component: Competition,
+        },
+        {
+            path: '/calendar',
+            name: 'calendar',
+            component: Calendar,
         },
     ],
 });

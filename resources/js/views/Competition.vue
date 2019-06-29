@@ -35,23 +35,20 @@
             <v-layout row align-center justify-space-between text-xs-center>
               <v-flex xs12 sm4>
                 <img
-                  width="64px"
-                  style="transform: scaleX(-1); border-radius: 200px;"
+                  class="avatar mirrored"
                   src="https://image.shutterstock.com/image-vector/angry-man-avatar-user-pic-260nw-578255422.jpg"
                 />
                 <br />
-
-                {{user2.name}}
+                <h3>{{user1.name}}</h3>
               </v-flex>
               <v-flex xs12 sm4>Result</v-flex>
               <v-flex xs12 sm4>
                 <img
-                  width="64px"
-                  style="border-radius: 200px;"
+                  class="avatar"
                   src="https://image.shutterstock.com/image-vector/angry-man-avatar-user-pic-260nw-578255422.jpg"
                 />
                 <br />
-                {{user1.name}}
+                <h3>{{user2.name}}</h3>
               </v-flex>
             </v-layout>
           </v-container>
@@ -191,5 +188,11 @@ export default {
   border-radius: 10px;
   background: #fff;
   border: 1px solid #570fc1;
+}
+
+.avatar {
+  border-radius: 200px;
+  border: 3px solid #3f51b5;
+  width: 74px;
 }
 </style>
