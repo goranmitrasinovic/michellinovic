@@ -19,10 +19,10 @@
         <v-text-field v-model="product.quantity" label="Amount" v-if="editable"></v-text-field>
 
         <v-divider class="mx-3" inset vertical></v-divider>
-        <gmButton v-if="editable" type="warning" @click="editProduct">Cancel</gmButton>
+        <gmButton v-if="editable" type="warning" size="small" @click="editProduct">Cancel</gmButton>
 
         <gmButton v-if="editable" type="success" @click="updateProduct(product)">Save</gmButton>
-        <gmButton v-if="!editable" type="warning" icon="edit" @click="editProduct"/>
+        <gmButton v-if="!editable" type="warning" icon="edit" @click="editProduct" />
         <v-list-tile-action v-if="!editable">
           <gmButton
             type="success"

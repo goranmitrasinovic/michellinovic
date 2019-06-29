@@ -1,5 +1,5 @@
 <template>
-  <v-btn @click="handleClick" :color="type" :disabled="disabled">
+  <v-btn @click="handleClick" :color="type" :disabled="disabled" :size="size">
     <slot>{{title}}</slot>
     <v-icon class="btn-icon" v-if="icon">{{icon}}</v-icon>
   </v-btn>
@@ -34,6 +34,10 @@ export default {
     disabled: {
       type: Boolean,
       default: false,
+      required: false
+    },
+    size: {
+      type: String,
       required: false
     }
   }

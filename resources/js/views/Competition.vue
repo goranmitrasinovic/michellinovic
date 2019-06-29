@@ -31,15 +31,30 @@
               item-text="name"
             ></v-select>
           </div>
-          <v-list-tile>
-            <v-list-tile-action>{{user2.name}}</v-list-tile-action>
+          <v-container grid-list-md>
+            <v-layout row align-center justify-space-between text-xs-center>
+              <v-flex xs12 sm4>
+                <img
+                  width="64px"
+                  style="transform: scaleX(-1); border-radius: 200px;"
+                  src="https://image.shutterstock.com/image-vector/angry-man-avatar-user-pic-260nw-578255422.jpg"
+                />
+                <br />
 
-            <v-list-tile-content>
-              <v-list-tile-title class="bold">Result</v-list-tile-title>
-            </v-list-tile-content>
-
-            <v-list-tile-action>{{user1.name}}</v-list-tile-action>
-          </v-list-tile>
+                {{user2.name}}
+              </v-flex>
+              <v-flex xs12 sm4>Result</v-flex>
+              <v-flex xs12 sm4>
+                <img
+                  width="64px"
+                  style="border-radius: 200px;"
+                  src="https://image.shutterstock.com/image-vector/angry-man-avatar-user-pic-260nw-578255422.jpg"
+                />
+                <br />
+                {{user1.name}}
+              </v-flex>
+            </v-layout>
+          </v-container>
           <div v-for="event in events" class="event-list-item">
             <v-list-tile>
               <v-list-tile-action>

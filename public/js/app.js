@@ -1797,6 +1797,10 @@ __webpack_require__.r(__webpack_exports__);
       type: Boolean,
       default: false,
       required: false
+    },
+    size: {
+      type: String,
+      required: false
     }
   }
 });
@@ -2410,6 +2414,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_Modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Modal */ "./resources/js/components/Modal.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4829,7 +4848,7 @@ var render = function() {
   return _c(
     "v-btn",
     {
-      attrs: { color: _vm.type, disabled: _vm.disabled },
+      attrs: { color: _vm.type, disabled: _vm.disabled, size: _vm.size },
       on: { click: _vm.handleClick }
     },
     [
@@ -5411,7 +5430,7 @@ var render = function() {
                 ? _c(
                     "gmButton",
                     {
-                      attrs: { type: "warning" },
+                      attrs: { type: "warning", size: "small" },
                       on: { click: _vm.editProduct }
                     },
                     [_vm._v("Cancel")]
@@ -5925,23 +5944,65 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c(
-                    "v-list-tile",
+                    "v-container",
+                    { attrs: { "grid-list-md": "" } },
                     [
-                      _c("v-list-tile-action", [
-                        _vm._v(_vm._s(_vm.user2.name))
-                      ]),
-                      _vm._v(" "),
                       _c(
-                        "v-list-tile-content",
+                        "v-layout",
+                        {
+                          attrs: {
+                            row: "",
+                            "align-center": "",
+                            "justify-space-between": "",
+                            "text-xs-center": ""
+                          }
+                        },
                         [
-                          _c("v-list-tile-title", { staticClass: "bold" }, [
+                          _c("v-flex", { attrs: { xs12: "", sm4: "" } }, [
+                            _c("img", {
+                              staticStyle: {
+                                transform: "scaleX(-1)",
+                                "border-radius": "200px"
+                              },
+                              attrs: {
+                                width: "64px",
+                                src:
+                                  "https://image.shutterstock.com/image-vector/angry-man-avatar-user-pic-260nw-578255422.jpg"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("br"),
+                            _vm._v(
+                              "\n\n              " +
+                                _vm._s(_vm.user2.name) +
+                                "\n            "
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("v-flex", { attrs: { xs12: "", sm4: "" } }, [
                             _vm._v("Result")
+                          ]),
+                          _vm._v(" "),
+                          _c("v-flex", { attrs: { xs12: "", sm4: "" } }, [
+                            _c("img", {
+                              staticStyle: { "border-radius": "200px" },
+                              attrs: {
+                                width: "64px",
+                                src:
+                                  "https://image.shutterstock.com/image-vector/angry-man-avatar-user-pic-260nw-578255422.jpg"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("br"),
+                            _vm._v(
+                              "\n              " +
+                                _vm._s(_vm.user1.name) +
+                                "\n            "
+                            )
                           ])
                         ],
                         1
-                      ),
-                      _vm._v(" "),
-                      _c("v-list-tile-action", [_vm._v(_vm._s(_vm.user1.name))])
+                      )
                     ],
                     1
                   ),
