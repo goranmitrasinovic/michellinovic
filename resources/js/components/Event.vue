@@ -2,8 +2,8 @@
   <v-layout row justify-center>
     <v-container grid-list-md>
       <v-layout wrap>
-        <v-flex xs8>
-          <v-text-field v-model="event.sport" label="sport"></v-text-field>
+        <v-flex xs>
+          <v-text-field v-model="event.sport" label="Sport"></v-text-field>
         </v-flex>
         <v-flex xs4>
           <v-select
@@ -21,7 +21,6 @@
           <v-text-field v-model="event.score_away" :label="user2.name + ' score'"></v-text-field>
         </v-flex>
       </v-layout>
-      {{event}}
     </v-container>
   </v-layout>
 </template>

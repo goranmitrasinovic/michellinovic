@@ -47,6 +47,10 @@
               </v-list-tile-action>
               <v-list-tile-action>
                 <v-icon v-if="event.score_home > event.score_away" color="green">mood</v-icon>
+                <v-icon
+                  v-if="event.score_home == event.score_away"
+                  color="orange"
+                >sentiment_dissatisfied</v-icon>
                 <v-icon v-if="event.score_home < event.score_away" color="red">mood_bad</v-icon>
               </v-list-tile-action>
 
@@ -56,6 +60,10 @@
 
               <v-list-tile-action>
                 <v-icon v-if="event.score_home < event.score_away" color="green">mood</v-icon>
+                <v-icon
+                  v-if="event.score_home == event.score_away"
+                  color="orange"
+                >sentiment_dissatisfied</v-icon>
                 <v-icon v-if="event.score_home > event.score_away" color="red">mood_bad</v-icon>
               </v-list-tile-action>
               <v-list-tile-action>

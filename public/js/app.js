@@ -1992,7 +1992,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Event",
   data: function data() {
@@ -2411,6 +2410,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_Modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Modal */ "./resources/js/components/Modal.vue");
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -5023,10 +5030,10 @@ var render = function() {
             [
               _c(
                 "v-flex",
-                { attrs: { xs8: "" } },
+                { attrs: { xs: "" } },
                 [
                   _c("v-text-field", {
-                    attrs: { label: "sport" },
+                    attrs: { label: "Sport" },
                     model: {
                       value: _vm.event.sport,
                       callback: function($$v) {
@@ -5099,8 +5106,7 @@ var render = function() {
               )
             ],
             1
-          ),
-          _vm._v("\n    " + _vm._s(_vm.event) + "\n  ")
+          )
         ],
         1
       )
@@ -5915,6 +5921,14 @@ var render = function() {
                                     )
                                   : _vm._e(),
                                 _vm._v(" "),
+                                event.score_home == event.score_away
+                                  ? _c(
+                                      "v-icon",
+                                      { attrs: { color: "orange" } },
+                                      [_vm._v("sentiment_dissatisfied")]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
                                 event.score_home < event.score_away
                                   ? _c("v-icon", { attrs: { color: "red" } }, [
                                       _vm._v("mood_bad")
@@ -5946,6 +5960,14 @@ var render = function() {
                                       "v-icon",
                                       { attrs: { color: "green" } },
                                       [_vm._v("mood")]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                event.score_home == event.score_away
+                                  ? _c(
+                                      "v-icon",
+                                      { attrs: { color: "orange" } },
+                                      [_vm._v("sentiment_dissatisfied")]
                                     )
                                   : _vm._e(),
                                 _vm._v(" "),
