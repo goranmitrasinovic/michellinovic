@@ -28,5 +28,5 @@ Route::get('/products', 'ProductController@index');
 
 Route::get('/users', 'UserController@index');
 
-Route::post('/events/create', 'EventController@create');
-Route::get('/events', 'EventController@index');
+Route::post('/competitions/create', 'CompetitionController@create');
+Route::get('/competitions', 'CompetitionController@index');

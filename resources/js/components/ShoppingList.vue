@@ -2,7 +2,7 @@
   <div>
     <v-layout row>
       <v-flex xs12 sm6 offset-sm3>
-        <v-card>
+        <gmCard>
           <v-toolbar color="indigo" dark>
             <v-menu offset-y>
               <template v-slot:activator="{ on }">
@@ -61,7 +61,7 @@
               :key="product.id"
             ></Product>
           </transition-group>
-        </v-card>
+        </gmCard>
       </v-flex>
       <gmSnackbar ref="snackbar" text="Added product"></gmSnackbar>
     </v-layout>
@@ -73,6 +73,7 @@ import Product from "./Product.vue";
 import Alert from "./Alert.vue";
 import gmSnackbar from "../base_components/gmSnackbar";
 import gmButton from "../base_components/gmButton";
+import gmCard from "../base_components/gmCard";
 import axios from "axios";
 
 export default {
@@ -93,6 +94,7 @@ export default {
     Product,
     Alert,
     gmButton,
+    gmCard,
     gmSnackbar
   },
   mounted() {

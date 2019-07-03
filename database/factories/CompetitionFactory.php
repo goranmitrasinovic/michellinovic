@@ -1,6 +1,6 @@
 <?php
 
-use App\Event;
+use App\Competition;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
@@ -15,7 +15,7 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(Event::class, function (Faker $faker) {
+$factory->define(Competition::class, function (Faker $faker) {
     return [
         'id' => $faker->randomNumber,
         'sport' => $faker->jobTitle,

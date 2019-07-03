@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
-use App\Event;
+use App\Competition;
 use App\User;
 
 class UsersTableSeeder extends Seeder

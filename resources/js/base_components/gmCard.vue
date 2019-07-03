@@ -1,3 +1,5 @@
 <template>
-  <v-card></v-card>
+  <v-card>
+    <slot></slot>
+  </v-card>
 </template>

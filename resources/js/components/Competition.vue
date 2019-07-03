@@ -3,11 +3,11 @@
     <v-container grid-list-md>
       <v-layout wrap>
         <v-flex xs>
-          <v-text-field v-model="event.sport" label="Sport"></v-text-field>
+          <v-text-field v-model="competition.sport" label="Sport"></v-text-field>
         </v-flex>
         <v-flex xs4>
           <v-select
-            v-model="event.icon"
+            v-model="competition.icon"
             :items="icons"
             label="Icon"
             item-text="name"
@@ -15,10 +15,10 @@
           ></v-select>
         </v-flex>
         <v-flex xs12 sm6 md6>
-          <v-text-field v-model="event.score_home" :label="user1.name + ' score'"></v-text-field>
+          <v-text-field v-model="competition.score_home" :label="user1.name + ' score'"></v-text-field>
         </v-flex>
         <v-flex xs12 sm6 md6>
-          <v-text-field v-model="event.score_away" :label="user2.name + ' score'"></v-text-field>
+          <v-text-field v-model="competition.score_away" :label="user2.name + ' score'"></v-text-field>
         </v-flex>
       </v-layout>
     </v-container>
@@ -27,7 +27,7 @@
 
 <script>
 export default {
-  name: "Event",
+  name: "Competition",
   data: () => ({
     icons: [
       { name: "Basketball", icon: "fiber_manual_record" },
@@ -38,7 +38,7 @@ export default {
     ]
   }),
   props: {
-    event: Object,
+    competition: Object,
     user1: Object,
     user2: Object
   }

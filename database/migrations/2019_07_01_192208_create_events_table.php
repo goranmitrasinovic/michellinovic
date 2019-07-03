@@ -14,11 +14,11 @@ class CreateEventsTable extends Migration
     public function up()
     {
         Schema::create('events', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string("sport");
-            $table->integer("score_home")->nullable();
-            $table->integer("score_away")->nullable();
-            $table->string("icon")->nullable();
+            $table->bigIncrements('id');
+            $table->string('title');
+            $table->string('details');
+            $table->date('date');
+            $table->string('time');
             $table->timestamps();
         });
     }

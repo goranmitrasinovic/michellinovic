@@ -10,13 +10,13 @@
         </v-card-title>
         <v-container>
           <slot name="introduction"></slot>
-          <Event :event="event" :user1="user1" :user2="user2"></Event>
+          <Competition :competition="competition" :user1="user1" :user2="user2"></Competition>
         </v-container>
 
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" flat @click="dialog = false">Close</v-btn>
-          <v-btn color="blue darken-1" flat @click="createEvent(event)">Save</v-btn>
+          <v-btn color="blue darken-1" flat @click="createCompetition(competition)">Save</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -25,28 +25,28 @@
 
 <script>
 import axios from "axios";
-import Event from "./Event";
+import Competition from "./Competition";
 import { log } from "util";
 
 export default {
   data: () => ({
     dialog: false,
-    event: {}
+    competition: {}
   }),
 
   components: {
-    Event
+    Competition
   },
 
   methods: {
-    createEvent(event) {
+    createCompetition(competition) {
       this.dialog = false;
       axios
-        .post("api/events/create", event)
+        .post("api/competitions/create", competition)
         .then(response => {
           //   console.log(response);
           this.$emit("update");
-          this.event = {};
+          this.competition = {};
         })
         .catch(function(error) {
           // handle error

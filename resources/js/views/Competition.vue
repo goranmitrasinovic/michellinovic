@@ -3,8 +3,8 @@
     <v-flex xs12 sm6 offset-sm3>
       <Modal
         title="Add event"
-        modalToogle="Create event"
-        @update="getEvents"
+        modalToogle="Create competition"
+        @update="getCompetitions"
         :user1="user1"
         :user2="user2"
       >
@@ -52,34 +52,34 @@
               </v-flex>
             </v-layout>
           </v-container>
-          <div v-for="event in events" class="event-list-item">
+          <div v-for="competition in competitions" class="event-list-item">
             <v-list-tile>
               <v-list-tile-action>
-                <v-icon>{{event.icon}}</v-icon>
+                <v-icon>{{competition.icon}}</v-icon>
               </v-list-tile-action>
               <v-list-tile-action>
-                <v-icon v-if="event.score_home > event.score_away" color="green">mood</v-icon>
+                <v-icon v-if="competition.score_home > competition.score_away" color="green">mood</v-icon>
                 <v-icon
-                  v-if="event.score_home == event.score_away"
+                  v-if="competition.score_home == competition.score_away"
                   color="orange"
                 >sentiment_dissatisfied</v-icon>
-                <v-icon v-if="event.score_home < event.score_away" color="red">mood_bad</v-icon>
+                <v-icon v-if="competition.score_home < competition.score_away" color="red">mood_bad</v-icon>
               </v-list-tile-action>
 
               <v-list-tile-content>
-                <v-list-tile-title>{{event.score_home}} - {{event.score_away}}</v-list-tile-title>
+                <v-list-tile-title>{{competition.score_home}} - {{competition.score_away}}</v-list-tile-title>
               </v-list-tile-content>
 
               <v-list-tile-action>
-                <v-icon v-if="event.score_home < event.score_away" color="green">mood</v-icon>
+                <v-icon v-if="competition.score_home < competition.score_away" color="green">mood</v-icon>
                 <v-icon
-                  v-if="event.score_home == event.score_away"
+                  v-if="competition.score_home == competition.score_away"
                   color="orange"
                 >sentiment_dissatisfied</v-icon>
-                <v-icon v-if="event.score_home > event.score_away" color="red">mood_bad</v-icon>
+                <v-icon v-if="competition.score_home > competition.score_away" color="red">mood_bad</v-icon>
               </v-list-tile-action>
               <v-list-tile-action>
-                <v-icon>{{event.icon}}</v-icon>
+                <v-icon>{{competition.icon}}</v-icon>
               </v-list-tile-action>
             </v-list-tile>
             <v-divider></v-divider>
@@ -93,12 +93,13 @@
 <script>
 import axios from "axios";
 import Modal from "../components/Modal";
+import Competition from "../components/Competition";
 
 export default {
   data: function() {
     return {
       users: [],
-      events: [],
+      competitions: [],
       filter: { sport: "All" },
       sports: [
         { name: "All" },
@@ -117,12 +118,12 @@ export default {
 
   components: {
     Modal,
-    Event
+    Competition
   },
 
   mounted() {
     this.getUsers();
-    this.getEvents();
+    this.getCompetitions();
   },
 
   methods: {
@@ -145,11 +146,11 @@ export default {
       console.log("hej");
     },
 
-    getEvents() {
+    getCompetitions() {
       axios
-        .get("api/events")
+        .get("api/competitions")
         .then(response => {
-          this.events = response.data;
+          this.competitions = response.data;
         })
         .catch(function(error) {
           // handle error

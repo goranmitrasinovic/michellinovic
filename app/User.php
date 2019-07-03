@@ -16,7 +16,7 @@ class User extends Model
         'name',
     ];
 
-    public function events(){
-        return $this->belongsToMany('App/Event', 'event_user', 'event_id', 'user_one_id', 'user_two_id');
+    public function competitions(){
+        return $this->belongsToMany('App/Competition', 'competition_user', 'competition_id', 'user_one_id', 'user_two_id');
     }
 }

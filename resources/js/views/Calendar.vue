@@ -32,6 +32,13 @@
                 </v-card>
               </v-menu>
             </template>
+            <gmModal title="Add event" toogleText="Add event">
+              <v-flex xs12 sm6 md6>
+                <v-text-field label="Date" v-model="event.date"></v-text-field>
+                <v-text-field label="Time" v-model="event.time"></v-text-field>
+                <v-text-field label="Title" v-model="event.title"></v-text-field>
+              </v-flex>
+            </gmModal>
           </template>
         </v-calendar>
       </v-sheet>
@@ -40,9 +47,18 @@
 </template>
 
 <script>
+import gmButton from "../base_components/gmButton";
+import gmModal from "../base_components/gmModal";
+
 export default {
   data: () => ({
     today: "2019-01-08",
+    event: {
+      title: "Title of event",
+      details: "The details of the event",
+      date: "2018-01-01",
+      time: "14.00"
+    },
     events: [
       {
         title: "Vacation",
@@ -94,6 +110,12 @@ export default {
       }
     ]
   }),
+
+  components: {
+    gmButton,
+    gmModal
+  },
+
   computed: {
     // convert the list of events into a map of lists keyed by date
     eventsMap() {
@@ -105,6 +127,10 @@ export default {
   methods: {
     open(event) {
       alert(event.title);
+    },
+
+    addEvent() {
+      console.log("hej");
     }
   }
 };
