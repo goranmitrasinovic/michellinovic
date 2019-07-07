@@ -3,7 +3,14 @@
     <v-container grid-list-md>
       <v-layout wrap>
         <v-flex xs>
-          <v-text-field v-model="competition.sport" label="Sport"></v-text-field>
+          <!-- <v-text-field v-model="competition.sport" label="Sport"></v-text-field> -->
+          <v-select
+            v-model="competition.sport"
+            :items="sports"
+            label="Sport"
+            item-text="name"
+            item-value="name"
+          ></v-select>
         </v-flex>
         <v-flex xs4>
           <v-select
@@ -29,6 +36,7 @@
 export default {
   name: "Competition",
   data: () => ({
+    sports: [{ name: "Basketball" }, { name: "Soccer" }, { name: "Golf" }],
     icons: [
       { name: "Basketball", icon: "fiber_manual_record" },
       { name: "Boardgame", icon: "casino" },

@@ -1843,6 +1843,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1855,9 +1856,15 @@ __webpack_require__.r(__webpack_exports__);
     closeModal: function closeModal() {
       this.dialog = false;
     },
+    showModal: function showModal() {
+      this.dialog = true;
+    },
     saveModal: function saveModal() {
       this.dialog = false;
       this.$emit("save");
+    },
+    editModal: function editModal() {
+      this.$emit("edit");
     }
   },
   components: {
@@ -1865,6 +1872,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     title: String,
+    editButton: Boolean,
     toogleText: String
   }
 });
@@ -1996,10 +2004,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Competition",
   data: function data() {
     return {
+      sports: [{
+        name: "Basketball"
+      }, {
+        name: "Soccer"
+      }, {
+        name: "Golf"
+      }],
       icons: [{
         name: "Basketball",
         icon: "fiber_manual_record"
@@ -2464,18 +2486,46 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      type: "month",
+      start: "2019-01-01",
+      end: "2019-01-06",
+      typeOptions: [{
+        text: "Day",
+        value: "day"
+      }, {
+        text: "4 Day",
+        value: "4day"
+      }, {
+        text: "Week",
+        value: "week"
+      }, {
+        text: "Month",
+        value: "month"
+      }, {
+        text: "Custom Daily",
+        value: "custom-daily"
+      }, {
+        text: "Custom Weekly",
+        value: "custom-weekly"
+      }],
       today: "2019-01-08",
-      event: {
-        title: "Title of event",
-        details: "The details of the event",
-        date: "2018-01-01",
-        time: "14.00"
-      },
+      newEvent: {},
+      event: {},
       events: [{
         title: "Vacation",
         details: "Going to the beach!",
@@ -2537,8 +2587,12 @@ __webpack_require__.r(__webpack_exports__);
     open: function open(event) {
       alert(event.title);
     },
-    addEvent: function addEvent() {
-      console.log("hej");
+    openModal: function openModal(event) {
+      this.event = event;
+      this.$refs.modal.showModal();
+    },
+    addEvent: function addEvent(event) {
+      this.events.push(event);
     }
   }
 });
@@ -2924,7 +2978,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.my-event[data-v-3613305d] {\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  border-radius: 2px;\n  background-color: #1867c0;\n  color: #ffffff;\n  border: 1px solid #1867c0;\n  width: 100%;\n  font-size: 12px;\n  padding: 3px;\n  cursor: pointer;\n  margin-bottom: 1px;\n}\n", ""]);
+exports.push([module.i, "\n.my-event[data-v-3613305d] {\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  border-radius: 2px;\n  background-color: #1867c0;\n  color: #ffffff;\n  border: 1px solid #1867c0;\n  font-size: 14px;\n  padding: 2px;\n  cursor: pointer;\n  margin-bottom: 1px;\n  left: 4px;\n  margin-right: 8px;\n  position: relative;\n}\n.with-time[data-v-3613305d] {\n  position: absolute;\n  right: 4px;\n  margin-right: 0px;\n}\n.create-event-container[data-v-3613305d] {\n  margin-bottom: 20px;\n  border-bottom: 2px solid #3f51b5;\n}\n.theme--light.v-sheet[data-v-3613305d] {\n  border: 1px solid #570fc1;\n}\n.icon-area[data-v-3613305d] {\n  background: gainsboro;\n  padding: 2px 10px;\n}\n", ""]);
 
 // exports
 
@@ -5106,21 +5160,6 @@ var render = function() {
         "v-dialog",
         {
           attrs: { persistent: "", "max-width": "600px" },
-          scopedSlots: _vm._u([
-            {
-              key: "activator",
-              fn: function(ref) {
-                var on = ref.on
-                return [
-                  _c(
-                    "v-btn",
-                    _vm._g({ attrs: { color: "primary", dark: "" } }, on),
-                    [_vm._v(_vm._s(_vm.toogleText))]
-                  )
-                ]
-              }
-            }
-          ]),
           model: {
             value: _vm.dialog,
             callback: function($$v) {
@@ -5130,7 +5169,6 @@ var render = function() {
           }
         },
         [
-          _vm._v(" "),
           _c(
             "v-card",
             [
@@ -5155,6 +5193,17 @@ var render = function() {
                     },
                     [_vm._v("Close")]
                   ),
+                  _vm._v(" "),
+                  _vm.editButton
+                    ? _c(
+                        "gmButton",
+                        {
+                          attrs: { type: "primary" },
+                          on: { click: _vm.editModal }
+                        },
+                        [_vm._v("Edit")]
+                      )
+                    : _vm._e(),
                   _vm._v(" "),
                   _c(
                     "gmButton",
@@ -5315,8 +5364,13 @@ var render = function() {
                 "v-flex",
                 { attrs: { xs: "" } },
                 [
-                  _c("v-text-field", {
-                    attrs: { label: "Sport" },
+                  _c("v-select", {
+                    attrs: {
+                      items: _vm.sports,
+                      label: "Sport",
+                      "item-text": "name",
+                      "item-value": "name"
+                    },
                     model: {
                       value: _vm.competition.sport,
                       callback: function($$v) {
@@ -6097,220 +6151,215 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "v-layout",
+    "div",
     [
       _c(
-        "v-flex",
+        "v-layout",
         [
           _c(
-            "v-sheet",
-            { attrs: { height: "500" } },
+            "v-flex",
             [
-              _c("v-calendar", {
-                attrs: {
-                  now: _vm.today,
-                  dark: "",
-                  value: _vm.today,
-                  color: "primary"
-                },
-                scopedSlots: _vm._u([
-                  {
-                    key: "day",
-                    fn: function(ref) {
-                      var date = ref.date
-                      return [
-                        _vm._l(_vm.eventsMap[date], function(event) {
+              _c(
+                "v-sheet",
+                { attrs: { height: "500" } },
+                [
+                  _c("v-calendar", {
+                    attrs: {
+                      now: _vm.today,
+                      value: _vm.today,
+                      color: "primary"
+                    },
+                    scopedSlots: _vm._u([
+                      {
+                        key: "day",
+                        fn: function(ref) {
+                          var date = ref.date
                           return [
-                            _c(
-                              "v-menu",
-                              {
-                                key: event.title,
-                                attrs: { "full-width": "", "offset-x": "" },
-                                scopedSlots: _vm._u(
-                                  [
-                                    {
-                                      key: "activator",
-                                      fn: function(ref) {
-                                        var on = ref.on
-                                        return [
-                                          !event.time
-                                            ? _c(
-                                                "div",
-                                                _vm._g(
-                                                  {
-                                                    directives: [
-                                                      {
-                                                        name: "ripple",
-                                                        rawName: "v-ripple"
-                                                      }
-                                                    ],
-                                                    staticClass: "my-event",
-                                                    domProps: {
-                                                      innerHTML: _vm._s(
-                                                        event.title
-                                                      )
-                                                    }
-                                                  },
-                                                  on
-                                                )
-                                              )
-                                            : _vm._e()
-                                        ]
+                            _vm._l(_vm.eventsMap[date], function(event) {
+                              return [
+                                !event.time
+                                  ? _c("div", {
+                                      directives: [
+                                        { name: "ripple", rawName: "v-ripple" }
+                                      ],
+                                      key: event.title,
+                                      staticClass: "my-event",
+                                      domProps: {
+                                        innerHTML: _vm._s(event.title)
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.openModal(event)
+                                        }
                                       }
-                                    }
-                                  ],
-                                  null,
-                                  true
-                                ),
-                                model: {
-                                  value: event.open,
-                                  callback: function($$v) {
-                                    _vm.$set(event, "open", $$v)
-                                  },
-                                  expression: "event.open"
-                                }
-                              },
-                              [
-                                _vm._v(" "),
-                                _c(
-                                  "v-card",
-                                  {
-                                    attrs: {
-                                      color: "grey lighten-4",
-                                      "min-width": "350px",
-                                      flat: ""
-                                    }
-                                  },
-                                  [
-                                    _c(
-                                      "v-toolbar",
-                                      { attrs: { color: "primary", dark: "" } },
-                                      [
-                                        _c(
-                                          "v-btn",
-                                          { attrs: { icon: "" } },
-                                          [_c("v-icon", [_vm._v("edit")])],
-                                          1
-                                        ),
-                                        _vm._v(" "),
-                                        _c("v-toolbar-title", {
-                                          domProps: {
-                                            innerHTML: _vm._s(event.title)
-                                          }
-                                        }),
-                                        _vm._v(" "),
-                                        _c("v-spacer"),
-                                        _vm._v(" "),
-                                        _c(
-                                          "v-btn",
-                                          { attrs: { icon: "" } },
-                                          [_c("v-icon", [_vm._v("favorite")])],
-                                          1
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "v-btn",
-                                          { attrs: { icon: "" } },
-                                          [_c("v-icon", [_vm._v("more_vert")])],
-                                          1
-                                        )
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "v-card-title",
-                                      { attrs: { "primary-title": "" } },
-                                      [
-                                        _c("span", {
-                                          domProps: {
-                                            innerHTML: _vm._s(event.details)
-                                          }
-                                        })
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "v-card-actions",
-                                      [
-                                        _c(
-                                          "v-btn",
-                                          {
-                                            attrs: {
-                                              flat: "",
-                                              color: "secondary"
-                                            }
-                                          },
-                                          [_vm._v("Cancel")]
-                                        )
-                                      ],
-                                      1
-                                    )
-                                  ],
-                                  1
-                                )
-                              ],
-                              1
-                            )
+                                    })
+                                  : _vm._e()
+                              ]
+                            })
                           ]
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "gmModal",
-                          {
-                            attrs: {
-                              title: "Add event",
-                              toogleText: "Add event"
-                            }
-                          },
-                          [
-                            _c(
-                              "v-flex",
-                              { attrs: { xs12: "", sm6: "", md6: "" } },
-                              [
-                                _c("v-text-field", {
-                                  attrs: { label: "Date" },
-                                  model: {
-                                    value: _vm.event.date,
-                                    callback: function($$v) {
-                                      _vm.$set(_vm.event, "date", $$v)
-                                    },
-                                    expression: "event.date"
-                                  }
-                                }),
-                                _vm._v(" "),
-                                _c("v-text-field", {
-                                  attrs: { label: "Time" },
-                                  model: {
-                                    value: _vm.event.time,
-                                    callback: function($$v) {
-                                      _vm.$set(_vm.event, "time", $$v)
-                                    },
-                                    expression: "event.time"
-                                  }
-                                }),
-                                _vm._v(" "),
-                                _c("v-text-field", {
-                                  attrs: { label: "Title" },
-                                  model: {
-                                    value: _vm.event.title,
-                                    callback: function($$v) {
-                                      _vm.$set(_vm.event, "title", $$v)
-                                    },
-                                    expression: "event.title"
-                                  }
-                                })
-                              ],
-                              1
-                            )
-                          ],
-                          1
-                        )
-                      ]
+                        }
+                      }
+                    ])
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "gmModal",
+                    {
+                      ref: "modal",
+                      attrs: { title: _vm.event.title, editButton: true }
+                    },
+                    [
+                      _c(
+                        "v-layout",
+                        { attrs: { wrap: "" } },
+                        [
+                          _c(
+                            "v-flex",
+                            { attrs: { xs2: "" } },
+                            [
+                              _c("v-icon", { staticClass: "icon-area" }, [
+                                _vm._v("home")
+                              ])
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-flex",
+                            { attrs: { xs10: "" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: { label: "Date" },
+                                model: {
+                                  value: _vm.event.date,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.event, "date", $$v)
+                                  },
+                                  expression: "event.date"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-flex",
+                            { attrs: { xs2: "" } },
+                            [
+                              _c("v-icon", { staticClass: "icon-area" }, [
+                                _vm._v("home")
+                              ])
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-flex",
+                            { attrs: { xs10: "" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: { label: "Details" },
+                                model: {
+                                  value: _vm.event.details,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.event, "details", $$v)
+                                  },
+                                  expression: "event.details"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-layout",
+        { attrs: { wrap: "" } },
+        [
+          _c(
+            "v-flex",
+            {
+              staticClass: "text-sm-left text-xs-center",
+              attrs: { sm4: "", xs12: "" }
+            },
+            [
+              _c(
+                "v-btn",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.$refs.calendar.prev()
                     }
                   }
-                ])
+                },
+                [
+                  _c("v-icon", { attrs: { dark: "", left: "" } }, [
+                    _vm._v("keyboard_arrow_left")
+                  ]),
+                  _vm._v("Prev\n      ")
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-flex",
+            { staticClass: "text-xs-center", attrs: { sm4: "", xs12: "" } },
+            [
+              _c("v-select", {
+                attrs: { items: _vm.typeOptions, label: "Type" },
+                model: {
+                  value: _vm.type,
+                  callback: function($$v) {
+                    _vm.type = $$v
+                  },
+                  expression: "type"
+                }
               })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-flex",
+            {
+              staticClass: "text-sm-right text-xs-center",
+              attrs: { sm4: "", xs12: "" }
+            },
+            [
+              _c(
+                "v-btn",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.$refs.calendar.next()
+                    }
+                  }
+                },
+                [
+                  _vm._v("\n        Next\n        "),
+                  _c("v-icon", { attrs: { right: "", dark: "" } }, [
+                    _vm._v("keyboard_arrow_right")
+                  ])
+                ],
+                1
+              )
             ],
             1
           )

@@ -1,50 +1,60 @@
 <template>
-  <v-layout>
-    <v-flex>
-      <v-sheet height="500">
-        <v-calendar :now="today" dark :value="today" color="primary">
-          <template v-slot:day="{ date }">
-            <template v-for="event in eventsMap[date]">
-              <v-menu :key="event.title" v-model="event.open" full-width offset-x>
-                <template v-slot:activator="{ on }">
-                  <div v-if="!event.time" v-ripple class="my-event" v-on="on" v-html="event.title"></div>
-                </template>
-                <v-card color="grey lighten-4" min-width="350px" flat>
-                  <v-toolbar color="primary" dark>
-                    <v-btn icon>
-                      <v-icon>edit</v-icon>
-                    </v-btn>
-                    <v-toolbar-title v-html="event.title"></v-toolbar-title>
-                    <v-spacer></v-spacer>
-                    <v-btn icon>
-                      <v-icon>favorite</v-icon>
-                    </v-btn>
-                    <v-btn icon>
-                      <v-icon>more_vert</v-icon>
-                    </v-btn>
-                  </v-toolbar>
-                  <v-card-title primary-title>
-                    <span v-html="event.details"></span>
-                  </v-card-title>
-                  <v-card-actions>
-                    <v-btn flat color="secondary">Cancel</v-btn>
-                  </v-card-actions>
-                </v-card>
-              </v-menu>
+  <div>
+    <v-layout>
+      <v-flex>
+        <v-sheet height="500">
+          <v-calendar :now="today" :value="today" color="primary">
+            <template v-slot:day="{ date }">
+              <template v-for="event in eventsMap[date]">
+                <div
+                  v-if="!event.time"
+                  :key="event.title"
+                  v-ripple
+                  @click="openModal(event)"
+                  class="my-event"
+                  v-html="event.title"
+                ></div>
+              </template>
             </template>
-            <gmModal title="Add event" toogleText="Add event">
-              <v-flex xs12 sm6 md6>
-                <v-text-field label="Date" v-model="event.date"></v-text-field>
-                <v-text-field label="Time" v-model="event.time"></v-text-field>
-                <v-text-field label="Title" v-model="event.title"></v-text-field>
+          </v-calendar>
+          <gmModal ref="modal" :title="event.title" :editButton="true">
+            <v-layout wrap>
+              <v-flex xs2>
+                <v-icon class="icon-area">home</v-icon>
               </v-flex>
-            </gmModal>
-          </template>
-        </v-calendar>
-      </v-sheet>
-    </v-flex>
-  </v-layout>
+              <v-flex xs10>
+                <v-text-field label="Date" v-model="event.date"></v-text-field>
+              </v-flex>
+              <v-flex xs2>
+                <v-icon class="icon-area">home</v-icon>
+              </v-flex>
+              <v-flex xs10>
+                <v-text-field label="Details" v-model="event.details"></v-text-field>
+              </v-flex>
+            </v-layout>
+          </gmModal>
+        </v-sheet>
+      </v-flex>
+    </v-layout>
+    <v-layout wrap>
+      <v-flex sm4 xs12 class="text-sm-left text-xs-center">
+        <v-btn @click="$refs.calendar.prev()">
+          <v-icon dark left>keyboard_arrow_left</v-icon>Prev
+        </v-btn>
+      </v-flex>
+      <v-flex sm4 xs12 class="text-xs-center">
+        <v-select v-model="type" :items="typeOptions" label="Type"></v-select>
+      </v-flex>
+      <v-flex sm4 xs12 class="text-sm-right text-xs-center">
+        <v-btn @click="$refs.calendar.next()">
+          Next
+          <v-icon right dark>keyboard_arrow_right</v-icon>
+        </v-btn>
+      </v-flex>
+    </v-layout>
+  </div>
 </template>
+
 
 <script>
 import gmButton from "../base_components/gmButton";
@@ -52,13 +62,20 @@ import gmModal from "../base_components/gmModal";
 
 export default {
   data: () => ({
+    type: "month",
+    start: "2019-01-01",
+    end: "2019-01-06",
+    typeOptions: [
+      { text: "Day", value: "day" },
+      { text: "4 Day", value: "4day" },
+      { text: "Week", value: "week" },
+      { text: "Month", value: "month" },
+      { text: "Custom Daily", value: "custom-daily" },
+      { text: "Custom Weekly", value: "custom-weekly" }
+    ],
     today: "2019-01-08",
-    event: {
-      title: "Title of event",
-      details: "The details of the event",
-      date: "2018-01-01",
-      time: "14.00"
-    },
+    newEvent: {},
+    event: {},
     events: [
       {
         title: "Vacation",
@@ -129,12 +146,18 @@ export default {
       alert(event.title);
     },
 
-    addEvent() {
-      console.log("hej");
+    openModal(event) {
+      this.event = event;
+      this.$refs.modal.showModal();
+    },
+
+    addEvent(event) {
+      this.events.push(event);
     }
   }
 };
 </script>
+
 
 <style scoped>
 .my-event {
@@ -145,10 +168,32 @@ export default {
   background-color: #1867c0;
   color: #ffffff;
   border: 1px solid #1867c0;
-  width: 100%;
-  font-size: 12px;
-  padding: 3px;
+  font-size: 14px;
+  padding: 2px;
   cursor: pointer;
   margin-bottom: 1px;
+  left: 4px;
+  margin-right: 8px;
+  position: relative;
+}
+
+.with-time {
+  position: absolute;
+  right: 4px;
+  margin-right: 0px;
+}
+
+.create-event-container {
+  margin-bottom: 20px;
+  border-bottom: 2px solid #3f51b5;
+}
+
+.theme--light.v-sheet {
+  border: 1px solid #570fc1;
+}
+
+.icon-area {
+  background: gainsboro;
+  padding: 2px 10px;
 }
 </style>
