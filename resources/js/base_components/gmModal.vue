@@ -1,11 +1,8 @@
 <template>
   <v-layout row justify-center>
     <v-dialog v-model="dialog" persistent max-width="600px">
-      <!-- <template v-slot:activator="{ on }">
-        <v-btn color="primary" dark v-on="on">{{toogleText}}</v-btn>
-      </template>-->
       <v-card>
-        <v-card-title>
+        <v-card-title class="modal-header">
           <span class="headline">{{title}}</span>
         </v-card-title>
         <v-container>
@@ -59,3 +56,10 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.modal-header {
+  background: #507fb3;
+  color: white;
+}
+</style>

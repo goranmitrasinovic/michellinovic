@@ -20,6 +20,6 @@ $factory->define(Event::class, function (Faker $faker) {
         'id' => $faker->randomNumber,
         'title' => $faker->jobTitle,
         'details' => $faker->jobTitle,
-        'date' => $faker->randomNumber
+        'date' => $faker->date($format = 'Y-m-d')
     ];
 });

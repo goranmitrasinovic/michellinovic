@@ -1841,9 +1841,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2495,35 +2492,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      type: "month",
       start: "2019-01-01",
       end: "2019-01-06",
-      typeOptions: [{
-        text: "Day",
-        value: "day"
-      }, {
-        text: "4 Day",
-        value: "4day"
-      }, {
-        text: "Week",
-        value: "week"
-      }, {
-        text: "Month",
-        value: "month"
-      }, {
-        text: "Custom Daily",
-        value: "custom-daily"
-      }, {
-        text: "Custom Weekly",
-        value: "custom-weekly"
-      }],
       today: "2019-01-08",
+      editMode: false,
       newEvent: {},
       event: {},
       events: [{
@@ -2590,6 +2567,9 @@ __webpack_require__.r(__webpack_exports__);
     openModal: function openModal(event) {
       this.event = event;
       this.$refs.modal.showModal();
+    },
+    toogleEditMode: function toogleEditMode() {
+      this.editMode = !this.editMode;
     },
     addEvent: function addEvent(event) {
       this.events.push(event);
@@ -2884,6 +2864,25 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 // module
 exports.push([module.i, "\n.btn-icon[data-v-3ec28dbe] {\n  padding: 0px 5px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/base_components/gmModal.vue?vue&type=style&index=0&id=9dc640e4&scoped=true&lang=css&":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/base_components/gmModal.vue?vue&type=style&index=0&id=9dc640e4&scoped=true&lang=css& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.modal-header[data-v-9dc640e4] {\n  background: #507fb3;\n  color: white;\n}\n", ""]);
 
 // exports
 
@@ -3559,6 +3558,36 @@ process.umask = function() { return 0; };
 
 
 var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./gmButton.vue?vue&type=style&index=0&id=3ec28dbe&lang=css&scoped=true& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/base_components/gmButton.vue?vue&type=style&index=0&id=3ec28dbe&lang=css&scoped=true&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/base_components/gmModal.vue?vue&type=style&index=0&id=9dc640e4&scoped=true&lang=css&":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/base_components/gmModal.vue?vue&type=style&index=0&id=9dc640e4&scoped=true&lang=css& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./gmModal.vue?vue&type=style&index=0&id=9dc640e4&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/base_components/gmModal.vue?vue&type=style&index=0&id=9dc640e4&scoped=true&lang=css&");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -5137,10 +5166,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/base_components/gmModal.vue?vue&type=template&id=9dc640e4&":
-/*!***************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/base_components/gmModal.vue?vue&type=template&id=9dc640e4& ***!
-  \***************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/base_components/gmModal.vue?vue&type=template&id=9dc640e4&scoped=true&":
+/*!***************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/base_components/gmModal.vue?vue&type=template&id=9dc640e4&scoped=true& ***!
+  \***************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -5172,7 +5201,7 @@ var render = function() {
           _c(
             "v-card",
             [
-              _c("v-card-title", [
+              _c("v-card-title", { staticClass: "modal-header" }, [
                 _c("span", { staticClass: "headline" }, [
                   _vm._v(_vm._s(_vm.title))
                 ])
@@ -6151,131 +6180,116 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "div",
+    "v-layout",
+    { attrs: { wrap: "" } },
     [
       _c(
-        "v-layout",
+        "v-flex",
+        { staticClass: "mb-3", attrs: { xs12: "" } },
         [
           _c(
-            "v-flex",
+            "v-sheet",
+            { attrs: { height: "500" } },
+            [
+              _c("v-calendar", {
+                ref: "calendar",
+                attrs: { type: "month", end: _vm.end, color: "primary" },
+                scopedSlots: _vm._u([
+                  {
+                    key: "day",
+                    fn: function(ref) {
+                      var date = ref.date
+                      return [
+                        _vm._l(_vm.eventsMap[date], function(event) {
+                          return [
+                            !event.time
+                              ? _c("div", {
+                                  directives: [
+                                    { name: "ripple", rawName: "v-ripple" }
+                                  ],
+                                  key: event.title,
+                                  staticClass: "my-event",
+                                  domProps: { innerHTML: _vm._s(event.title) },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.openModal(event)
+                                    }
+                                  }
+                                })
+                              : _vm._e()
+                          ]
+                        })
+                      ]
+                    }
+                  }
+                ]),
+                model: {
+                  value: _vm.start,
+                  callback: function($$v) {
+                    _vm.start = $$v
+                  },
+                  expression: "start"
+                }
+              })
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "gmModal",
+        {
+          ref: "modal",
+          attrs: { title: _vm.event.title, editButton: true },
+          on: { edit: _vm.toogleEditMode }
+        },
+        [
+          _c(
+            "v-layout",
+            { attrs: { wrap: "" } },
             [
               _c(
-                "v-sheet",
-                { attrs: { height: "500" } },
+                "v-flex",
+                { attrs: { xs12: "" } },
                 [
-                  _c("v-calendar", {
+                  _c("v-text-field", {
                     attrs: {
-                      now: _vm.today,
-                      value: _vm.today,
-                      color: "primary"
+                      "prepend-icon": "calendar_today",
+                      disabled: !_vm.editMode,
+                      label: "Date"
                     },
-                    scopedSlots: _vm._u([
-                      {
-                        key: "day",
-                        fn: function(ref) {
-                          var date = ref.date
-                          return [
-                            _vm._l(_vm.eventsMap[date], function(event) {
-                              return [
-                                !event.time
-                                  ? _c("div", {
-                                      directives: [
-                                        { name: "ripple", rawName: "v-ripple" }
-                                      ],
-                                      key: event.title,
-                                      staticClass: "my-event",
-                                      domProps: {
-                                        innerHTML: _vm._s(event.title)
-                                      },
-                                      on: {
-                                        click: function($event) {
-                                          return _vm.openModal(event)
-                                        }
-                                      }
-                                    })
-                                  : _vm._e()
-                              ]
-                            })
-                          ]
-                        }
-                      }
-                    ])
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "gmModal",
-                    {
-                      ref: "modal",
-                      attrs: { title: _vm.event.title, editButton: true }
+                    model: {
+                      value: _vm.event.date,
+                      callback: function($$v) {
+                        _vm.$set(_vm.event, "date", $$v)
+                      },
+                      expression: "event.date"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-flex",
+                { attrs: { xs12: "" } },
+                [
+                  _c("v-text-field", {
+                    attrs: {
+                      "prepend-icon": "info",
+                      label: "Details",
+                      disabled: !_vm.editMode
                     },
-                    [
-                      _c(
-                        "v-layout",
-                        { attrs: { wrap: "" } },
-                        [
-                          _c(
-                            "v-flex",
-                            { attrs: { xs2: "" } },
-                            [
-                              _c("v-icon", { staticClass: "icon-area" }, [
-                                _vm._v("home")
-                              ])
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-flex",
-                            { attrs: { xs10: "" } },
-                            [
-                              _c("v-text-field", {
-                                attrs: { label: "Date" },
-                                model: {
-                                  value: _vm.event.date,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.event, "date", $$v)
-                                  },
-                                  expression: "event.date"
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-flex",
-                            { attrs: { xs2: "" } },
-                            [
-                              _c("v-icon", { staticClass: "icon-area" }, [
-                                _vm._v("home")
-                              ])
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-flex",
-                            { attrs: { xs10: "" } },
-                            [
-                              _c("v-text-field", {
-                                attrs: { label: "Details" },
-                                model: {
-                                  value: _vm.event.details,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.event, "details", $$v)
-                                  },
-                                  expression: "event.details"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
+                    model: {
+                      value: _vm.event.details,
+                      callback: function($$v) {
+                        _vm.$set(_vm.event, "details", $$v)
+                      },
+                      expression: "event.details"
+                    }
+                  })
                 ],
                 1
               )
@@ -6287,79 +6301,54 @@ var render = function() {
       ),
       _vm._v(" "),
       _c(
-        "v-layout",
-        { attrs: { wrap: "" } },
+        "v-flex",
+        {
+          staticClass: "text-sm-left text-xs-center",
+          attrs: { sm6: "", xs12: "" }
+        },
         [
           _c(
-            "v-flex",
+            "v-btn",
             {
-              staticClass: "text-sm-left text-xs-center",
-              attrs: { sm4: "", xs12: "" }
-            },
-            [
-              _c(
-                "v-btn",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.$refs.calendar.prev()
-                    }
-                  }
-                },
-                [
-                  _c("v-icon", { attrs: { dark: "", left: "" } }, [
-                    _vm._v("keyboard_arrow_left")
-                  ]),
-                  _vm._v("Prev\n      ")
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-flex",
-            { staticClass: "text-xs-center", attrs: { sm4: "", xs12: "" } },
-            [
-              _c("v-select", {
-                attrs: { items: _vm.typeOptions, label: "Type" },
-                model: {
-                  value: _vm.type,
-                  callback: function($$v) {
-                    _vm.type = $$v
-                  },
-                  expression: "type"
+              on: {
+                click: function($event) {
+                  return _vm.$refs.calendar.prev()
                 }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-flex",
-            {
-              staticClass: "text-sm-right text-xs-center",
-              attrs: { sm4: "", xs12: "" }
+              }
             },
             [
-              _c(
-                "v-btn",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.$refs.calendar.next()
-                    }
-                  }
-                },
-                [
-                  _vm._v("\n        Next\n        "),
-                  _c("v-icon", { attrs: { right: "", dark: "" } }, [
-                    _vm._v("keyboard_arrow_right")
-                  ])
-                ],
-                1
-              )
+              _c("v-icon", { attrs: { dark: "", left: "" } }, [
+                _vm._v("keyboard_arrow_left")
+              ]),
+              _vm._v("Prev\n    ")
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-flex",
+        {
+          staticClass: "text-sm-right text-xs-center",
+          attrs: { sm6: "", xs12: "" }
+        },
+        [
+          _c(
+            "v-btn",
+            {
+              on: {
+                click: function($event) {
+                  return _vm.$refs.calendar.next()
+                }
+              }
+            },
+            [
+              _vm._v("\n      Next\n      "),
+              _c("v-icon", { attrs: { right: "", dark: "" } }, [
+                _vm._v("keyboard_arrow_right")
+              ])
             ],
             1
           )
@@ -47592,9 +47581,11 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _gmModal_vue_vue_type_template_id_9dc640e4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./gmModal.vue?vue&type=template&id=9dc640e4& */ "./resources/js/base_components/gmModal.vue?vue&type=template&id=9dc640e4&");
+/* harmony import */ var _gmModal_vue_vue_type_template_id_9dc640e4_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./gmModal.vue?vue&type=template&id=9dc640e4&scoped=true& */ "./resources/js/base_components/gmModal.vue?vue&type=template&id=9dc640e4&scoped=true&");
 /* harmony import */ var _gmModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./gmModal.vue?vue&type=script&lang=js& */ "./resources/js/base_components/gmModal.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _gmModal_vue_vue_type_style_index_0_id_9dc640e4_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./gmModal.vue?vue&type=style&index=0&id=9dc640e4&scoped=true&lang=css& */ "./resources/js/base_components/gmModal.vue?vue&type=style&index=0&id=9dc640e4&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
@@ -47602,13 +47593,13 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _gmModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _gmModal_vue_vue_type_template_id_9dc640e4___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _gmModal_vue_vue_type_template_id_9dc640e4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _gmModal_vue_vue_type_template_id_9dc640e4_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _gmModal_vue_vue_type_template_id_9dc640e4_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  null,
+  "9dc640e4",
   null
   
 )
@@ -47634,19 +47625,35 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/base_components/gmModal.vue?vue&type=template&id=9dc640e4&":
-/*!*********************************************************************************!*\
-  !*** ./resources/js/base_components/gmModal.vue?vue&type=template&id=9dc640e4& ***!
-  \*********************************************************************************/
+/***/ "./resources/js/base_components/gmModal.vue?vue&type=style&index=0&id=9dc640e4&scoped=true&lang=css&":
+/*!***********************************************************************************************************!*\
+  !*** ./resources/js/base_components/gmModal.vue?vue&type=style&index=0&id=9dc640e4&scoped=true&lang=css& ***!
+  \***********************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_gmModal_vue_vue_type_style_index_0_id_9dc640e4_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./gmModal.vue?vue&type=style&index=0&id=9dc640e4&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/base_components/gmModal.vue?vue&type=style&index=0&id=9dc640e4&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_gmModal_vue_vue_type_style_index_0_id_9dc640e4_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_gmModal_vue_vue_type_style_index_0_id_9dc640e4_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_gmModal_vue_vue_type_style_index_0_id_9dc640e4_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_gmModal_vue_vue_type_style_index_0_id_9dc640e4_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_gmModal_vue_vue_type_style_index_0_id_9dc640e4_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/base_components/gmModal.vue?vue&type=template&id=9dc640e4&scoped=true&":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/base_components/gmModal.vue?vue&type=template&id=9dc640e4&scoped=true& ***!
+  \*********************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_gmModal_vue_vue_type_template_id_9dc640e4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./gmModal.vue?vue&type=template&id=9dc640e4& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/base_components/gmModal.vue?vue&type=template&id=9dc640e4&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_gmModal_vue_vue_type_template_id_9dc640e4___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_gmModal_vue_vue_type_template_id_9dc640e4_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./gmModal.vue?vue&type=template&id=9dc640e4&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/base_components/gmModal.vue?vue&type=template&id=9dc640e4&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_gmModal_vue_vue_type_template_id_9dc640e4_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_gmModal_vue_vue_type_template_id_9dc640e4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_gmModal_vue_vue_type_template_id_9dc640e4_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

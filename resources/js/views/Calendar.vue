@@ -1,59 +1,58 @@
 <template>
-  <div>
-    <v-layout>
-      <v-flex>
-        <v-sheet height="500">
-          <v-calendar :now="today" :value="today" color="primary">
-            <template v-slot:day="{ date }">
-              <template v-for="event in eventsMap[date]">
-                <div
-                  v-if="!event.time"
-                  :key="event.title"
-                  v-ripple
-                  @click="openModal(event)"
-                  class="my-event"
-                  v-html="event.title"
-                ></div>
-              </template>
+  <v-layout wrap>
+    <v-flex xs12 class="mb-3">
+      <v-sheet height="500">
+        <v-calendar ref="calendar" v-model="start" type="month" :end="end" color="primary">
+          <template v-slot:day="{ date }">
+            <template v-for="event in eventsMap[date]">
+              <div
+                v-if="!event.time"
+                :key="event.title"
+                v-ripple
+                @click="openModal(event)"
+                class="my-event"
+                v-html="event.title"
+              ></div>
             </template>
-          </v-calendar>
-          <gmModal ref="modal" :title="event.title" :editButton="true">
-            <v-layout wrap>
-              <v-flex xs2>
-                <v-icon class="icon-area">home</v-icon>
-              </v-flex>
-              <v-flex xs10>
-                <v-text-field label="Date" v-model="event.date"></v-text-field>
-              </v-flex>
-              <v-flex xs2>
-                <v-icon class="icon-area">home</v-icon>
-              </v-flex>
-              <v-flex xs10>
-                <v-text-field label="Details" v-model="event.details"></v-text-field>
-              </v-flex>
-            </v-layout>
-          </gmModal>
-        </v-sheet>
-      </v-flex>
-    </v-layout>
-    <v-layout wrap>
-      <v-flex sm4 xs12 class="text-sm-left text-xs-center">
-        <v-btn @click="$refs.calendar.prev()">
-          <v-icon dark left>keyboard_arrow_left</v-icon>Prev
-        </v-btn>
-      </v-flex>
-      <v-flex sm4 xs12 class="text-xs-center">
-        <v-select v-model="type" :items="typeOptions" label="Type"></v-select>
-      </v-flex>
-      <v-flex sm4 xs12 class="text-sm-right text-xs-center">
-        <v-btn @click="$refs.calendar.next()">
-          Next
-          <v-icon right dark>keyboard_arrow_right</v-icon>
-        </v-btn>
-      </v-flex>
-    </v-layout>
-  </div>
+          </template>
+        </v-calendar>
+      </v-sheet>
+    </v-flex>
+    <gmModal ref="modal" :title="event.title" @edit="toogleEditMode" :editButton="true">
+      <v-layout wrap>
+        <v-flex xs12>
+          <v-text-field
+            prepend-icon="calendar_today"
+            :disabled="!editMode"
+            label="Date"
+            v-model="event.date"
+          ></v-text-field>
+        </v-flex>
+        <v-flex xs12>
+          <v-text-field
+            prepend-icon="info"
+            label="Details"
+            :disabled="!editMode"
+            v-model="event.details"
+          ></v-text-field>
+        </v-flex>
+      </v-layout>
+    </gmModal>
+    <v-flex sm6 xs12 class="text-sm-left text-xs-center">
+      <v-btn @click="$refs.calendar.prev()">
+        <v-icon dark left>keyboard_arrow_left</v-icon>Prev
+      </v-btn>
+    </v-flex>
+
+    <v-flex sm6 xs12 class="text-sm-right text-xs-center">
+      <v-btn @click="$refs.calendar.next()">
+        Next
+        <v-icon right dark>keyboard_arrow_right</v-icon>
+      </v-btn>
+    </v-flex>
+  </v-layout>
 </template>
+
 
 
 <script>
@@ -62,18 +61,10 @@ import gmModal from "../base_components/gmModal";
 
 export default {
   data: () => ({
-    type: "month",
     start: "2019-01-01",
     end: "2019-01-06",
-    typeOptions: [
-      { text: "Day", value: "day" },
-      { text: "4 Day", value: "4day" },
-      { text: "Week", value: "week" },
-      { text: "Month", value: "month" },
-      { text: "Custom Daily", value: "custom-daily" },
-      { text: "Custom Weekly", value: "custom-weekly" }
-    ],
     today: "2019-01-08",
+    editMode: false,
     newEvent: {},
     event: {},
     events: [
@@ -149,6 +140,10 @@ export default {
     openModal(event) {
       this.event = event;
       this.$refs.modal.showModal();
+    },
+
+    toogleEditMode() {
+      this.editMode = !this.editMode;
     },
 
     addEvent(event) {
