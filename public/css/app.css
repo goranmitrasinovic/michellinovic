@@ -15,6 +15,10 @@ a:hover {
           transform: scaleX(-1);
 }
 
+.v-checkbox .v-icon {
+  color: #1ea95e;
+}
+
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);

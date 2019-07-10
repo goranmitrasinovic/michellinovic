@@ -4,8 +4,11 @@
       <v-flex xs12 sm6 offset-sm3>
         <gmCard>
           <v-toolbar color="indigo" dark>
-            <v-menu offset-y>
+            <v-menu>
               <template v-slot:activator="{ on }">
+                <v-spacer></v-spacer>
+                <v-toolbar-title>Shopping list ({{shoppingList.length}} items)</v-toolbar-title>
+                <v-spacer></v-spacer>
                 <v-toolbar-side-icon v-on="on">
                   <v-icon>menu</v-icon>
                 </v-toolbar-side-icon>
@@ -21,7 +24,6 @@
                 </v-list-tile>
               </v-list>
             </v-menu>
-            <v-toolbar-title class="text-xs-center">Shopping list ({{shoppingList.length}} items)</v-toolbar-title>
           </v-toolbar>
           <v-form>
             <v-container class="add-product">
@@ -54,6 +56,7 @@
           </div>
           <transition-group name="card">
             <Product
+              class="product"
               ref="product1"
               @updateShoppingList="getShoppingList"
               v-for="product in shoppingList"
@@ -63,7 +66,8 @@
           </transition-group>
         </gmCard>
       </v-flex>
-      <gmSnackbar ref="snackbar" text="Added product"></gmSnackbar>
+      <gmSnackbar ref="snackbarSuccess" type="primary" text="Added product!"></gmSnackbar>
+      <gmSnackbar ref="snackbarFailure" type="error" text="Could not add product!"></gmSnackbar>
     </v-layout>
   </div>
 </template>
@@ -143,19 +147,18 @@ export default {
     },
 
     addProductToShoppingList(product) {
-      this.$refs.snackbar.toogleSnackbar();
       axios
         .post("api/product/create", product)
         .then(response => {
           this.getShoppingList();
-        })
-        .catch(function(error) {
-          console.log(error);
-        })
-        .then(function() {
           product.quantity = "";
           product.name = "";
-        });
+          this.$refs.snackbarSuccess.toogleSnackbar();
+        })
+        .catch(error => {
+          this.$refs.snackbarFailure.toogleSnackbar();
+        })
+        .then(function() {});
     }
   }
 };
@@ -191,6 +194,11 @@ export default {
 .theme--light.v-sheet {
   background-color: #e7f4ff;
   border: 1px solid #570fc1;
+}
+
+.product >>> .v-list--two-line .v-list__tile {
+  padding: 0px;
+  border-bottom-left-radius: 10px;
 }
 
 .empty-cart-icon {

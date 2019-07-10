@@ -1,34 +1,33 @@
 <template>
   <div>
     <v-list two-line>
-      <v-list-tile>
-        <v-list-tile-action v-if="!editable">
+      <v-list-tile class="product-container">
+        <v-list-tile-action
+          class="checkbox-container"
+          v-if="!editable"
+          @click="completeProduct(product)"
+        >
           <transition :duration="{ enter: 50, leave: 50 }" name="slide-fade" mode="out-in">
-            <v-icon v-if="!saving" color="indigo" key="save">add_shopping_cart</v-icon>
-            <v-icon v-if="saving" color="green" key="done">done</v-icon>
+            <v-checkbox color="success" class="v-checkbox" v-model="product.completed"></v-checkbox>
           </transition>
         </v-list-tile-action>
-
         <v-list-tile-content v-if="!editable">
-          <v-list-tile-title
-            :class="(saving) ? 'completed' : 's'"
-          >{{product.name}} ({{product.quantity}} units)</v-list-tile-title>
+          <v-list-tile-title :class="(saving) ? 'completed' : 's'">
+            {{product.name}}
+            <span style="font-size: 16px">({{product.quantity}} units)</span>
+          </v-list-tile-title>
         </v-list-tile-content>
+        <v-text-field v-model="product.name" class="edit-input" label="Name" v-if="editable"></v-text-field>
+        <v-text-field v-model="product.quantity" class="edit-input" label="Amount" v-if="editable"></v-text-field>
+        <v-list-tile-action
+          v-bind:class="{ 'action-container': !editable, 'action-container-edit' : editable }"
+        >
+          <gmButton v-if="editable" type="warning" @click="editProduct" key="cancel">Cancel</gmButton>
+          <gmButton v-if="editable" type="success" @click="updateProduct(product)" key="save">Save</gmButton>
+          <!-- <v-icon v-if="editable" @click="editProduct" class="edit-icon">edit</v-icon>
+          <v-icon v-if="editable" @click="editProduct" class="edit-icon">edit</v-icon>-->
 
-        <v-text-field v-model="product.name" label="Name" v-if="editable"></v-text-field>
-        <v-text-field v-model="product.quantity" label="Amount" v-if="editable"></v-text-field>
-
-        <v-divider class="mx-3" inset vertical></v-divider>
-        <gmButton v-if="editable" type="warning" size="small" @click="editProduct">Cancel</gmButton>
-
-        <gmButton v-if="editable" type="success" @click="updateProduct(product)">Save</gmButton>
-        <gmButton v-if="!editable" type="warning" icon="edit" @click="editProduct" />
-        <v-list-tile-action v-if="!editable">
-          <gmButton
-            type="success"
-            @click="completeProduct(product)"
-            v-model="product.completed"
-          >Complete</gmButton>
+          <v-icon v-if="!editable" @click="editProduct" class="edit-icon">edit</v-icon>
         </v-list-tile-action>
       </v-list-tile>
     </v-list>
@@ -64,6 +63,8 @@ export default {
     },
 
     completeProduct(product) {
+      // Shouldnt have to set this to see the checkbox ticked in the view, todo
+      product.completed = 1;
       this.$refs.snackbar.toogleSnackbar();
       this.saving = true;
       axios
@@ -117,10 +118,67 @@ export default {
   background: white;
   border-radius: 10px;
   margin: 10px;
-  border: 1px solid #570fc1;
+  padding: 0px;
 }
 
 .v-list__tile__title {
   letter-spacing: 0.5px;
+  margin: 10px;
+  font-size: 22px;
+  color: #585858;
+}
+
+.v-input--checkbox {
+  flex: none;
+  display: block;
+  margin: 0 auto;
+}
+
+.v-list >>> .v-list__tile__content {
+  border: 1px solid gainsboro;
+  box-shadow: inset 0px -39px 98px -38px rgba(139, 213, 240, 0.46);
+}
+
+.edit-icon {
+  color: white;
+  padding: 10px;
+}
+
+.edit-input {
+  margin: 10px;
+}
+
+.v-list__tile__avatar {
+  justify-content: center;
+}
+
+.v-list >>> .v-input--selection-controls__input {
+  margin-right: 0px;
+}
+
+.v-list >>> .v-list__tile__action--stack {
+  align-items: center;
+}
+
+.checkbox-container {
+  background: #e5fff4;
+  border: 1px solid #1ea95e;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.checkbox-container:hover {
+  cursor: pointer;
+}
+
+.action-container {
+  background: #1976d2;
+  justify-content: center !important;
+  border: 1px solid #1450d1;
+}
+
+.action-container-edit {
+  border: none;
+  justify-content: center !important;
 }
 </style>

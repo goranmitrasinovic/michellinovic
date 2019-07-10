@@ -8,7 +8,7 @@
       :right="x === 'right'"
       :timeout="timeout"
       :top="y === 'top'"
-      :color="'primary'"
+      :color="type"
       :vertical="mode === 'vertical'"
     >{{ text }}</v-snackbar>
   </v-card>
@@ -33,7 +33,8 @@ export default {
   },
 
   props: {
-    text: String
+    text: String,
+    type: String
   }
 };
 </script>
