@@ -31,7 +31,8 @@
         </v-list-tile-action>
       </v-list-tile>
     </v-list>
-    <gmSnackbar ref="snackbar" text="Saved"></gmSnackbar>
+    <gmSnackbar ref="snackbarSuccess" text="Updated product!" type="success"></gmSnackbar>
+    <gmSnackbar ref="snackbarFailure" text="Could not update product!" type="error"></gmSnackbar>
   </div>
 </template>
 
@@ -80,16 +81,15 @@ export default {
     },
 
     updateProduct(product) {
-      this.$refs.snackbar.toogleSnackbar();
       axios
         .put("api/shopping-list/edit-product/" + product.id, product)
         .then(response => {
           this.$emit("updateShoppingList");
           this.editProduct();
+          this.$refs.snackbarSuccess.toogleSnackbar();
         })
-        .catch(function(error) {
-          // handle error
-          console.log(error);
+        .catch(error => {
+          this.$refs.snackbarFailure.toogleSnackbar();
         })
         .then(function() {});
     }

@@ -2178,6 +2178,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -2217,14 +2218,14 @@ __webpack_require__.r(__webpack_exports__);
     updateProduct: function updateProduct(product) {
       var _this2 = this;
 
-      this.$refs.snackbar.toogleSnackbar();
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.put("api/shopping-list/edit-product/" + product.id, product).then(function (response) {
         _this2.$emit("updateShoppingList");
 
         _this2.editProduct();
+
+        _this2.$refs.snackbarSuccess.toogleSnackbar();
       }).catch(function (error) {
-        // handle error
-        console.log(error);
+        _this2.$refs.snackbarFailure.toogleSnackbar();
       }).then(function () {});
     }
   }
@@ -5775,7 +5776,15 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("gmSnackbar", { ref: "snackbar", attrs: { text: "Saved" } })
+      _c("gmSnackbar", {
+        ref: "snackbarSuccess",
+        attrs: { text: "Updated product!", type: "success" }
+      }),
+      _vm._v(" "),
+      _c("gmSnackbar", {
+        ref: "snackbarFailure",
+        attrs: { text: "Could not update product!", type: "error" }
+      })
     ],
     1
   )
