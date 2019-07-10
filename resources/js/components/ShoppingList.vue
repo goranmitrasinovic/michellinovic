@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="!fetching">
     <v-layout row>
       <v-flex xs12 sm6 offset-sm3>
         <gmCard>
@@ -85,6 +85,7 @@ export default {
   data() {
     return {
       shoppingList: [],
+      fetching: true,
       products: [],
       product: {},
       menuItems: [
@@ -121,14 +122,13 @@ export default {
         .get("api/shopping-list/uncompleted")
         .then(response => {
           this.shoppingList = response.data;
+          this.fetching = false;
         })
         .catch(function(error) {
           // handle error
           console.log(error);
         })
-        .then(function() {
-          // always executed
-        });
+        .then(function() {});
     },
 
     getAllProducts() {

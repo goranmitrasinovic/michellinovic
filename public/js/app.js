@@ -2333,6 +2333,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       shoppingList: [],
+      fetching: true,
       products: [],
       product: {},
       menuItems: [{
@@ -2364,11 +2365,11 @@ __webpack_require__.r(__webpack_exports__);
 
       axios__WEBPACK_IMPORTED_MODULE_5___default.a.get("api/shopping-list/uncompleted").then(function (response) {
         _this2.shoppingList = response.data;
+        _this2.fetching = false;
       }).catch(function (error) {
         // handle error
         console.log(error);
-      }).then(function () {// always executed
-      });
+      }).then(function () {});
     },
     getAllProducts: function getAllProducts() {
       var _this3 = this;
@@ -2599,6 +2600,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_Modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Modal */ "./resources/js/components/Modal.vue");
 /* harmony import */ var _components_Competition__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Competition */ "./resources/js/components/Competition.vue");
+//
+//
 //
 //
 //
@@ -2984,7 +2987,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.v-list__tile__title[data-v-01348c20] {\n  text-align: center;\n}\n.v-list[data-v-01348c20] {\n  padding: 0px;\n}\n.filter-container[data-v-01348c20] {\n  background: #fff;\n  border-bottom: 2px solid #3f51b5;\n  padding: 10px;\n}\n.theme--light.v-list[data-v-01348c20] {\n  background: #e7f4ff;\n  border: 1px solid #570fc1;\n}\n.event-list-item[data-v-01348c20] {\n  margin: 10px;\n  border-radius: 10px;\n  background: #fff;\n  border: 1px solid #570fc1;\n}\n.avatar[data-v-01348c20] {\n  border-radius: 200px;\n  border: 3px solid #3f51b5;\n  width: 74px;\n}\n", ""]);
+exports.push([module.i, "\n.v-list__tile__title[data-v-01348c20] {\n  text-align: center;\n}\n.v-list[data-v-01348c20] {\n  padding: 0px;\n}\n.filter-container[data-v-01348c20] {\n  background: #fff;\n  border-bottom: 2px solid #3f51b5;\n  padding: 10px;\n}\n.theme--light.v-list[data-v-01348c20] {\n  background: #e7f4ff;\n  border: 1px solid #570fc1;\n}\n.event-list-item[data-v-01348c20] {\n  margin: 10px;\n  border-radius: 10px;\n  background: #fff;\n  border: 1px solid #570fc1;\n}\n.avatar[data-v-01348c20] {\n  border-radius: 200px;\n  border: 3px solid #3f51b5;\n  width: 74px;\n}\n.score-container[data-v-01348c20] {\n  flex-direction: row;\n  align-items: center;\n}\n.score-box[data-v-01348c20] {\n  background: #3f51b5;\n  padding: 5px;\n  color: white;\n  width: 50px;\n  margin: 0px 10px;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  font-weight: bold;\n}\n", ""]);
 
 // exports
 
@@ -5815,163 +5818,181 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c(
-        "v-layout",
-        { attrs: { row: "" } },
+  return !_vm.fetching
+    ? _c(
+        "div",
         [
           _c(
-            "v-flex",
-            { attrs: { xs12: "", sm6: "", "offset-sm3": "" } },
+            "v-layout",
+            { attrs: { row: "" } },
             [
               _c(
-                "gmCard",
+                "v-flex",
+                { attrs: { xs12: "", sm6: "", "offset-sm3": "" } },
                 [
                   _c(
-                    "v-toolbar",
-                    { attrs: { color: "indigo", dark: "" } },
+                    "gmCard",
                     [
                       _c(
-                        "v-menu",
-                        {
-                          scopedSlots: _vm._u([
-                            {
-                              key: "activator",
-                              fn: function(ref) {
-                                var on = ref.on
-                                return [
-                                  _c("v-spacer"),
-                                  _vm._v(" "),
-                                  _c("v-toolbar-title", [
-                                    _vm._v(
-                                      "Shopping list (" +
-                                        _vm._s(_vm.shoppingList.length) +
-                                        " items)"
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("v-spacer"),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-toolbar-side-icon",
-                                    _vm._g({}, on),
-                                    [_c("v-icon", [_vm._v("menu")])],
-                                    1
-                                  )
-                                ]
-                              }
-                            }
-                          ])
-                        },
+                        "v-toolbar",
+                        { attrs: { color: "indigo", dark: "" } },
                         [
-                          _vm._v(" "),
                           _c(
-                            "v-list",
-                            _vm._l(_vm.menuItems, function(item, index) {
-                              return _c(
-                                "v-list-tile",
-                                {
-                                  key: index,
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.clearList(_vm.shoppingList)
+                            "v-menu",
+                            {
+                              scopedSlots: _vm._u(
+                                [
+                                  {
+                                    key: "activator",
+                                    fn: function(ref) {
+                                      var on = ref.on
+                                      return [
+                                        _c("v-spacer"),
+                                        _vm._v(" "),
+                                        _c("v-toolbar-title", [
+                                          _vm._v(
+                                            "Shopping list (" +
+                                              _vm._s(_vm.shoppingList.length) +
+                                              " items)"
+                                          )
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("v-spacer"),
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-toolbar-side-icon",
+                                          _vm._g({}, on),
+                                          [_c("v-icon", [_vm._v("menu")])],
+                                          1
+                                        )
+                                      ]
                                     }
                                   }
-                                },
-                                [
-                                  _c("v-list-tile-title", [
-                                    _vm._v(_vm._s(item.title))
-                                  ])
                                 ],
+                                null,
+                                false,
+                                3258981285
+                              )
+                            },
+                            [
+                              _vm._v(" "),
+                              _c(
+                                "v-list",
+                                _vm._l(_vm.menuItems, function(item, index) {
+                                  return _c(
+                                    "v-list-tile",
+                                    {
+                                      key: index,
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.clearList(_vm.shoppingList)
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c("v-list-tile-title", [
+                                        _vm._v(_vm._s(item.title))
+                                      ])
+                                    ],
+                                    1
+                                  )
+                                }),
                                 1
                               )
-                            }),
+                            ],
                             1
                           )
                         ],
                         1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-form",
-                    [
+                      ),
+                      _vm._v(" "),
                       _c(
-                        "v-container",
-                        { staticClass: "add-product" },
+                        "v-form",
                         [
                           _c(
-                            "v-layout",
-                            { attrs: { row: "" } },
+                            "v-container",
+                            { staticClass: "add-product" },
                             [
                               _c(
-                                "v-flex",
-                                { attrs: { sm4: "", md5: "" } },
-                                [
-                                  _c("v-combobox", {
-                                    attrs: {
-                                      items: _vm.products,
-                                      label: "Name",
-                                      "item-text": "name",
-                                      "return-object": false
-                                    },
-                                    model: {
-                                      value: _vm.product.name,
-                                      callback: function($$v) {
-                                        _vm.$set(_vm.product, "name", $$v)
-                                      },
-                                      expression: "product.name"
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-flex",
-                                { attrs: { sm4: "", md5: "" } },
-                                [
-                                  _c("v-text-field", {
-                                    attrs: { label: "Amount" },
-                                    model: {
-                                      value: _vm.product.quantity,
-                                      callback: function($$v) {
-                                        _vm.$set(_vm.product, "quantity", $$v)
-                                      },
-                                      expression: "product.quantity"
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-flex",
-                                {
-                                  attrs: { sm4: "", md4: "", lg3: "", xl1: "" }
-                                },
+                                "v-layout",
+                                { attrs: { row: "" } },
                                 [
                                   _c(
-                                    "gmButton",
+                                    "v-flex",
+                                    { attrs: { sm4: "", md5: "" } },
+                                    [
+                                      _c("v-combobox", {
+                                        attrs: {
+                                          items: _vm.products,
+                                          label: "Name",
+                                          "item-text": "name",
+                                          "return-object": false
+                                        },
+                                        model: {
+                                          value: _vm.product.name,
+                                          callback: function($$v) {
+                                            _vm.$set(_vm.product, "name", $$v)
+                                          },
+                                          expression: "product.name"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-flex",
+                                    { attrs: { sm4: "", md5: "" } },
+                                    [
+                                      _c("v-text-field", {
+                                        attrs: { label: "Amount" },
+                                        model: {
+                                          value: _vm.product.quantity,
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.product,
+                                              "quantity",
+                                              $$v
+                                            )
+                                          },
+                                          expression: "product.quantity"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-flex",
                                     {
                                       attrs: {
-                                        disabled:
-                                          !_vm.product.name ||
-                                          !_vm.product.quantity
-                                      },
-                                      on: {
-                                        click: function($event) {
-                                          return _vm.addProductToShoppingList(
-                                            _vm.product
-                                          )
-                                        }
+                                        sm4: "",
+                                        md4: "",
+                                        lg3: "",
+                                        xl1: ""
                                       }
                                     },
-                                    [_vm._v("Add")]
+                                    [
+                                      _c(
+                                        "gmButton",
+                                        {
+                                          attrs: {
+                                            disabled:
+                                              !_vm.product.name ||
+                                              !_vm.product.quantity
+                                          },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.addProductToShoppingList(
+                                                _vm.product
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("Add")]
+                                      )
+                                    ],
+                                    1
                                   )
                                 ],
                                 1
@@ -5981,70 +6002,70 @@ var render = function() {
                           )
                         ],
                         1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _vm.shoppingList.length < 1
-                    ? _c(
-                        "div",
-                        { staticClass: "empty-cart-container" },
-                        [
-                          _c(
-                            "v-icon",
-                            {
-                              staticClass: "empty-cart-icon",
-                              attrs: { color: "green" }
-                            },
-                            [_vm._v("shopping_cart")]
-                          ),
-                          _vm._v(" "),
-                          _c("p", { staticClass: "empty-cart-text" }, [
-                            _vm._v("No items in your shoppinglist. Good job!")
-                          ])
-                        ],
+                      ),
+                      _vm._v(" "),
+                      _vm.shoppingList.length < 1
+                        ? _c(
+                            "div",
+                            { staticClass: "empty-cart-container" },
+                            [
+                              _c(
+                                "v-icon",
+                                {
+                                  staticClass: "empty-cart-icon",
+                                  attrs: { color: "green" }
+                                },
+                                [_vm._v("shopping_cart")]
+                              ),
+                              _vm._v(" "),
+                              _c("p", { staticClass: "empty-cart-text" }, [
+                                _vm._v(
+                                  "No items in your shoppinglist. Good job!"
+                                )
+                              ])
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c(
+                        "transition-group",
+                        { attrs: { name: "card" } },
+                        _vm._l(_vm.shoppingList, function(product) {
+                          return _c("Product", {
+                            key: product.id,
+                            ref: "product1",
+                            refInFor: true,
+                            staticClass: "product",
+                            attrs: { product: product },
+                            on: { updateShoppingList: _vm.getShoppingList }
+                          })
+                        }),
                         1
                       )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _c(
-                    "transition-group",
-                    { attrs: { name: "card" } },
-                    _vm._l(_vm.shoppingList, function(product) {
-                      return _c("Product", {
-                        key: product.id,
-                        ref: "product1",
-                        refInFor: true,
-                        staticClass: "product",
-                        attrs: { product: product },
-                        on: { updateShoppingList: _vm.getShoppingList }
-                      })
-                    }),
+                    ],
                     1
                   )
                 ],
                 1
-              )
+              ),
+              _vm._v(" "),
+              _c("gmSnackbar", {
+                ref: "snackbarSuccess",
+                attrs: { type: "primary", text: "Added product!" }
+              }),
+              _vm._v(" "),
+              _c("gmSnackbar", {
+                ref: "snackbarFailure",
+                attrs: { type: "error", text: "Could not add product!" }
+              })
             ],
             1
-          ),
-          _vm._v(" "),
-          _c("gmSnackbar", {
-            ref: "snackbarSuccess",
-            attrs: { type: "primary", text: "Added product!" }
-          }),
-          _vm._v(" "),
-          _c("gmSnackbar", {
-            ref: "snackbarFailure",
-            attrs: { type: "error", text: "Could not add product!" }
-          })
+          )
         ],
         1
       )
-    ],
-    1
-  )
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -6516,7 +6537,7 @@ var render = function() {
                   _vm._l(_vm.competitions, function(competition) {
                     return _c(
                       "div",
-                      { staticClass: "event-list-item" },
+                      { key: competition.id, staticClass: "event-list-item" },
                       [
                         _c(
                           "v-list-tile",
@@ -6559,16 +6580,18 @@ var render = function() {
                             _vm._v(" "),
                             _c(
                               "v-list-tile-content",
+                              { staticClass: "score-container" },
                               [
-                                _c("v-list-tile-title", [
-                                  _vm._v(
-                                    _vm._s(competition.score_home) +
-                                      " - " +
-                                      _vm._s(competition.score_away)
-                                  )
+                                _c("div", { staticClass: "score-box" }, [
+                                  _vm._v(_vm._s(competition.score_home))
+                                ]),
+                                _vm._v(" "),
+                                _c("span", [_vm._v("-")]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "score-box" }, [
+                                  _vm._v(_vm._s(competition.score_away))
                                 ])
-                              ],
-                              1
+                              ]
                             ),
                             _vm._v(" "),
                             _c(
