@@ -28,7 +28,7 @@
           <v-form>
             <v-container class="add-product">
               <v-layout row>
-                <v-flex xs4 md5>
+                <v-flex sm4 md5>
                   <v-combobox
                     v-model="product.name"
                     :items="products"
@@ -37,10 +37,10 @@
                     :return-object="false"
                   ></v-combobox>
                 </v-flex>
-                <v-flex xs4 md5>
+                <v-flex sm4 md5>
                   <v-text-field label="Amount" v-model="product.quantity"></v-text-field>
                 </v-flex>
-                <v-flex xs4 md2>
+                <v-flex sm4 md4 lg3 xl1>
                   <gmButton
                     :disabled="(!product.name || !product.quantity)"
                     @click="addProductToShoppingList(product)"

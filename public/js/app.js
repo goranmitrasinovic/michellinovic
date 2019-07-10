@@ -5897,7 +5897,7 @@ var render = function() {
                             [
                               _c(
                                 "v-flex",
-                                { attrs: { xs4: "", md5: "" } },
+                                { attrs: { sm4: "", md5: "" } },
                                 [
                                   _c("v-combobox", {
                                     attrs: {
@@ -5920,7 +5920,7 @@ var render = function() {
                               _vm._v(" "),
                               _c(
                                 "v-flex",
-                                { attrs: { xs4: "", md5: "" } },
+                                { attrs: { sm4: "", md5: "" } },
                                 [
                                   _c("v-text-field", {
                                     attrs: { label: "Amount" },
@@ -5938,7 +5938,9 @@ var render = function() {
                               _vm._v(" "),
                               _c(
                                 "v-flex",
-                                { attrs: { xs4: "", md2: "" } },
+                                {
+                                  attrs: { sm4: "", md4: "", lg3: "", xl1: "" }
+                                },
                                 [
                                   _c(
                                     "gmButton",
