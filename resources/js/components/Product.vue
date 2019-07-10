@@ -24,14 +24,13 @@
         >
           <gmButton v-if="editable" type="warning" @click="editProduct" key="cancel">Cancel</gmButton>
           <gmButton v-if="editable" type="success" @click="updateProduct(product)" key="save">Save</gmButton>
-          <!-- <v-icon v-if="editable" @click="editProduct" class="edit-icon">edit</v-icon>
-          <v-icon v-if="editable" @click="editProduct" class="edit-icon">edit</v-icon>-->
 
           <v-icon v-if="!editable" @click="editProduct" class="edit-icon">edit</v-icon>
         </v-list-tile-action>
       </v-list-tile>
     </v-list>
-    <gmSnackbar ref="snackbarSuccess" text="Updated product!" type="success"></gmSnackbar>
+    <gmSnackbar ref="snackbarSuccess" text="Product completed!" type="success"></gmSnackbar>
+    <gmSnackbar ref="snackbarUpdate" text="Updated product!" type="success"></gmSnackbar>
     <gmSnackbar ref="snackbarFailure" text="Could not update product!" type="error"></gmSnackbar>
   </div>
 </template>
@@ -66,7 +65,7 @@ export default {
     completeProduct(product) {
       // Shouldnt have to set this to see the checkbox ticked in the view, todo
       product.completed = 1;
-      this.$refs.snackbar.toogleSnackbar();
+      this.$refs.snackbarSuccess.toogleSnackbar();
       this.saving = true;
       axios
         .put("api/shopping-list/product/" + product.id)
@@ -86,7 +85,7 @@ export default {
         .then(response => {
           this.$emit("updateShoppingList");
           this.editProduct();
-          this.$refs.snackbarSuccess.toogleSnackbar();
+          this.$refs.snackbarUpdate.toogleSnackbar();
         })
         .catch(error => {
           this.$refs.snackbarFailure.toogleSnackbar();

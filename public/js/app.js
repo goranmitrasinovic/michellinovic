@@ -2178,7 +2178,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -2206,7 +2205,7 @@ __webpack_require__.r(__webpack_exports__);
 
       // Shouldnt have to set this to see the checkbox ticked in the view, todo
       product.completed = 1;
-      this.$refs.snackbar.toogleSnackbar();
+      this.$refs.snackbarSuccess.toogleSnackbar();
       this.saving = true;
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.put("api/shopping-list/product/" + product.id).then(function (response) {
         _this.$emit("updateShoppingList");
@@ -2223,7 +2222,7 @@ __webpack_require__.r(__webpack_exports__);
 
         _this2.editProduct();
 
-        _this2.$refs.snackbarSuccess.toogleSnackbar();
+        _this2.$refs.snackbarUpdate.toogleSnackbar();
       }).catch(function (error) {
         _this2.$refs.snackbarFailure.toogleSnackbar();
       }).then(function () {});
@@ -5778,6 +5777,11 @@ var render = function() {
       _vm._v(" "),
       _c("gmSnackbar", {
         ref: "snackbarSuccess",
+        attrs: { text: "Product completed!", type: "success" }
+      }),
+      _vm._v(" "),
+      _c("gmSnackbar", {
+        ref: "snackbarUpdate",
         attrs: { text: "Updated product!", type: "success" }
       }),
       _vm._v(" "),
