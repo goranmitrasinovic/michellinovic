@@ -192,8 +192,9 @@ export default {
 }
 
 .theme--light.v-sheet {
-  background-color: #e7f4ff;
-  border: 1px solid #570fc1;
+  /* background-color: #e7f4ff; */
+  /* background: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d); */
+  padding-bottom: 10px;
 }
 
 .product >>> .v-list--two-line .v-list__tile {
@@ -213,5 +214,9 @@ export default {
 .empty-cart-container {
   text-align: center;
   padding: 50px;
+}
+
+.product {
+  margin: 10px;
 }
 </style>

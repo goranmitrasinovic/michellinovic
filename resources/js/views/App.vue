@@ -2,7 +2,7 @@
   <div>
     <Navbar></Navbar>
     <v-app>
-      <v-content>
+      <v-content class="content">
         <div class="container">
           <router-view></router-view>
         </div>
@@ -19,3 +19,9 @@ export default {
   }
 };
 </script>
+
+<style>
+.content {
+  background: linear-gradient(120deg, #a6c0fe 0%, #f68084 100%);
+}
+</style>

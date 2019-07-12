@@ -31,6 +31,7 @@
               item-text="name"
             ></v-select>
           </div>
+
           <v-container grid-list-md>
             <v-layout row align-center justify-space-between text-xs-center>
               <v-flex xs12 sm4>
@@ -52,40 +53,11 @@
               </v-flex>
             </v-layout>
           </v-container>
-          <div v-for="competition in competitions" class="event-list-item" :key="competition.id">
-            <v-list-tile>
-              <v-list-tile-action>
-                <v-icon>{{competition.icon}}</v-icon>
-              </v-list-tile-action>
-              <v-list-tile-action>
-                <v-icon v-if="competition.score_home > competition.score_away" color="green">mood</v-icon>
-                <v-icon
-                  v-if="competition.score_home == competition.score_away"
-                  color="orange"
-                >sentiment_dissatisfied</v-icon>
-                <v-icon v-if="competition.score_home < competition.score_away" color="red">mood_bad</v-icon>
-              </v-list-tile-action>
-
-              <v-list-tile-content class="score-container">
-                <div class="score-box">{{competition.score_home}}</div>
-                <span>-</span>
-                <div class="score-box">{{competition.score_away}}</div>
-              </v-list-tile-content>
-
-              <v-list-tile-action>
-                <v-icon v-if="competition.score_home < competition.score_away" color="green">mood</v-icon>
-                <v-icon
-                  v-if="competition.score_home == competition.score_away"
-                  color="orange"
-                >sentiment_dissatisfied</v-icon>
-                <v-icon v-if="competition.score_home > competition.score_away" color="red">mood_bad</v-icon>
-              </v-list-tile-action>
-              <v-list-tile-action>
-                <v-icon>{{competition.icon}}</v-icon>
-              </v-list-tile-action>
-            </v-list-tile>
-            <v-divider></v-divider>
-          </div>
+          <gmResultCard
+            v-for="competition in competitions"
+            :key="competition.id"
+            :competition="competition"
+          ></gmResultCard>
         </v-list>
       </v-card>
     </v-flex>
@@ -96,6 +68,7 @@
 import axios from "axios";
 import Modal from "../components/Modal";
 import Competition from "../components/Competition";
+import gmResultCard from "../components/gmResultCard";
 
 export default {
   data: function() {
@@ -120,7 +93,8 @@ export default {
 
   components: {
     Modal,
-    Competition
+    Competition,
+    gmResultCard
   },
 
   mounted() {
@@ -197,22 +171,5 @@ export default {
   border-radius: 200px;
   border: 3px solid #3f51b5;
   width: 74px;
-}
-
-.score-container {
-  flex-direction: row;
-  align-items: center;
-}
-
-.score-box {
-  background: #3f51b5;
-  padding: 5px;
-  color: white;
-  width: 50px;
-  margin: 0px 10px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-weight: bold;
 }
 </style>
