@@ -3005,7 +3005,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nnav[data-v-980152f2] {\n  z-index: 1;\n  box-shadow: inset 0px -5px 20px -2px rgba(255, 255, 255, 0.15),\n    0px 2px 20px 4px rgba(0, 0, 0, 0.4);\n  font-family: Roboto, sans-serif;\n}\n.navbar-icon[data-v-980152f2] {\n  margin: 0px 10px;\n}\na[data-v-980152f2] {\n  color: white;\n}\na[data-v-980152f2]:hover:before {\n  background-color: rgba(0, 0, 0, 0);\n}\n.nav-btn[data-v-980152f2]::after {\n  position: absolute;\n  content: \"\";\n  bottom: 0;\n  width: 90%;\n  height: 3px;\n  -webkit-transform: scaleX(0);\n          transform: scaleX(0);\n  background-color: #fff;\n  transition: all 0.3s;\n}\n.nav-btn[data-v-980152f2]:hover::after {\n  -webkit-transform: scale(1);\n          transform: scale(1);\n}\n", ""]);
+exports.push([module.i, "\nnav[data-v-980152f2] {\n  /* To make box shadow be shown on top of container */\n  z-index: 1;\n  box-shadow: inset 0px -5px 20px -2px rgba(255, 255, 255, 0.15),\n    0px 2px 20px 4px rgba(0, 0, 0, 0.4);\n  font-family: Roboto, sans-serif;\n}\n.navbar-icon[data-v-980152f2] {\n  margin: 0px 10px;\n}\na[data-v-980152f2] {\n  color: white;\n}\na[data-v-980152f2]:hover:before {\n  background-color: rgba(0, 0, 0, 0);\n}\n.nav-btn[data-v-980152f2]::after {\n  position: absolute;\n  content: \"\";\n  bottom: 0;\n  width: 90%;\n  height: 3px;\n  -webkit-transform: scaleX(0);\n          transform: scaleX(0);\n  background-color: #fff;\n  transition: all 0.3s;\n}\n.nav-btn[data-v-980152f2]:hover::after {\n  -webkit-transform: scale(1);\n          transform: scale(1);\n}\n", ""]);
 
 // exports
 
@@ -6346,7 +6346,7 @@ var render = function() {
       [
         _c(
           "v-toolbar",
-          { staticClass: "deep-purple" },
+          { staticClass: "deep-purple", attrs: { height: "72px" } },
           [
             _c(
               "v-toolbar-title",

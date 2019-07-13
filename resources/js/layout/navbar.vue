@@ -1,7 +1,7 @@
 <template>
   <nav>
     <div>
-      <v-toolbar class="deep-purple">
+      <v-toolbar class="deep-purple" height="72px">
         <v-toolbar-title class="white--text mr-5">
           <router-link to="/">Michellinovic</router-link>
         </v-toolbar-title>
@@ -19,24 +19,12 @@
         </v-toolbar-items>
       </v-toolbar>
     </div>
-
-    <!-- <template>
-  <v-toolbar>
-    <v-toolbar-side-icon></v-toolbar-side-icon>
-    <v-toolbar-title>Title</v-toolbar-title>
-    <v-spacer></v-spacer>
-    <v-toolbar-items class="hidden-sm-and-down">
-      <v-btn flat>Link One</v-btn>
-      <v-btn flat>Link Two</v-btn>
-      <v-btn flat>Link Three</v-btn>
-    </v-toolbar-items>
-  </v-toolbar>
-    </template>-->
   </nav>
 </template>
 
 <style scoped>
 nav {
+  /* To make box shadow be shown on top of container */
   z-index: 1;
   box-shadow: inset 0px -5px 20px -2px rgba(255, 255, 255, 0.15),
     0px 2px 20px 4px rgba(0, 0, 0, 0.4);
