@@ -32,13 +32,18 @@
                   <v-combobox
                     v-model="product.name"
                     :items="products"
-                    label="Name"
+                    label="Product name"
                     item-text="name"
                     :return-object="false"
+                    prepend-inner-icon="shopping_cart"
                   ></v-combobox>
                 </v-flex>
                 <v-flex sm4 md5>
-                  <v-text-field label="Amount" v-model="product.quantity"></v-text-field>
+                  <v-text-field
+                    label="Amount"
+                    prepend-inner-icon="exposure"
+                    v-model="product.quantity"
+                  ></v-text-field>
                 </v-flex>
                 <v-flex sm4 md4 lg3 xl1>
                   <gmButton

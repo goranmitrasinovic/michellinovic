@@ -12,7 +12,7 @@ import Home from './views/Home'
 import Competition from './views/Competition'
 import Calendar from './views/Calendar'
 
-// import 'vuetify/dist/vuetify.min.css'
+import 'vuetify/dist/vuetify.min.css'
 
 const router = new VueRouter({
     mode: 'history',
