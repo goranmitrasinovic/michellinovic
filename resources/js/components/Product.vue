@@ -138,7 +138,7 @@ export default {
   box-shadow: inset 0px -39px 98px -38px rgba(139, 213, 240, 0.46);
 }
 
-.edit-icon {
+.theme--light.edit-icon {
   color: white;
   padding: 10px;
 }
@@ -151,7 +151,11 @@ export default {
   justify-content: center;
 }
 
-.v-list >>> .v-input--selection-controls__input {
+.v-input--selection-controls__ripple {
+  position: inherit;
+}
+
+.v-list >>> .v-input--selection-controls__ripple {
   margin-right: 0px;
 }
 
@@ -164,6 +168,7 @@ export default {
   border: 1px solid #1ea95e;
   border-bottom-left-radius: 10px;
   border-top-left-radius: 10px;
+  justify-content: center;
 }
 
 .checkbox-container:hover {

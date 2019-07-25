@@ -16,9 +16,11 @@
       </Modal>
       <v-card>
         <v-toolbar color="indigo" dark>
-          <v-toolbar-side-icon></v-toolbar-side-icon>
-
+          <v-spacer></v-spacer>
           <v-toolbar-title>Competition</v-toolbar-title>
+          <v-spacer></v-spacer>
+
+          <v-toolbar-side-icon></v-toolbar-side-icon>
         </v-toolbar>
 
         <v-list>
