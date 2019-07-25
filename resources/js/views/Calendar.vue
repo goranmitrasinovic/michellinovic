@@ -1,56 +1,65 @@
 <template>
-  <v-layout wrap>
-    <v-flex xs12 class="mb-3">
-      <v-sheet height="500">
-        <v-calendar ref="calendar" v-model="start" type="month" :end="end" color="primary">
-          <template v-slot:day="{ date }">
-            <template v-for="event in eventsMap[date]">
-              <div
-                v-if="!event.time"
-                :key="event.title"
-                v-ripple
-                @click="openModal(event)"
-                class="my-event"
-                v-html="event.title"
-              ></div>
-            </template>
-          </template>
-        </v-calendar>
-      </v-sheet>
-    </v-flex>
-    <gmModal ref="modal" :title="event.title" @edit="toogleEditMode" :editButton="true">
-      <v-layout wrap>
-        <v-flex xs12>
-          <v-text-field
-            prepend-icon="calendar_today"
-            :disabled="!editMode"
-            label="Date"
-            v-model="event.date"
-          ></v-text-field>
-        </v-flex>
-        <v-flex xs12>
-          <v-text-field
-            prepend-icon="info"
-            label="Details"
-            :disabled="!editMode"
-            v-model="event.details"
-          ></v-text-field>
-        </v-flex>
-      </v-layout>
-    </gmModal>
-    <v-flex sm6 xs12 class="text-sm-left text-xs-center">
-      <v-btn @click="$refs.calendar.prev()">
-        <v-icon dark left>keyboard_arrow_left</v-icon>Prev
-      </v-btn>
-    </v-flex>
+  <v-card>
+    <v-toolbar color="indigo" dark>
+      <v-spacer></v-spacer>
+      <v-toolbar-title>Calendar</v-toolbar-title>
+      <v-spacer></v-spacer>
 
-    <v-flex sm6 xs12 class="text-sm-right text-xs-center">
-      <v-btn @click="$refs.calendar.next()">
-        Next
-        <v-icon right dark>keyboard_arrow_right</v-icon>
-      </v-btn>
-    </v-flex>
-  </v-layout>
+      <v-toolbar-side-icon></v-toolbar-side-icon>
+    </v-toolbar>
+    <v-layout wrap>
+      <v-flex xs12 class="mb-3">
+        <v-sheet height="500">
+          <v-calendar ref="calendar" v-model="start" type="month" :end="end" color="primary">
+            <template v-slot:day="{ date }">
+              <template v-for="event in eventsMap[date]">
+                <div
+                  v-if="!event.time"
+                  :key="event.title"
+                  v-ripple
+                  @click="openModal(event)"
+                  class="my-event"
+                  v-html="event.title"
+                ></div>
+              </template>
+            </template>
+          </v-calendar>
+        </v-sheet>
+      </v-flex>
+      <gmModal ref="modal" :title="event.title" @edit="toogleEditMode" :editButton="true">
+        <v-layout wrap>
+          <v-flex xs12>
+            <v-text-field
+              prepend-icon="calendar_today"
+              :disabled="!editMode"
+              label="Date"
+              v-model="event.date"
+            ></v-text-field>
+          </v-flex>
+          <v-flex xs12>
+            <v-text-field
+              prepend-icon="info"
+              label="Details"
+              :disabled="!editMode"
+              v-model="event.details"
+            ></v-text-field>
+          </v-flex>
+        </v-layout>
+      </gmModal>
+      <v-flex sm6 xs12 class="text-sm-left text-xs-center">
+        <v-btn @click="$refs.calendar.prev()">
+          <v-icon dark left>keyboard_arrow_left</v-icon>Prev
+        </v-btn>
+      </v-flex>
+
+      <v-flex sm6 xs12 class="text-sm-right text-xs-center">
+        <v-btn @click="$refs.calendar.next()">
+          Next
+          <v-icon right dark>keyboard_arrow_right</v-icon>
+        </v-btn>
+      </v-flex>
+    </v-layout>
+  </v-card>
 </template>
 
 

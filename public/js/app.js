@@ -2567,6 +2567,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -6512,114 +6521,75 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "v-layout",
-    { attrs: { wrap: "" } },
+    "v-card",
     [
       _c(
-        "v-flex",
-        { staticClass: "mb-3", attrs: { xs12: "" } },
+        "v-toolbar",
+        { attrs: { color: "indigo", dark: "" } },
         [
-          _c(
-            "v-sheet",
-            { attrs: { height: "500" } },
-            [
-              _c("v-calendar", {
-                ref: "calendar",
-                attrs: { type: "month", end: _vm.end, color: "primary" },
-                scopedSlots: _vm._u([
-                  {
-                    key: "day",
-                    fn: function(ref) {
-                      var date = ref.date
-                      return [
-                        _vm._l(_vm.eventsMap[date], function(event) {
-                          return [
-                            !event.time
-                              ? _c("div", {
-                                  directives: [
-                                    { name: "ripple", rawName: "v-ripple" }
-                                  ],
-                                  key: event.title,
-                                  staticClass: "my-event",
-                                  domProps: { innerHTML: _vm._s(event.title) },
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.openModal(event)
-                                    }
-                                  }
-                                })
-                              : _vm._e()
-                          ]
-                        })
-                      ]
-                    }
-                  }
-                ]),
-                model: {
-                  value: _vm.start,
-                  callback: function($$v) {
-                    _vm.start = $$v
-                  },
-                  expression: "start"
-                }
-              })
-            ],
-            1
-          )
+          _c("v-spacer"),
+          _vm._v(" "),
+          _c("v-toolbar-title", [_vm._v("Calendar")]),
+          _vm._v(" "),
+          _c("v-spacer"),
+          _vm._v(" "),
+          _c("v-toolbar-side-icon")
         ],
         1
       ),
       _vm._v(" "),
       _c(
-        "gmModal",
-        {
-          ref: "modal",
-          attrs: { title: _vm.event.title, editButton: true },
-          on: { edit: _vm.toogleEditMode }
-        },
+        "v-layout",
+        { attrs: { wrap: "" } },
         [
           _c(
-            "v-layout",
-            { attrs: { wrap: "" } },
+            "v-flex",
+            { staticClass: "mb-3", attrs: { xs12: "" } },
             [
               _c(
-                "v-flex",
-                { attrs: { xs12: "" } },
+                "v-sheet",
+                { attrs: { height: "500" } },
                 [
-                  _c("v-text-field", {
-                    attrs: {
-                      "prepend-icon": "calendar_today",
-                      disabled: !_vm.editMode,
-                      label: "Date"
-                    },
+                  _c("v-calendar", {
+                    ref: "calendar",
+                    attrs: { type: "month", end: _vm.end, color: "primary" },
+                    scopedSlots: _vm._u([
+                      {
+                        key: "day",
+                        fn: function(ref) {
+                          var date = ref.date
+                          return [
+                            _vm._l(_vm.eventsMap[date], function(event) {
+                              return [
+                                !event.time
+                                  ? _c("div", {
+                                      directives: [
+                                        { name: "ripple", rawName: "v-ripple" }
+                                      ],
+                                      key: event.title,
+                                      staticClass: "my-event",
+                                      domProps: {
+                                        innerHTML: _vm._s(event.title)
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.openModal(event)
+                                        }
+                                      }
+                                    })
+                                  : _vm._e()
+                              ]
+                            })
+                          ]
+                        }
+                      }
+                    ]),
                     model: {
-                      value: _vm.event.date,
+                      value: _vm.start,
                       callback: function($$v) {
-                        _vm.$set(_vm.event, "date", $$v)
+                        _vm.start = $$v
                       },
-                      expression: "event.date"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-flex",
-                { attrs: { xs12: "" } },
-                [
-                  _c("v-text-field", {
-                    attrs: {
-                      "prepend-icon": "info",
-                      label: "Details",
-                      disabled: !_vm.editMode
-                    },
-                    model: {
-                      value: _vm.event.details,
-                      callback: function($$v) {
-                        _vm.$set(_vm.event, "details", $$v)
-                      },
-                      expression: "event.details"
+                      expression: "start"
                     }
                   })
                 ],
@@ -6627,60 +6597,122 @@ var render = function() {
               )
             ],
             1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-flex",
-        {
-          staticClass: "text-sm-left text-xs-center",
-          attrs: { sm6: "", xs12: "" }
-        },
-        [
+          ),
+          _vm._v(" "),
           _c(
-            "v-btn",
+            "gmModal",
             {
-              on: {
-                click: function($event) {
-                  return _vm.$refs.calendar.prev()
-                }
-              }
+              ref: "modal",
+              attrs: { title: _vm.event.title, editButton: true },
+              on: { edit: _vm.toogleEditMode }
             },
             [
-              _c("v-icon", { attrs: { dark: "", left: "" } }, [
-                _vm._v("keyboard_arrow_left")
-              ]),
-              _vm._v("Prev\n    ")
+              _c(
+                "v-layout",
+                { attrs: { wrap: "" } },
+                [
+                  _c(
+                    "v-flex",
+                    { attrs: { xs12: "" } },
+                    [
+                      _c("v-text-field", {
+                        attrs: {
+                          "prepend-icon": "calendar_today",
+                          disabled: !_vm.editMode,
+                          label: "Date"
+                        },
+                        model: {
+                          value: _vm.event.date,
+                          callback: function($$v) {
+                            _vm.$set(_vm.event, "date", $$v)
+                          },
+                          expression: "event.date"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-flex",
+                    { attrs: { xs12: "" } },
+                    [
+                      _c("v-text-field", {
+                        attrs: {
+                          "prepend-icon": "info",
+                          label: "Details",
+                          disabled: !_vm.editMode
+                        },
+                        model: {
+                          value: _vm.event.details,
+                          callback: function($$v) {
+                            _vm.$set(_vm.event, "details", $$v)
+                          },
+                          expression: "event.details"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
             ],
             1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-flex",
-        {
-          staticClass: "text-sm-right text-xs-center",
-          attrs: { sm6: "", xs12: "" }
-        },
-        [
+          ),
+          _vm._v(" "),
           _c(
-            "v-btn",
+            "v-flex",
             {
-              on: {
-                click: function($event) {
-                  return _vm.$refs.calendar.next()
-                }
-              }
+              staticClass: "text-sm-left text-xs-center",
+              attrs: { sm6: "", xs12: "" }
             },
             [
-              _vm._v("\n      Next\n      "),
-              _c("v-icon", { attrs: { right: "", dark: "" } }, [
-                _vm._v("keyboard_arrow_right")
-              ])
+              _c(
+                "v-btn",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.$refs.calendar.prev()
+                    }
+                  }
+                },
+                [
+                  _c("v-icon", { attrs: { dark: "", left: "" } }, [
+                    _vm._v("keyboard_arrow_left")
+                  ]),
+                  _vm._v("Prev\n      ")
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-flex",
+            {
+              staticClass: "text-sm-right text-xs-center",
+              attrs: { sm6: "", xs12: "" }
+            },
+            [
+              _c(
+                "v-btn",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.$refs.calendar.next()
+                    }
+                  }
+                },
+                [
+                  _vm._v("\n        Next\n        "),
+                  _c("v-icon", { attrs: { right: "", dark: "" } }, [
+                    _vm._v("keyboard_arrow_right")
+                  ])
+                ],
+                1
+              )
             ],
             1
           )
