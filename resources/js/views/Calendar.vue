@@ -3,6 +3,7 @@
     <v-toolbar color="indigo" dark>
       <v-spacer></v-spacer>
       <v-toolbar-title>Calendar</v-toolbar-title>
+
       <v-spacer></v-spacer>
 
       <v-toolbar-side-icon></v-toolbar-side-icon>
@@ -67,6 +68,7 @@
 <script>
 import gmButton from "../base_components/gmButton";
 import gmModal from "../base_components/gmModal";
+import axios from "axios";
 
 export default {
   data: () => ({
@@ -76,61 +78,12 @@ export default {
     editMode: false,
     newEvent: {},
     event: {},
-    events: [
-      {
-        title: "Vacation",
-        details: "Going to the beach!",
-        date: "2018-12-30",
-        open: false
-      },
-      {
-        title: "Vacation",
-        details: "Going to the beach!",
-        date: "2018-12-31",
-        open: false
-      },
-      {
-        title: "Vacation",
-        details: "Going to the beach!",
-        date: "2019-01-01",
-        open: false
-      },
-      {
-        title: "Meeting",
-        details: "Spending time on how we do not have enough time",
-        date: "2019-01-07",
-        open: false
-      },
-      {
-        title: "30th Birthday",
-        details: "Celebrate responsibly",
-        date: "2019-01-03",
-        open: false
-      },
-      {
-        title: "New Year",
-        details: "Eat chocolate until you pass out",
-        date: "2019-01-01",
-        open: false
-      },
-      {
-        title: "Conference",
-        details: "Mute myself the whole time and wonder why I am on this call",
-        date: "2019-01-21",
-        open: false
-      },
-      {
-        title: "Hackathon",
-        details: "Code like there is no tommorrow",
-        date: "2019-02-01",
-        open: false
-      }
-    ]
+    events: []
   }),
 
   components: {
     gmButton,
-    gmModal
+    gmModal,
   },
 
   computed: {
@@ -141,6 +94,11 @@ export default {
       return map;
     }
   },
+
+  mounted() {
+    this.getEvents();
+  },
+
   methods: {
     open(event) {
       alert(event.title);
@@ -157,6 +115,20 @@ export default {
 
     addEvent(event) {
       this.events.push(event);
+    },
+    getEvents() {
+      axios
+        .get("api/events")
+        .then(response => {
+          this.events = response.data;
+        })
+        .catch(function(error) {
+          // handle error
+          console.log(error);
+        })
+        .then(function() {
+          // always executed
+        });
     }
   }
 };

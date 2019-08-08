@@ -1,19 +1,15 @@
 <template>
   <v-layout row>
     <v-flex xs12 sm6 offset-sm3>
-      <Modal
-        title="Add event"
-        modalToogle="Create competition"
-        @update="getCompetitions"
-        :user1="user1"
-        :user2="user2"
-      >
-        <template v-slot:introduction>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-          ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-          laborum.
-        </template>
-      </Modal>
+        <v-btn @click="openModal()">hej</v-btn>
+      <gmModal ref="modal" title="Create competition" @save="createCompetition(competition)">
+          <v-layout row justify-center>
+                <v-container>
+                  <slot name="introduction"></slot>
+                  <Competition :competition="competition" :user1="user1" :user2="user2"></Competition>
+                </v-container>
+          </v-layout>
+      </gmModal>
       <v-card>
         <v-toolbar color="indigo" dark>
           <v-spacer></v-spacer>
@@ -68,7 +64,7 @@
 
 <script>
 import axios from "axios";
-import Modal from "../components/Modal";
+import gmModal from "../base_components/gmModal";
 import Competition from "../components/Competition";
 import gmResultCard from "../components/gmResultCard";
 
@@ -76,6 +72,8 @@ export default {
   data: function() {
     return {
       users: [],
+      dialog: false,
+      competition: {},
       competitions: [],
       filter: { sport: "All" },
       sports: [
@@ -94,7 +92,7 @@ export default {
   },
 
   components: {
-    Modal,
+    gmModal,
     Competition,
     gmResultCard
   },
@@ -105,6 +103,11 @@ export default {
   },
 
   methods: {
+
+      openModal() {
+        this.$refs.modal.showModal();
+      },
+
     getUsers() {
       axios
         .get("api/users")
@@ -122,6 +125,23 @@ export default {
 
     applyFilter() {
       console.log("hej");
+    },
+
+    createCompetition(competition) {
+      this.dialog = false;
+      axios
+        .post("api/competitions/create", competition)
+        .then(response => {
+          this.getCompetitions();
+          this.competition = {};
+        })
+        .catch(function(error) {
+          // handle error
+          console.log(error);
+        })
+        .then(function() {
+          // always executed'
+        });
     },
 
     getCompetitions() {

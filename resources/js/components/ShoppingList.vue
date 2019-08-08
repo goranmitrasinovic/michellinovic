@@ -197,8 +197,6 @@ export default {
 }
 
 .theme--light.v-sheet {
-  /* background-color: #e7f4ff; */
-  /* background: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d); */
   padding-bottom: 10px;
 }
 

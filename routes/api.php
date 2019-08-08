@@ -30,3 +30,6 @@ Route::get('/users', 'UserController@index');
 
 Route::post('/competitions/create', 'CompetitionController@create');
 Route::get('/competitions', 'CompetitionController@index');
+
+
+Route::get('/events', 'EventController@index');

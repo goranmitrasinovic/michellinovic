@@ -1,6 +1,5 @@
 <template>
   <div>
-    <gmButton type="success" icon="home" @click="consoleClick">as2d</gmButton>
     <gmModal @save="saveData" toogleText="Open" title="Test">heeeej</gmModal>
   </div>
 </template>
