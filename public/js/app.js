@@ -6164,6 +6164,7 @@ var render = function() {
             _vm._v(" "),
             _c(
               "v-toolbar-items",
+              { staticClass: "hidden-md-and-down" },
               [
                 _c(
                   "v-btn",
@@ -6206,6 +6207,64 @@ var render = function() {
                       _vm._v("calendar_today")
                     ]),
                     _vm._v("Calendar\n        ")
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "v-menu",
+              { staticClass: "hidden-lg-and-up" },
+              [
+                _c("v-toolbar-side-icon", {
+                  staticStyle: { color: "white" },
+                  attrs: { slot: "activator" },
+                  slot: "activator"
+                }),
+                _vm._v(" "),
+                _c(
+                  "v-list",
+                  [
+                    _c(
+                      "v-list-tile",
+                      { attrs: { to: "/shopping-list" } },
+                      [
+                        _c(
+                          "v-list-tile-content",
+                          [_c("v-list-tile-title", [_vm._v("Shopping list")])],
+                          1
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-list-tile",
+                      { attrs: { to: "/competition" } },
+                      [
+                        _c(
+                          "v-list-tile-content",
+                          [_c("v-list-tile-title", [_vm._v("Competition")])],
+                          1
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-list-tile",
+                      { attrs: { to: "/calendar" } },
+                      [
+                        _c(
+                          "v-list-tile-content",
+                          [_c("v-list-tile-title", [_vm._v("Calendar")])],
+                          1
+                        )
+                      ],
+                      1
+                    )
                   ],
                   1
                 )

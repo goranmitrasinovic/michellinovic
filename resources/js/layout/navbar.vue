@@ -6,7 +6,7 @@
           <router-link to="/">Michellinovic</router-link>
         </v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-toolbar-items>
+        <v-toolbar-items class="hidden-md-and-down">
           <v-btn class="nav-btn" flat dark to="/shopping-list">
             <v-icon class="navbar-icon">shopping_cart</v-icon>Shopping list
           </v-btn>
@@ -17,6 +17,26 @@
             <v-icon class="navbar-icon">calendar_today</v-icon>Calendar
           </v-btn>
         </v-toolbar-items>
+        <v-menu class="hidden-lg-and-up">
+          <v-toolbar-side-icon style="color: white;" slot="activator"></v-toolbar-side-icon>
+          <v-list>
+            <v-list-tile to="/shopping-list">
+              <v-list-tile-content>
+                <v-list-tile-title>Shopping list</v-list-tile-title>
+              </v-list-tile-content>
+            </v-list-tile>
+            <v-list-tile to="/competition">
+              <v-list-tile-content>
+                <v-list-tile-title>Competition</v-list-tile-title>
+              </v-list-tile-content>
+            </v-list-tile>
+            <v-list-tile to="/calendar">
+              <v-list-tile-content>
+                <v-list-tile-title>Calendar</v-list-tile-title>
+              </v-list-tile-content>
+            </v-list-tile>
+          </v-list>
+        </v-menu>
       </v-toolbar>
     </div>
   </nav>
