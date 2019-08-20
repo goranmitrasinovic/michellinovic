@@ -2153,6 +2153,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -2201,7 +2202,7 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function () {});
     },
     action: function action(item) {
-      if (item.title === 'Clear list') {
+      if (item.title === "Clear list") {
         this.clearList();
       } else {
         console.log(item.title);
@@ -2894,7 +2895,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.slide-fade-enter-active[data-v-7e94e6d4] {\n  transition: all 1s ease;\n}\n.slide-fade-leave-active[data-v-7e94e6d4] {\n  transition: all 1s cubic-bezier(1, 0.5, 0.8, 1);\n}\n.slide-fade-enter[data-v-7e94e6d4],\n.slide-fade-leave-to[data-v-7e94e6d4] {\n  -webkit-transform: translateX(10px);\n          transform: translateX(10px);\n  opacity: 0;\n}\n.completed[data-v-7e94e6d4] {\n  text-decoration: line-through;\n}\n.theme--light.v-list[data-v-7e94e6d4] {\n  background: white;\n  border-radius: 10px;\n  margin: 10px;\n  padding: 0px;\n}\n.v-list__tile__title[data-v-7e94e6d4] {\n  letter-spacing: 0.5px;\n  margin: 10px;\n  font-size: 22px;\n  color: #585858;\n}\n.v-input--checkbox[data-v-7e94e6d4] {\n  flex: none;\n  display: block;\n  margin: 0 auto;\n}\n.v-list[data-v-7e94e6d4] .v-list__tile__content {\n  border: 1px solid gainsboro;\n  box-shadow: inset 0px -39px 98px -38px rgba(139, 213, 240, 0.46);\n}\n.theme--light.edit-icon[data-v-7e94e6d4] {\n  color: white;\n  padding: 10px;\n}\n.edit-input[data-v-7e94e6d4] {\n  margin: 10px;\n}\n.v-list__tile__avatar[data-v-7e94e6d4] {\n  justify-content: center;\n}\n.v-input--selection-controls__ripple[data-v-7e94e6d4] {\n  position: inherit;\n}\n.v-list[data-v-7e94e6d4] .v-input--selection-controls__ripple {\n  margin-right: 0px;\n}\n.v-list[data-v-7e94e6d4] .v-list__tile__action--stack {\n  align-items: center;\n}\n.checkbox-container[data-v-7e94e6d4] {\n  background: #e5fff4;\n  border: 1px solid #1ea95e;\n  border-bottom-left-radius: 10px;\n  border-top-left-radius: 10px;\n  justify-content: center;\n}\n.checkbox-container[data-v-7e94e6d4]:hover {\n  cursor: pointer;\n}\n.action-container[data-v-7e94e6d4] {\n  background: #1976d2;\n  justify-content: center !important;\n  border: 1px solid #1450d1;\n}\n.action-container-edit[data-v-7e94e6d4] {\n  border: none;\n  justify-content: center !important;\n}\n", ""]);
+exports.push([module.i, "\n.slide-fade-enter-active[data-v-7e94e6d4] {\n  transition: all 1s ease;\n}\n.slide-fade-leave-active[data-v-7e94e6d4] {\n  transition: all 1s cubic-bezier(1, 0.5, 0.8, 1);\n}\n.slide-fade-enter[data-v-7e94e6d4],\n.slide-fade-leave-to[data-v-7e94e6d4] {\n  -webkit-transform: translateX(10px);\n          transform: translateX(10px);\n  opacity: 0;\n}\n.completed[data-v-7e94e6d4] {\n  text-decoration: line-through;\n}\n.theme--light.v-list[data-v-7e94e6d4] {\n  background: white;\n  border-radius: 10px;\n  margin: 10px;\n  padding: 0px;\n}\n.v-list__tile__title[data-v-7e94e6d4] {\n  letter-spacing: 0.5px;\n  margin: 10px;\n  font-size: 22px;\n  color: #585858;\n}\n.v-input--checkbox[data-v-7e94e6d4] {\n  flex: none;\n  display: block;\n  margin: 0 auto;\n}\n.v-list[data-v-7e94e6d4] .v-list__tile__content {\n  border: 1px solid gainsboro;\n  box-shadow: inset 0px -39px 98px -38px rgba(139, 213, 240, 0.46);\n}\n.theme--light.edit-icon[data-v-7e94e6d4] {\n  color: white;\n  padding: 10px;\n}\n.edit-input[data-v-7e94e6d4] {\n  margin: 10px;\n}\n.v-list__tile__avatar[data-v-7e94e6d4] {\n  justify-content: center;\n}\n.v-input--selection-controls__ripple[data-v-7e94e6d4] {\n  position: inherit;\n}\n.v-list[data-v-7e94e6d4] .v-input--selection-controls__ripple {\n  margin-right: 0px;\n}\n.v-list[data-v-7e94e6d4] .v-list__tile__action--stack {\n  align-items: center;\n}\n.checkbox-container[data-v-7e94e6d4] {\n  background: #e5fff4;\n  border: 1px solid #1ea95e;\n  border-bottom-left-radius: 10px;\n  border-top-left-radius: 10px;\n  justify-content: center;\n}\n.checkbox-container[data-v-7e94e6d4]:hover {\n  cursor: pointer;\n}\n.v-input[data-v-7e94e6d4] .v-input--selection-controls__input {\n  margin-right: 0px !important;\n}\n.action-container[data-v-7e94e6d4] {\n  background: #1976d2;\n  justify-content: center !important;\n  border: 1px solid #1450d1;\n}\n.action-container-edit[data-v-7e94e6d4] {\n  border: none;\n  justify-content: center !important;\n}\n", ""]);
 
 // exports
 

@@ -175,6 +175,10 @@ export default {
   cursor: pointer;
 }
 
+.v-input >>> .v-input--selection-controls__input {
+  margin-right: 0px !important;
+}
+
 .action-container {
   background: #1976d2;
   justify-content: center !important;

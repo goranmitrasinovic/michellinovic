@@ -2,9 +2,10 @@
   <div v-if="!fetching">
     <v-layout row>
       <v-flex xs12 sm6 offset-sm3>
-        <gmCard :title="'Shopping list ' + '(' + shoppingList.length + ' items' + ')'"
-            :menuItems="menuItems"
-            @clicked="action"
+        <gmCard
+          :title="'Shopping list ' + '(' + shoppingList.length + ' items' + ')'"
+          :menuItems="menuItems"
+          @clicked="action"
         >
           <v-form>
             <v-container class="add-product">
@@ -74,9 +75,9 @@ export default {
       products: [],
       product: {},
       menuItems: [
-      {
+        {
           title: "Clear list"
-      }
+        }
       ]
     };
   },
@@ -115,13 +116,12 @@ export default {
         .then(function() {});
     },
 
-    action(item){
-        if (item.title === 'Clear list') {
-            this.clearList();
-        }
-        else{
-            console.log(item.title);
-        }
+    action(item) {
+      if (item.title === "Clear list") {
+        this.clearList();
+      } else {
+        console.log(item.title);
+      }
     },
 
     getAllProducts() {
