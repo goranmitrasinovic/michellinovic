@@ -15,7 +15,7 @@ class EventsTableSeeder extends Seeder
     {
         // $users = factory(App\User::class, 5)->create();
 
-        $events = factory(App\Event::class,50)->create();
+        $events = factory(App\Event::class,5)->create();
 
     }
 }

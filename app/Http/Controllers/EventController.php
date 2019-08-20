@@ -12,4 +12,9 @@ class EventController extends Controller
         $events = Event::all();
         return $events;
     }
+
+    public function store(Request $request)
+    {
+        $event = Event::Create($request->all());
+    }
 }

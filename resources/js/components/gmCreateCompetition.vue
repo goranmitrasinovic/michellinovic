@@ -3,7 +3,6 @@
     <v-container grid-list-md>
       <v-layout wrap>
         <v-flex xs>
-          <!-- <v-text-field v-model="competition.sport" label="Sport"></v-text-field> -->
           <v-select
             v-model="competition.sport"
             :items="sports"

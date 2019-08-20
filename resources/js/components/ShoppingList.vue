@@ -2,29 +2,10 @@
   <div v-if="!fetching">
     <v-layout row>
       <v-flex xs12 sm6 offset-sm3>
-        <gmCard>
-          <v-toolbar color="indigo" dark>
-            <v-menu>
-              <template v-slot:activator="{ on }">
-                <v-spacer></v-spacer>
-                <v-toolbar-title>Shopping list ({{shoppingList.length}} items)</v-toolbar-title>
-                <v-spacer></v-spacer>
-                <v-toolbar-side-icon v-on="on">
-                  <v-icon>menu</v-icon>
-                </v-toolbar-side-icon>
-              </template>
-
-              <v-list>
-                <v-list-tile
-                  v-for="(item, index) in menuItems"
-                  :key="index"
-                  @click="clearList(shoppingList)"
-                >
-                  <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-                </v-list-tile>
-              </v-list>
-            </v-menu>
-          </v-toolbar>
+        <gmCard :title="'Shopping list ' + '(' + shoppingList.length + ' items' + ')'"
+            :menuItems="menuItems"
+            @clicked="action"
+        >
           <v-form>
             <v-container class="add-product">
               <v-layout row>
@@ -79,7 +60,6 @@
 
 <script>
 import Product from "./Product.vue";
-import Alert from "./Alert.vue";
 import gmSnackbar from "../base_components/gmSnackbar";
 import gmButton from "../base_components/gmButton";
 import gmCard from "../base_components/gmCard";
@@ -94,15 +74,14 @@ export default {
       products: [],
       product: {},
       menuItems: [
-        {
+      {
           title: "Clear list"
-        }
+      }
       ]
     };
   },
   components: {
     Product,
-    Alert,
     gmButton,
     gmCard,
     gmSnackbar
@@ -134,6 +113,15 @@ export default {
           console.log(error);
         })
         .then(function() {});
+    },
+
+    action(item){
+        if (item.title === 'Clear list') {
+            this.clearList();
+        }
+        else{
+            console.log(item.title);
+        }
     },
 
     getAllProducts() {

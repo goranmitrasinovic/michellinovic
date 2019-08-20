@@ -1,66 +1,65 @@
 <template>
-  <v-card>
-    <v-toolbar color="indigo" dark>
-      <v-spacer></v-spacer>
-      <v-toolbar-title>Calendar</v-toolbar-title>
-
-      <v-spacer></v-spacer>
-
-      <v-toolbar-side-icon></v-toolbar-side-icon>
-    </v-toolbar>
-    <v-layout wrap>
-      <v-flex xs12 class="mb-3">
-        <v-sheet height="500">
-          <v-calendar ref="calendar" v-model="start" type="month" :end="end" color="primary">
-            <template v-slot:day="{ date }">
-              <template v-for="event in eventsMap[date]">
-                <div
-                  v-if="!event.time"
-                  :key="event.title"
-                  v-ripple
-                  @click="openModal(event)"
-                  class="my-event"
-                  v-html="event.title"
-                ></div>
+  <div>
+    <gmCard title="Calendar" :menuItems="menuItems" @clicked="action">
+      <v-layout wrap>
+        <v-flex xs12 class="mb-3">
+          <v-sheet height="500">
+            <v-calendar ref="calendar" v-model="start" type="month" :end="end" color="primary">
+              <template v-slot:day="{ date }">
+                <template v-for="event in eventsMap[date]">
+                  <div
+                    v-if="!event.time"
+                    :key="event.title"
+                    v-ripple
+                    @click="openModal(event)"
+                    class="my-event"
+                    v-html="event.title"
+                  ></div>
+                </template>
               </template>
-            </template>
-          </v-calendar>
-        </v-sheet>
-      </v-flex>
-      <gmModal ref="modal" :title="event.title" @edit="toogleEditMode" :editButton="true">
-        <v-layout wrap>
-          <v-flex xs12>
-            <v-text-field
-              prepend-icon="calendar_today"
-              :disabled="!editMode"
-              label="Date"
-              v-model="event.date"
-            ></v-text-field>
-          </v-flex>
-          <v-flex xs12>
-            <v-text-field
-              prepend-icon="info"
-              label="Details"
-              :disabled="!editMode"
-              v-model="event.details"
-            ></v-text-field>
-          </v-flex>
-        </v-layout>
-      </gmModal>
-      <v-flex sm6 xs12 class="text-sm-left text-xs-center">
-        <v-btn @click="$refs.calendar.prev()">
-          <v-icon dark left>keyboard_arrow_left</v-icon>Prev
-        </v-btn>
-      </v-flex>
+            </v-calendar>
+          </v-sheet>
+        </v-flex>
+        <gmModal ref="modal" :title="event.title" @edit="toogleEditMode" :editButton="true">
+          <v-layout wrap>
+            <v-flex xs12>
+              <v-text-field
+                prepend-icon="calendar_today"
+                :disabled="!editMode"
+                label="Date"
+                v-model="event.date"
+              ></v-text-field>
+            </v-flex>
+            <v-flex xs12>
+              <v-text-field
+                prepend-icon="info"
+                label="Details"
+                :disabled="!editMode"
+                v-model="event.details"
+              ></v-text-field>
+            </v-flex>
+          </v-layout>
+        </gmModal>
+        <v-flex sm6 xs12 class="text-sm-left text-xs-center">
+          <v-btn @click="$refs.calendar.prev()">
+            <v-icon dark left>keyboard_arrow_left</v-icon>Prev
+          </v-btn>
+        </v-flex>
 
-      <v-flex sm6 xs12 class="text-sm-right text-xs-center">
-        <v-btn @click="$refs.calendar.next()">
-          Next
-          <v-icon right dark>keyboard_arrow_right</v-icon>
-        </v-btn>
-      </v-flex>
-    </v-layout>
-  </v-card>
+        <v-flex sm6 xs12 class="text-sm-right text-xs-center">
+          <v-btn @click="$refs.calendar.next()">
+            Next
+            <v-icon right dark>keyboard_arrow_right</v-icon>
+          </v-btn>
+        </v-flex>
+      </v-layout>
+    </gmCard>
+    <gmModal ref="createModal" @save="createEvent(event)">
+      <v-text-field label="Date" v-model="event.date"></v-text-field>
+      <v-text-field label="Title" v-model="event.title"></v-text-field>
+      <v-text-field label="Description" v-model="event.details"></v-text-field>
+    </gmModal>
+  </div>
 </template>
 
 
@@ -68,6 +67,7 @@
 <script>
 import gmButton from "../base_components/gmButton";
 import gmModal from "../base_components/gmModal";
+import gmCard from "../base_components/gmCard";
 import axios from "axios";
 
 export default {
@@ -76,7 +76,11 @@ export default {
     end: "2019-01-06",
     today: "2019-01-08",
     editMode: false,
-    newEvent: {},
+    menuItems: [
+      {
+        title: "Create event"
+      }
+    ],
     event: {},
     events: []
   }),
@@ -84,6 +88,7 @@ export default {
   components: {
     gmButton,
     gmModal,
+    gmCard
   },
 
   computed: {
@@ -104,9 +109,21 @@ export default {
       alert(event.title);
     },
 
+    action(item) {
+      if (item.title === "Create event") {
+        this.openCreateModal();
+      } else {
+        console.log(item.title);
+      }
+    },
+
     openModal(event) {
       this.event = event;
       this.$refs.modal.showModal();
+    },
+
+    openCreateModal() {
+      this.$refs.createModal.showModal();
     },
 
     toogleEditMode() {
@@ -122,6 +139,18 @@ export default {
         .then(response => {
           this.events = response.data;
         })
+        .catch(function(error) {
+          // handle error
+          console.log(error);
+        })
+        .then(function() {
+          // always executed
+        });
+    },
+    createEvent(event) {
+      axios
+        .post("api/events/create", event)
+        .then(response => {})
         .catch(function(error) {
           // handle error
           console.log(error);

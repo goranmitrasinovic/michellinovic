@@ -1,24 +1,17 @@
 <template>
   <v-layout row>
     <v-flex xs12 sm6 offset-sm3>
-        <v-btn @click="openModal()">hej</v-btn>
       <gmModal ref="modal" title="Create competition" @save="createCompetition(competition)">
           <v-layout row justify-center>
                 <v-container>
                   <slot name="introduction"></slot>
-                  <Competition :competition="competition" :user1="user1" :user2="user2"></Competition>
+                  <gmCreateCompetition :competition="competition" :user1="user1" :user2="user2"></gmCreateCompetition>
                 </v-container>
           </v-layout>
       </gmModal>
-      <v-card>
-        <v-toolbar color="indigo" dark>
-          <v-spacer></v-spacer>
-          <v-toolbar-title>Competition</v-toolbar-title>
-          <v-spacer></v-spacer>
-
-          <v-toolbar-side-icon></v-toolbar-side-icon>
-        </v-toolbar>
-
+      <gmCard title="Competition"
+      :menuItems="menuItems"
+      @clicked="action">
         <v-list>
           <div class="filter-container">
             <v-select
@@ -57,7 +50,7 @@
             :competition="competition"
           ></gmResultCard>
         </v-list>
-      </v-card>
+    </gmCard>
     </v-flex>
   </v-layout>
 </template>
@@ -65,8 +58,9 @@
 <script>
 import axios from "axios";
 import gmModal from "../base_components/gmModal";
-import Competition from "../components/Competition";
+import gmCreateCompetition from "../components/gmCreateCompetition";
 import gmResultCard from "../components/gmResultCard";
+import gmCard from "../base_components/gmCard";
 
 export default {
   data: function() {
@@ -75,6 +69,11 @@ export default {
       dialog: false,
       competition: {},
       competitions: [],
+      menuItems: [
+      {
+          title: "Create competition"
+      }
+  ],
       filter: { sport: "All" },
       sports: [
         { name: "All" },
@@ -93,8 +92,9 @@ export default {
 
   components: {
     gmModal,
-    Competition,
-    gmResultCard
+    gmCreateCompetition,
+    gmResultCard,
+    gmCard
   },
 
   mounted() {
@@ -103,6 +103,15 @@ export default {
   },
 
   methods: {
+
+      action(item){
+          if (item.title === 'Create competition') {
+              this.openModal();
+          }
+          else{
+              console.log(item.title);
+          }
+      },
 
       openModal() {
         this.$refs.modal.showModal();

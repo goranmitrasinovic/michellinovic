@@ -1,6 +1,6 @@
 <template>
   <div>
-    <gmCard>
+    <v-card>
       <v-list-tile>
         <div class="arrow-box"></div>
         <v-list-tile-action>
@@ -35,7 +35,7 @@
         </v-list-tile-action>
       </v-list-tile>
       <v-divider></v-divider>
-    </gmCard>
+  </v-card>
   </div>
 </template>
 
