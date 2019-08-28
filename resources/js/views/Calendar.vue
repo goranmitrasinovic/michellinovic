@@ -205,6 +205,11 @@ export default {
   position: relative;
 }
 
+.v-calendar >>> .v-calendar-weekly__day-month {
+  font-size: 20px;
+  text-transform: uppercase;
+}
+
 .with-time {
   position: absolute;
   right: 4px;

@@ -3032,7 +3032,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.my-event[data-v-3613305d] {\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  border-radius: 2px;\n  background-color: #1867c0;\n  color: #ffffff;\n  border: 1px solid #1867c0;\n  font-size: 14px;\n  padding: 2px;\n  cursor: pointer;\n  margin-bottom: 1px;\n  left: 4px;\n  margin-right: 8px;\n  position: relative;\n}\n.with-time[data-v-3613305d] {\n  position: absolute;\n  right: 4px;\n  margin-right: 0px;\n}\n.create-event-container[data-v-3613305d] {\n  margin-bottom: 20px;\n  border-bottom: 2px solid #3f51b5;\n}\n.theme--light.v-sheet[data-v-3613305d] {\n  border: 1px solid #570fc1;\n}\n.icon-area[data-v-3613305d] {\n  background: gainsboro;\n  padding: 2px 10px;\n}\n", ""]);
+exports.push([module.i, "\n.my-event[data-v-3613305d] {\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  border-radius: 2px;\n  background-color: #1867c0;\n  color: #ffffff;\n  border: 1px solid #1867c0;\n  font-size: 14px;\n  padding: 2px;\n  cursor: pointer;\n  margin-bottom: 1px;\n  left: 4px;\n  margin-right: 8px;\n  position: relative;\n}\n.v-calendar[data-v-3613305d] .v-calendar-weekly__day-month {\n  font-size: 20px;\n  text-transform: uppercase;\n}\n.with-time[data-v-3613305d] {\n  position: absolute;\n  right: 4px;\n  margin-right: 0px;\n}\n.create-event-container[data-v-3613305d] {\n  margin-bottom: 20px;\n  border-bottom: 2px solid #3f51b5;\n}\n.theme--light.v-sheet[data-v-3613305d] {\n  border: 1px solid #570fc1;\n}\n.icon-area[data-v-3613305d] {\n  background: gainsboro;\n  padding: 2px 10px;\n}\n", ""]);
 
 // exports
 
