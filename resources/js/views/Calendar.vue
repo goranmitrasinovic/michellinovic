@@ -4,7 +4,13 @@
       <v-layout wrap>
         <v-flex xs12 class="mb-3">
           <v-sheet height="500">
-            <v-calendar ref="calendar" v-model="start" type="month" color="primary">
+            <v-calendar
+              ref="calendar"
+              v-model="start"
+              type="month"
+              color="primary"
+              :weekdays="weekdays"
+            >
               <template v-slot:day="{ date }">
                 <template v-for="event in eventsMap[date]">
                   <div
@@ -82,6 +88,7 @@ export default {
     start: new Date().toISOString().slice(0, 10),
     today: "2019-01-08",
     editMode: false,
+    weekdays: [1, 2, 3, 4, 5, 6, 0],
     menuItems: [
       {
         title: "Create event"

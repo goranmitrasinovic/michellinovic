@@ -2499,6 +2499,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2510,6 +2516,7 @@ __webpack_require__.r(__webpack_exports__);
       start: new Date().toISOString().slice(0, 10),
       today: "2019-01-08",
       editMode: false,
+      weekdays: [1, 2, 3, 4, 5, 6, 0],
       menuItems: [{
         title: "Create event"
       }],
@@ -6382,7 +6389,11 @@ var render = function() {
                     [
                       _c("v-calendar", {
                         ref: "calendar",
-                        attrs: { type: "month", color: "primary" },
+                        attrs: {
+                          type: "month",
+                          color: "primary",
+                          weekdays: _vm.weekdays
+                        },
                         scopedSlots: _vm._u([
                           {
                             key: "day",
