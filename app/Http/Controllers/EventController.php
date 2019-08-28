@@ -17,4 +17,16 @@ class EventController extends Controller
     {
         $event = Event::Create($request->all());
     }
+
+        /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $event = Event::findOrFail($id);
+        $event = $event->update($request->all());
+    }
 }

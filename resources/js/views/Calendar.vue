@@ -4,7 +4,7 @@
       <v-layout wrap>
         <v-flex xs12 class="mb-3">
           <v-sheet height="500">
-            <v-calendar ref="calendar" v-model="start" type="month" :end="end" color="primary">
+            <v-calendar ref="calendar" v-model="start" type="month" color="primary">
               <template v-slot:day="{ date }">
                 <template v-for="event in eventsMap[date]">
                   <div
@@ -20,7 +20,13 @@
             </v-calendar>
           </v-sheet>
         </v-flex>
-        <gmModal ref="modal" :title="event.title" @edit="toogleEditMode" :editButton="true">
+        <gmModal
+          ref="modal"
+          @save="updateEvent(event)"
+          :title="event.title"
+          @edit="toogleEditMode"
+          :editButton="true"
+        >
           <v-layout wrap>
             <v-flex xs12>
               <v-text-field
@@ -69,11 +75,11 @@ import gmButton from "../base_components/gmButton";
 import gmModal from "../base_components/gmModal";
 import gmCard from "../base_components/gmCard";
 import axios from "axios";
+import { log } from "util";
 
 export default {
   data: () => ({
-    start: "2019-01-01",
-    end: "2019-01-06",
+    start: new Date().toISOString().slice(0, 10),
     today: "2019-01-08",
     editMode: false,
     menuItems: [
@@ -147,17 +153,27 @@ export default {
           // always executed
         });
     },
+
+    updateEvent(event) {
+      axios
+        .put("api/events/update/" + event.id, event)
+        .then(response => {})
+        .catch(error => {})
+        .then(function() {});
+    },
+
     createEvent(event) {
       axios
         .post("api/events/create", event)
-        .then(response => {})
+        .then(response => {
+          this.getEvents();
+          this.event = {};
+        })
         .catch(function(error) {
           // handle error
           console.log(error);
         })
-        .then(function() {
-          // always executed
-        });
+        .then(function() {});
     }
   }
 };

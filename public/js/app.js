@@ -2425,6 +2425,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _base_components_gmCard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../base_components/gmCard */ "./resources/js/base_components/gmCard.vue");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var util__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! util */ "./node_modules/util/util.js");
+/* harmony import */ var util__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(util__WEBPACK_IMPORTED_MODULE_4__);
 //
 //
 //
@@ -2491,6 +2493,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -2498,8 +2507,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      start: "2019-01-01",
-      end: "2019-01-06",
+      start: new Date().toISOString().slice(0, 10),
       today: "2019-01-08",
       editMode: false,
       menuItems: [{
@@ -2562,12 +2570,20 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function () {// always executed
       });
     },
+    updateEvent: function updateEvent(event) {
+      axios__WEBPACK_IMPORTED_MODULE_3___default.a.put("api/events/update/" + event.id, event).then(function (response) {}).catch(function (error) {}).then(function () {});
+    },
     createEvent: function createEvent(event) {
-      axios__WEBPACK_IMPORTED_MODULE_3___default.a.post("api/events/create", event).then(function (response) {}).catch(function (error) {
+      var _this2 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_3___default.a.post("api/events/create", event).then(function (response) {
+        _this2.getEvents();
+
+        _this2.event = {};
+      }).catch(function (error) {
         // handle error
         console.log(error);
-      }).then(function () {// always executed
-      });
+      }).then(function () {});
     }
   }
 });
@@ -6366,11 +6382,7 @@ var render = function() {
                     [
                       _c("v-calendar", {
                         ref: "calendar",
-                        attrs: {
-                          type: "month",
-                          end: _vm.end,
-                          color: "primary"
-                        },
+                        attrs: { type: "month", color: "primary" },
                         scopedSlots: _vm._u([
                           {
                             key: "day",
@@ -6425,7 +6437,12 @@ var render = function() {
                 {
                   ref: "modal",
                   attrs: { title: _vm.event.title, editButton: true },
-                  on: { edit: _vm.toogleEditMode }
+                  on: {
+                    save: function($event) {
+                      return _vm.updateEvent(_vm.event)
+                    },
+                    edit: _vm.toogleEditMode
+                  }
                 },
                 [
                   _c(

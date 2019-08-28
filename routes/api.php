@@ -34,3 +34,4 @@ Route::get('/competitions', 'CompetitionController@index');
 
 Route::get('/events', 'EventController@index');
 Route::post('/events/create', 'EventController@store');
+Route::put('/events/update/{id}', 'EventController@update');
