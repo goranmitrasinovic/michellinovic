@@ -2290,6 +2290,8 @@ __webpack_require__.r(__webpack_exports__);
         name: "Soccer"
       }, {
         name: "Golf"
+      }, {
+        name: "Yatzy"
       }],
       icons: [{
         name: "Basketball",
@@ -2298,11 +2300,11 @@ __webpack_require__.r(__webpack_exports__);
         name: "Boardgame",
         icon: "casino"
       }, {
-        name: "Bowling",
-        icon: ""
-      }, {
         name: "Golf",
         icon: "golf_course"
+      }, {
+        name: "Yatzy",
+        icon: ""
       }, {
         name: "Video game",
         icon: "computer"
@@ -2667,8 +2669,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 
@@ -2716,7 +2716,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     action: function action(item) {
-      if (item.title === 'Create competition') {
+      if (item.title === "Create competition") {
         this.openModal();
       } else {
         console.log(item.title);
@@ -6700,29 +6700,6 @@ var render = function() {
               _c(
                 "v-list",
                 [
-                  _c(
-                    "div",
-                    { staticClass: "filter-container" },
-                    [
-                      _c("v-select", {
-                        attrs: {
-                          items: _vm.sports,
-                          label: "Sport",
-                          "item-text": "name"
-                        },
-                        on: { change: _vm.applyFilter },
-                        model: {
-                          value: _vm.filter.sport,
-                          callback: function($$v) {
-                            _vm.$set(_vm.filter, "sport", $$v)
-                          },
-                          expression: "filter.sport"
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
                   _c(
                     "v-container",
                     { attrs: { "grid-list-md": "" } },

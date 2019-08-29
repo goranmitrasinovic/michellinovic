@@ -2,18 +2,16 @@
   <v-layout row>
     <v-flex xs12 sm6 offset-sm3>
       <gmModal ref="modal" title="Create competition" @save="createCompetition(competition)">
-          <v-layout row justify-center>
-                <v-container>
-                  <slot name="introduction"></slot>
-                  <gmCreateCompetition :competition="competition" :user1="user1" :user2="user2"></gmCreateCompetition>
-                </v-container>
-          </v-layout>
+        <v-layout row justify-center>
+          <v-container>
+            <slot name="introduction"></slot>
+            <gmCreateCompetition :competition="competition" :user1="user1" :user2="user2"></gmCreateCompetition>
+          </v-container>
+        </v-layout>
       </gmModal>
-      <gmCard title="Competition"
-      :menuItems="menuItems"
-      @clicked="action">
+      <gmCard title="Competition" :menuItems="menuItems" @clicked="action">
         <v-list>
-          <div class="filter-container">
+          <!-- <div class="filter-container">
             <v-select
               :items="sports"
               @change="applyFilter"
@@ -21,7 +19,7 @@
               label="Sport"
               item-text="name"
             ></v-select>
-          </div>
+          </div>-->
 
           <v-container grid-list-md>
             <v-layout row align-center justify-space-between text-xs-center>
@@ -50,7 +48,7 @@
             :competition="competition"
           ></gmResultCard>
         </v-list>
-    </gmCard>
+      </gmCard>
     </v-flex>
   </v-layout>
 </template>
@@ -70,10 +68,10 @@ export default {
       competition: {},
       competitions: [],
       menuItems: [
-      {
+        {
           title: "Create competition"
-      }
-  ],
+        }
+      ],
       filter: { sport: "All" },
       sports: [
         { name: "All" },
@@ -103,19 +101,17 @@ export default {
   },
 
   methods: {
+    action(item) {
+      if (item.title === "Create competition") {
+        this.openModal();
+      } else {
+        console.log(item.title);
+      }
+    },
 
-      action(item){
-          if (item.title === 'Create competition') {
-              this.openModal();
-          }
-          else{
-              console.log(item.title);
-          }
-      },
-
-      openModal() {
-        this.$refs.modal.showModal();
-      },
+    openModal() {
+      this.$refs.modal.showModal();
+    },
 
     getUsers() {
       axios

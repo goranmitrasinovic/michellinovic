@@ -35,12 +35,17 @@
 export default {
   name: "Competition",
   data: () => ({
-    sports: [{ name: "Basketball" }, { name: "Soccer" }, { name: "Golf" }],
+    sports: [
+      { name: "Basketball" },
+      { name: "Soccer" },
+      { name: "Golf" },
+      { name: "Yatzy" }
+    ],
     icons: [
       { name: "Basketball", icon: "fiber_manual_record" },
       { name: "Boardgame", icon: "casino" },
-      { name: "Bowling", icon: "" },
       { name: "Golf", icon: "golf_course" },
+      { name: "Yatzy", icon: "" },
       { name: "Video game", icon: "computer" }
     ]
   }),
