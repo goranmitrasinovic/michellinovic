@@ -22,25 +22,7 @@
           </div>-->
 
           <v-container grid-list-md>
-            <v-layout row align-center justify-space-between text-xs-center>
-              <v-flex xs12 sm4>
-                <img
-                  class="avatar mirrored"
-                  src="https://image.shutterstock.com/image-vector/angry-man-avatar-user-pic-260nw-578255422.jpg"
-                />
-                <br />
-                <h3>{{user1.name}}</h3>
-              </v-flex>
-              <v-flex xs12 sm4>Result</v-flex>
-              <v-flex xs12 sm4>
-                <img
-                  class="avatar"
-                  src="https://image.shutterstock.com/image-vector/angry-man-avatar-user-pic-260nw-578255422.jpg"
-                />
-                <br />
-                <h3>{{user2.name}}</h3>
-              </v-flex>
-            </v-layout>
+            <v-layout row align-center justify-space-between text-xs-center></v-layout>
           </v-container>
           <gmResultCard
             v-for="competition in competitions"
@@ -190,7 +172,6 @@ export default {
 .event-list-item {
   margin: 10px;
   border-radius: 10px;
-  background: #fff;
   border: 1px solid #570fc1;
 }
 

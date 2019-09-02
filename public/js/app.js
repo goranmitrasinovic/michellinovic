@@ -2329,7 +2329,22 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _base_components_gmCard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../base_components/gmCard */ "./resources/js/base_components/gmCard.vue");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _base_components_gmCard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../base_components/gmCard */ "./resources/js/base_components/gmCard.vue");
+/* harmony import */ var _base_components_gmModal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../base_components/gmModal */ "./resources/js/base_components/gmModal.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2372,11 +2387,49 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "gmResultCard",
   props: ["competition"],
+  data: function data() {
+    return {
+      sports: [{
+        name: "Basketball"
+      }, {
+        name: "Soccer"
+      }, {
+        name: "Golf"
+      }, {
+        name: "Yatzy"
+      }],
+      user1: {
+        name: "Goran Mitrasinovic"
+      },
+      user2: {
+        name: "Michelle Anton"
+      }
+    };
+  },
+  methods: {
+    updateCompetition: function updateCompetition(competition) {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.put("api/competitions/update/" + competition.id, competition).then(function (response) {
+        _this.getCompetitions();
+      }).catch(function (error) {
+        // handle error
+        console.log(error);
+      }).then(function () {// always executed'
+      });
+    },
+    openModal: function openModal() {
+      this.$refs.updateModal.showModal();
+    }
+  },
   components: {
-    gmCard: _base_components_gmCard__WEBPACK_IMPORTED_MODULE_0__["default"]
+    gmCard: _base_components_gmCard__WEBPACK_IMPORTED_MODULE_1__["default"],
+    gmModal: _base_components_gmModal__WEBPACK_IMPORTED_MODULE_2__["default"]
   }
 });
 
@@ -2614,24 +2667,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_gmCreateCompetition__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/gmCreateCompetition */ "./resources/js/components/gmCreateCompetition.vue");
 /* harmony import */ var _components_gmResultCard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/gmResultCard */ "./resources/js/components/gmResultCard.vue");
 /* harmony import */ var _base_components_gmCard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../base_components/gmCard */ "./resources/js/base_components/gmCard.vue");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -2937,7 +2972,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.bounce[data-v-28c1d9de] {\n  -webkit-animation-name: bounce;\n  animation-name: bounce;\n  -webkit-transform-origin: center bottom;\n  transform-origin: center bottom;\n}\n.add-product[data-v-28c1d9de] {\n  background: #fff;\n  border-bottom: 2px solid #3f51b5;\n}\n.card-enter-active[data-v-28c1d9de] {\n  position: absolute;\n}\n.card-leave-active[data-v-28c1d9de] {\n  position: absolute;\n  display: none;\n  right: 0;\n}\n.card-move[data-v-28c1d9de] {\n  transition: all 0.5s;\n}\n.theme--light.v-sheet[data-v-28c1d9de] {\n  padding-bottom: 10px;\n}\n.product[data-v-28c1d9de] .v-list--two-line .v-list__tile {\n  padding: 0px;\n  border-bottom-left-radius: 10px;\n}\n.empty-cart-icon[data-v-28c1d9de] {\n  font-size: 250px;\n}\n.empty-cart-text[data-v-28c1d9de] {\n  color: grey;\n  font-size: 32px;\n}\n.empty-cart-container[data-v-28c1d9de] {\n  text-align: center;\n  padding: 50px;\n}\n.product[data-v-28c1d9de] {\n  margin: 10px;\n}\n", ""]);
+exports.push([module.i, "\n.bounce[data-v-28c1d9de] {\n  -webkit-animation-name: bounce;\n  animation-name: bounce;\n  -webkit-transform-origin: center bottom;\n  transform-origin: center bottom;\n}\n.add-product[data-v-28c1d9de] {\n  background: #fff;\n  border-bottom: 2px solid #3f51b5;\n}\n.card-enter-active[data-v-28c1d9de] {\n  position: absolute;\n}\n.card-leave-active[data-v-28c1d9de] {\n  position: absolute;\n  display: none;\n  right: 0;\n}\n.card-move[data-v-28c1d9de] {\n  transition: all 0.5s;\n}\n.theme--light.v-sheet[data-v-28c1d9de] {\n  margin: 10px 0px;\n  padding-bottom: 10px;\n}\n.product[data-v-28c1d9de] .v-list--two-line .v-list__tile {\n  padding: 0px;\n  border-bottom-left-radius: 10px;\n}\n.empty-cart-icon[data-v-28c1d9de] {\n  font-size: 250px;\n}\n.empty-cart-text[data-v-28c1d9de] {\n  color: grey;\n  font-size: 32px;\n}\n.empty-cart-container[data-v-28c1d9de] {\n  text-align: center;\n  padding: 50px;\n}\n.product[data-v-28c1d9de] {\n  margin: 10px;\n}\n", ""]);
 
 // exports
 
@@ -2975,7 +3010,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.score-container[data-v-52e49ec4] {\n  flex-direction: row;\n  align-items: center;\n}\n.score-box[data-v-52e49ec4] {\n  background: #3f51b5;\n  padding: 5px;\n  color: white;\n  width: 50px;\n  margin: 0px 10px;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  font-weight: bold;\n}\n", ""]);
+exports.push([module.i, "\n.outer-card[data-v-52e49ec4] {\n  box-shadow: none;\n  margin: 20px 5px;\n  border-radius: 10px;\n}\n.outer-card[data-v-52e49ec4] .v-list__tile {\n  padding: 0px;\n  border: 3px solid #3e3e3e;\n  border-radius: 15px;\n  height: 50px;\n  background: linear-gradient(\n    to bottom,\n    rgba(19, 19, 19, 1) 0%,\n    rgba(76, 76, 76, 1) 100%\n  );\n}\n.theme--light.v-sheet[data-v-52e49ec4] {\n  padding: 5px;\n  background-color: rgba(0, 0, 0, 0);\n}\n.participant[data-v-52e49ec4] {\n  display: flex;\n  flex: 4;\n  height: 100%;\n  align-items: center;\n  justify-content: center;\n  font-size: 18px;\n  color: rgb(47, 47, 47);\n}\n.sport-box[data-v-52e49ec4] {\n  text-align: center;\n  background: #55526f;\n  border-top-left-radius: 10px;\n  border-top-right-radius: 10px;\n  border-left: 2px solid #3e3e3e;\n  border-top: 2px solid #3e3e3e;\n  border-right: 2px solid #3e3e3e;\n  width: 33%;\n  padding: 10px;\n  margin: 0 auto;\n  color: white;\n  font-size: 18px;\n  font-weight: bold;\n}\n.participant-home[data-v-52e49ec4] {\n  -webkit-clip-path: polygon(0 0, 80% 0%, 100% 100%, 0% 100%);\n          clip-path: polygon(0 0, 80% 0%, 100% 100%, 0% 100%);\n  border-top-left-radius: 10px;\n  border-bottom-left-radius: 10px;\n  background: linear-gradient(\n    to right,\n    rgba(255, 149, 130, 1) 0%,\n    rgba(230, 78, 64, 1) 100%\n  );\n}\n.participant-away[data-v-52e49ec4] {\n  -webkit-clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);\n          clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);\n  border-top-right-radius: 10px;\n  border-bottom-right-radius: 10px;\n  background: linear-gradient(\n    to right,\n    rgba(69, 143, 222, 1) 0%,\n    rgba(130, 205, 255, 1) 100%\n  );\n}\n.v-card[data-v-52e49ec4]:hover {\n  cursor: pointer;\n}\n.score-container[data-v-52e49ec4] {\n  flex-direction: row;\n  align-items: center;\n  color: white;\n  background: linear-gradient(\n    to bottom,\n    rgba(19, 19, 19, 1) 0%,\n    rgba(76, 76, 76, 1) 100%\n  );\n}\n.score-box[data-v-52e49ec4] {\n  padding: 5px;\n  width: 75px;\n  white-space: nowrap;\n  text-align: center;\n  font-size: 24px;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  font-weight: bold;\n}\n", ""]);
 
 // exports
 
@@ -3051,7 +3086,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.v-list__tile__title[data-v-01348c20] {\n  text-align: center;\n}\n.v-list[data-v-01348c20] {\n  padding: 0px;\n}\n.filter-container[data-v-01348c20] {\n  background: #fff;\n  border-bottom: 2px solid #3f51b5;\n  padding: 10px;\n}\n.theme--light.v-list[data-v-01348c20] {\n  background: #e7f4ff;\n  border: 1px solid #570fc1;\n}\n.event-list-item[data-v-01348c20] {\n  margin: 10px;\n  border-radius: 10px;\n  background: #fff;\n  border: 1px solid #570fc1;\n}\n.avatar[data-v-01348c20] {\n  border-radius: 200px;\n  border: 3px solid #3f51b5;\n  width: 74px;\n}\n", ""]);
+exports.push([module.i, "\n.v-list__tile__title[data-v-01348c20] {\n  text-align: center;\n}\n.v-list[data-v-01348c20] {\n  padding: 0px;\n}\n.filter-container[data-v-01348c20] {\n  background: #fff;\n  border-bottom: 2px solid #3f51b5;\n  padding: 10px;\n}\n.theme--light.v-list[data-v-01348c20] {\n  background: #e7f4ff;\n  border: 1px solid #570fc1;\n}\n.event-list-item[data-v-01348c20] {\n  margin: 10px;\n  border-radius: 10px;\n  border: 1px solid #570fc1;\n}\n.avatar[data-v-01348c20] {\n  border-radius: 200px;\n  border: 3px solid #3f51b5;\n  width: 74px;\n}\n", ""]);
 
 // exports
 
@@ -6054,41 +6089,29 @@ var render = function() {
     [
       _c(
         "v-card",
+        {
+          staticClass: "outer-card",
+          on: {
+            click: function($event) {
+              return _vm.openModal()
+            }
+          }
+        },
         [
+          _c("div", { staticClass: "sport-container" }, [
+            _c("div", { staticClass: "sport-box" }, [
+              _c("span", { staticClass: "sport-text" }, [
+                _vm._v(_vm._s(_vm.competition.sport))
+              ])
+            ])
+          ]),
+          _vm._v(" "),
           _c(
             "v-list-tile",
             [
-              _c("div", { staticClass: "arrow-box" }),
-              _vm._v(" "),
-              _c(
-                "v-list-tile-action",
-                [_c("v-icon", [_vm._v(_vm._s(_vm.competition.icon))])],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-list-tile-action",
-                [
-                  _vm.competition.score_home > _vm.competition.score_away
-                    ? _c("v-icon", { attrs: { color: "green" } }, [
-                        _vm._v("mood")
-                      ])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.competition.score_home == _vm.competition.score_away
-                    ? _c("v-icon", { attrs: { color: "orange" } }, [
-                        _vm._v("sentiment_dissatisfied")
-                      ])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.competition.score_home < _vm.competition.score_away
-                    ? _c("v-icon", { attrs: { color: "red" } }, [
-                        _vm._v("mood_bad")
-                      ])
-                    : _vm._e()
-                ],
-                1
-              ),
+              _c("div", { staticClass: "participant participant-home" }, [
+                _c("span", [_vm._v(_vm._s(_vm.user1.name))])
+              ]),
               _vm._v(" "),
               _c("v-list-tile-content", { staticClass: "score-container" }, [
                 _c("div", { staticClass: "score-box" }, [
@@ -6102,40 +6125,113 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
+              _c("div", { staticClass: "participant participant-away" }, [
+                _vm._v(_vm._s(_vm.user2.name))
+              ])
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("v-divider"),
+      _vm._v(" "),
+      _c(
+        "gmModal",
+        {
+          ref: "updateModal",
+          attrs: {
+            competition: _vm.competition,
+            user1: _vm.user1,
+            user2: _vm.user2
+          },
+          on: {
+            save: function($event) {
+              return _vm.updateCompetition(_vm.competition)
+            }
+          }
+        },
+        [
+          _c(
+            "v-layout",
+            { attrs: { row: "", "justify-center": "" } },
+            [
               _c(
-                "v-list-tile-action",
+                "v-container",
+                { attrs: { "grid-list-md": "" } },
                 [
-                  _vm.competition.score_home < _vm.competition.score_away
-                    ? _c("v-icon", { attrs: { color: "green" } }, [
-                        _vm._v("mood")
-                      ])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.competition.score_home == _vm.competition.score_away
-                    ? _c("v-icon", { attrs: { color: "orange" } }, [
-                        _vm._v("sentiment_dissatisfied")
-                      ])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.competition.score_home > _vm.competition.score_away
-                    ? _c("v-icon", { attrs: { color: "red" } }, [
-                        _vm._v("mood_bad")
-                      ])
-                    : _vm._e()
+                  _c(
+                    "v-layout",
+                    { attrs: { wrap: "" } },
+                    [
+                      _c(
+                        "v-flex",
+                        { attrs: { xs12: "" } },
+                        [
+                          _c("v-select", {
+                            attrs: {
+                              items: _vm.sports,
+                              label: "Sport",
+                              "item-text": "name",
+                              "item-value": "name"
+                            },
+                            model: {
+                              value: _vm.competition.sport,
+                              callback: function($$v) {
+                                _vm.$set(_vm.competition, "sport", $$v)
+                              },
+                              expression: "competition.sport"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-flex",
+                        { attrs: { xs12: "", sm6: "", md6: "" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: { label: _vm.user1.name + " score" },
+                            model: {
+                              value: _vm.competition.score_home,
+                              callback: function($$v) {
+                                _vm.$set(_vm.competition, "score_home", $$v)
+                              },
+                              expression: "competition.score_home"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-flex",
+                        { attrs: { xs12: "", sm6: "", md6: "" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: { label: _vm.user2.name + " score" },
+                            model: {
+                              value: _vm.competition.score_away,
+                              callback: function($$v) {
+                                _vm.$set(_vm.competition, "score_away", $$v)
+                              },
+                              expression: "competition.score_away"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
                 ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-list-tile-action",
-                [_c("v-icon", [_vm._v(_vm._s(_vm.competition.icon))])],
                 1
               )
             ],
             1
-          ),
-          _vm._v(" "),
-          _c("v-divider")
+          )
         ],
         1
       )
@@ -6704,51 +6800,14 @@ var render = function() {
                     "v-container",
                     { attrs: { "grid-list-md": "" } },
                     [
-                      _c(
-                        "v-layout",
-                        {
-                          attrs: {
-                            row: "",
-                            "align-center": "",
-                            "justify-space-between": "",
-                            "text-xs-center": ""
-                          }
-                        },
-                        [
-                          _c("v-flex", { attrs: { xs12: "", sm4: "" } }, [
-                            _c("img", {
-                              staticClass: "avatar mirrored",
-                              attrs: {
-                                src:
-                                  "https://image.shutterstock.com/image-vector/angry-man-avatar-user-pic-260nw-578255422.jpg"
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("br"),
-                            _vm._v(" "),
-                            _c("h3", [_vm._v(_vm._s(_vm.user1.name))])
-                          ]),
-                          _vm._v(" "),
-                          _c("v-flex", { attrs: { xs12: "", sm4: "" } }, [
-                            _vm._v("Result")
-                          ]),
-                          _vm._v(" "),
-                          _c("v-flex", { attrs: { xs12: "", sm4: "" } }, [
-                            _c("img", {
-                              staticClass: "avatar",
-                              attrs: {
-                                src:
-                                  "https://image.shutterstock.com/image-vector/angry-man-avatar-user-pic-260nw-578255422.jpg"
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("br"),
-                            _vm._v(" "),
-                            _c("h3", [_vm._v(_vm._s(_vm.user2.name))])
-                          ])
-                        ],
-                        1
-                      )
+                      _c("v-layout", {
+                        attrs: {
+                          row: "",
+                          "align-center": "",
+                          "justify-space-between": "",
+                          "text-xs-center": ""
+                        }
+                      })
                     ],
                     1
                   ),

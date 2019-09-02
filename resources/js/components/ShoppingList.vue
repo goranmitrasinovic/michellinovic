@@ -185,6 +185,7 @@ export default {
 }
 
 .theme--light.v-sheet {
+  margin: 10px 0px;
   padding-bottom: 10px;
 }
 
