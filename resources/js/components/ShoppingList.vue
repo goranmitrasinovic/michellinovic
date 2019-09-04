@@ -3,10 +3,11 @@
     <v-layout row>
       <v-flex xs12 sm6 offset-sm3>
         <gmCard
-          :title="'Shopping list ' + '(' + shoppingList.length + ' items' + ')'"
+          :title="'Shopping list ' + '(' + $store.getters.numberOfProducts + ' items' + ')'"
           :menuItems="menuItems"
           @clicked="action"
         >
+          <button @click="update">update</button>
           <v-form>
             <v-container class="add-product">
               <v-layout row>
@@ -81,6 +82,14 @@ export default {
       ]
     };
   },
+
+  computed: {
+    // a computed getter
+    numberOfProducts: function() {
+      return this.shoppingList.length;
+    }
+  },
+
   components: {
     Product,
     gmButton,
@@ -92,6 +101,10 @@ export default {
     this.getAllProducts();
   },
   methods: {
+    update() {
+      this.$store.commit("UpdateNumberOfProducts", this.numberOfProducts);
+    },
+
     clearList(shoppingList) {
       axios
         .put("api/shopping-list/clear-list", shoppingList)

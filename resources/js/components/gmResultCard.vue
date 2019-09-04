@@ -25,6 +25,7 @@
       :user1="user1"
       :user2="user2"
       @save="updateCompetition(competition)"
+      @close="getCompetitions()"
     >
       <v-layout row justify-center>
         <v-container grid-list-md>
@@ -79,15 +80,19 @@ export default {
       axios
         .put("api/competitions/update/" + competition.id, competition)
         .then(response => {
-          this.getCompetitions();
+          this.$emit("getCompetitions");
         })
         .catch(function(error) {
           // handle error
           console.log(error);
         })
         .then(function() {
-          // always executed'
+          this.$emit("getCompetitions");
         });
+    },
+
+    getCompetitions() {
+      this.$emit("update");
     },
 
     openModal() {

@@ -11,20 +11,11 @@
       </gmModal>
       <gmCard title="Competition" :menuItems="menuItems" @clicked="action">
         <v-list>
-          <!-- <div class="filter-container">
-            <v-select
-              :items="sports"
-              @change="applyFilter"
-              v-model="filter.sport"
-              label="Sport"
-              item-text="name"
-            ></v-select>
-          </div>-->
-
           <v-container grid-list-md>
             <v-layout row align-center justify-space-between text-xs-center></v-layout>
           </v-container>
           <gmResultCard
+            @update="getCompetitions()"
             v-for="competition in competitions"
             :key="competition.id"
             :competition="competition"

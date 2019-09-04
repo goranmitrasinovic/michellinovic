@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Navbar></Navbar>
+    <gmNavbar></gmNavbar>
     <v-app>
       <v-content class="content">
         <div class="container">
@@ -11,17 +11,17 @@
   </div>
 </template>
 <script>
-import Navbar from "../layout/navbar.vue";
+import gmNavbar from "../base_components/gmNavbar.vue";
 
 export default {
   components: {
-    Navbar
+    gmNavbar
   }
 };
 </script>
 
 <style>
 .content {
-  background: linear-gradient(120deg, #a6c0fe 0%, #f68084 100%);
+  background: linear-gradient(120deg, #a6c0fe 0%, #d0def5 100%);
 }
 </style>

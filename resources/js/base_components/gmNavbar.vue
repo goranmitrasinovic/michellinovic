@@ -16,6 +16,11 @@
           <v-btn class="nav-btn" flat dark to="/calendar">
             <v-icon class="navbar-icon">calendar_today</v-icon>Calendar
           </v-btn>
+          <v-btn class="nav-btn" flat dark to="/profile">
+            <v-avatar color="pink darken-3">
+              <v-icon class="navbar-icon" dark>person</v-icon>
+            </v-avatar>
+          </v-btn>
         </v-toolbar-items>
         <v-menu class="hidden-lg-and-up">
           <v-toolbar-side-icon style="color: white;" slot="activator"></v-toolbar-side-icon>

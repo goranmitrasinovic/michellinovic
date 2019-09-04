@@ -1,6 +1,15 @@
 <template>
   <div>
-    <gmModal @save="saveData" toogleText="Open" title="Test">heeeej</gmModal>
+    {{$store.getters.numberOfProducts}}
+    <v-card max-width="344" class="mx-auto">
+      <v-card-title style="background: red;">Shopping list</v-card-title>
+      <v-card-text>There is currently 'placeholder' products to be bought</v-card-text>
+      <v-card-actions>
+        <v-layout align-center justify-end>
+          <v-btn text>Go to Shopping list</v-btn>
+        </v-layout>
+      </v-card-actions>
+    </v-card>
   </div>
 </template>
 

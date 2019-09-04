@@ -11,15 +11,6 @@
             item-value="name"
           ></v-select>
         </v-flex>
-        <v-flex xs4>
-          <v-select
-            v-model="competition.icon"
-            :items="icons"
-            label="Icon"
-            item-text="name"
-            item-value="icon"
-          ></v-select>
-        </v-flex>
         <v-flex xs12 sm6 md6>
           <v-text-field v-model="competition.score_home" :label="user1.name + ' score'"></v-text-field>
         </v-flex>
@@ -40,13 +31,6 @@ export default {
       { name: "Soccer" },
       { name: "Golf" },
       { name: "Yatzy" }
-    ],
-    icons: [
-      { name: "Basketball", icon: "fiber_manual_record" },
-      { name: "Boardgame", icon: "casino" },
-      { name: "Golf", icon: "golf_course" },
-      { name: "Yatzy", icon: "" },
-      { name: "Video game", icon: "computer" }
     ]
   }),
   props: {

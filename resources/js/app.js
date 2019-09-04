@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 import VueRouter from 'vue-router'
+import { store } from './store/store'
 import axios from 'axios'
 
 Vue.use(VueRouter)
@@ -11,6 +12,7 @@ import Shopping from './views/Shopping'
 import Home from './views/Home'
 import Competition from './views/Competition'
 import Calendar from './views/Calendar'
+import Profile from './views/Profile'
 
 import 'vuetify/dist/vuetify.min.css'
 
@@ -37,11 +39,17 @@ const router = new VueRouter({
             name: 'calendar',
             component: Calendar,
         },
+        {
+            path: '/profile',
+            name: 'profile',
+            component: Profile,
+        }
     ],
 });
 
 const app = new Vue({
     el: '#app',
-    components: { App },
+    store,
     router,
+    components: { App },
 });
