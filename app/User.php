@@ -32,7 +32,7 @@ class User extends Model
         'email_verified_at' => 'datetime',
     ];
 
-    public function competitions(){
-        return $this->belongsToMany('App/Competition', 'competition_user', 'competition_id', 'user_one_id', 'user_two_id');
-    }
+    // public function competitions(){
+    //     return $this->belongsToMany('App/Competition', 'competition_user', 'competition_id', 'user_one_id', 'user_two_id');
+    // }
 }

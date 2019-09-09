@@ -7,7 +7,6 @@
           :menuItems="menuItems"
           @clicked="action"
         >
-          <button @click="update">update</button>
           <v-form>
             <v-container class="add-product">
               <v-layout row>
@@ -84,7 +83,6 @@ export default {
   },
 
   computed: {
-    // a computed getter
     numberOfProducts: function() {
       return this.shoppingList.length;
     }
@@ -96,15 +94,13 @@ export default {
     gmCard,
     gmSnackbar
   },
+
   mounted() {
     this.getShoppingList();
     this.getAllProducts();
   },
-  methods: {
-    update() {
-      this.$store.commit("UpdateNumberOfProducts", this.numberOfProducts);
-    },
 
+  methods: {
     clearList(shoppingList) {
       axios
         .put("api/shopping-list/clear-list", shoppingList)
@@ -121,6 +117,7 @@ export default {
         .then(response => {
           this.shoppingList = response.data;
           this.fetching = false;
+          this.$store.commit("UpdateNumberOfProducts", this.numberOfProducts);
         })
         .catch(function(error) {
           // handle error

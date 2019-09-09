@@ -12,4 +12,16 @@ class UserController extends Controller
         $users = User::all();
         return $users;
     }
+
+        /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $user = $user->update($request->all());
+    }
 }

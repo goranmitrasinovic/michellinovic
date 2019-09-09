@@ -8,22 +8,22 @@
       </div>
       <v-list-tile>
         <div class="participant participant-home">
-          <span>{{user1.name}}</span>
+          <span>{{goran.name}}</span>
         </div>
         <v-list-tile-content class="score-container">
           <div class="score-box">{{competition.score_home}}</div>
           <span>-</span>
           <div class="score-box">{{competition.score_away}}</div>
         </v-list-tile-content>
-        <div class="participant participant-away">{{user2.name}}</div>
+        <div class="participant participant-away">{{michelle.name}}</div>
       </v-list-tile>
     </v-card>
     <v-divider></v-divider>
     <gmModal
       ref="updateModal"
       :competition="competition"
-      :user1="user1"
-      :user2="user2"
+      :user1="goran"
+      :user2="michelle"
       @save="updateCompetition(competition)"
       @close="getCompetitions()"
     >
@@ -40,10 +40,10 @@
               ></v-select>
             </v-flex>
             <v-flex xs12 sm6 md6>
-              <v-text-field v-model="competition.score_home" :label="user1.name + ' score'"></v-text-field>
+              <v-text-field v-model="competition.score_home" :label="goran.name + ' score'"></v-text-field>
             </v-flex>
             <v-flex xs12 sm6 md6>
-              <v-text-field v-model="competition.score_away" :label="user2.name + ' score'"></v-text-field>
+              <v-text-field v-model="competition.score_away" :label="michelle.name + ' score'"></v-text-field>
             </v-flex>
           </v-layout>
         </v-container>
@@ -67,13 +67,13 @@ export default {
       { name: "Golf" },
       { name: "Yatzy" }
     ],
-    user1: {
-      name: "Goran Mitrasinovic"
-    },
-    user2: {
-      name: "Michelle Anton"
-    }
+    goran: {},
+    michelle: {}
   }),
+
+  mounted() {
+    this.getUsers();
+  },
 
   methods: {
     updateCompetition(competition) {
@@ -88,6 +88,23 @@ export default {
         })
         .then(function() {
           this.$emit("getCompetitions");
+        });
+    },
+
+    getUsers() {
+      axios
+        .get("api/users")
+        .then(response => {
+          this.users = response.data;
+          this.goran = response.data[0];
+          this.michelle = response.data[1];
+        })
+        .catch(function(error) {
+          // handle error
+          console.log(error);
+        })
+        .then(function() {
+          // always executed
         });
     },
 

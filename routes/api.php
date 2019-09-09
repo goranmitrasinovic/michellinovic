@@ -27,6 +27,7 @@ Route::post('/product/create', 'ProductController@store');
 Route::get('/products', 'ProductController@index');
 
 Route::get('/users', 'UserController@index');
+Route::put('/users/update/{id}', 'UserController@update');
 
 Route::post('/competitions/create', 'CompetitionController@create');
 Route::put('/competitions/update/{id}', 'CompetitionController@update');

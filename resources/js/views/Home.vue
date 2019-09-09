@@ -1,26 +1,68 @@
 <template>
   <div>
-    {{$store.getters.numberOfProducts}}
-    <v-card max-width="344" class="mx-auto">
-      <v-card-title style="background: red;">Shopping list</v-card-title>
-      <v-card-text>There is currently 'placeholder' products to be bought</v-card-text>
-      <v-card-actions>
-        <v-layout align-center justify-end>
-          <v-btn text>Go to Shopping list</v-btn>
-        </v-layout>
-      </v-card-actions>
-    </v-card>
+    <!-- <v-layout row>
+      <v-flex xs12 sm6 offset-sm3>
+        <gmCard title="Notices">
+          <v-layout>
+            <v-flex xs12 sm6>
+              <v-card style="margin: 10px;">
+                <v-img src="https://cdn.vuetifyjs.com/images/cards/desert.jpg" aspect-ratio="2.75"></v-img>
+
+                <v-card-title primary-title>
+                  <div>
+                    <h3 class="headline mb-0">Kangaroo Valley Safari</h3>
+                    <div>ds</div>
+                  </div>
+                </v-card-title>
+
+                <v-card-actions>
+                  <v-btn flat color="orange">Share</v-btn>
+                  <v-btn flat color="orange">Explore</v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-flex>
+            <v-flex xs12 sm6>
+              <v-card style="margin: 10px;">
+                <v-img src="https://cdn.vuetifyjs.com/images/cards/desert.jpg" aspect-ratio="2.75"></v-img>
+
+                <v-card-title primary-title>
+                  <div>
+                    <h3 class="headline mb-0">Kangaroo Valley Safari</h3>
+                    <div>ds</div>
+                  </div>
+                </v-card-title>
+
+                <v-card-actions>
+                  <v-btn flat color="orange">Share</v-btn>
+                  <v-btn flat color="orange">Explore</v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-flex>
+          </v-layout>
+        </gmCard>
+      </v-flex>
+    </v-layout>-->
   </div>
 </template>
 
 <script>
+import Shoppinglist from "../components/ShoppingList.vue";
 import gmButton from "../base_components/gmButton";
 import gmModal from "../base_components/gmModal";
+import gmCard from "../base_components/gmCard";
 
 export default {
   components: {
     gmButton,
-    gmModal
+    gmModal,
+    gmCard,
+    Shoppinglist
+  },
+
+  computed: {
+    productsCount() {
+      return this.$store.getters.numberOfProducts;
+    }
   },
 
   methods: {
@@ -34,5 +76,5 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 </style>

@@ -15,8 +15,17 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         // $users = factory(App\User::class, 5)->create();
-
-        $users = factory(App\User::class,5)->create();
+        DB::table('users')->insert([
+            'name' => 'Goran Mitrasinovic',
+            'email' => 'goran.mitrasinovic@dynabyte.se',
+            'password' => bcrypt('password'),
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Michelle Anton',
+            'email' => 'michelle.anton.swe@gmail.com',
+            'password' => bcrypt('password'),
+        ]);
+        // $users = factory(App\User::class,5)->create();
 
     }
 }

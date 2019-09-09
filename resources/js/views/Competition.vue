@@ -5,15 +5,12 @@
         <v-layout row justify-center>
           <v-container>
             <slot name="introduction"></slot>
-            <gmCreateCompetition :competition="competition" :user1="user1" :user2="user2"></gmCreateCompetition>
+            <gmCreateCompetition :competition="competition" :user1="goran" :user2="michelle"></gmCreateCompetition>
           </v-container>
         </v-layout>
       </gmModal>
       <gmCard title="Competition" :menuItems="menuItems" @clicked="action">
         <v-list>
-          <v-container grid-list-md>
-            <v-layout row align-center justify-space-between text-xs-center></v-layout>
-          </v-container>
           <gmResultCard
             @update="getCompetitions()"
             v-for="competition in competitions"
@@ -52,12 +49,8 @@ export default {
         { name: "Fotball" },
         { name: "Golf" }
       ],
-      user1: {
-        name: "Goran Mitrasinovic"
-      },
-      user2: {
-        name: "Michelle Anton"
-      }
+      goran: {},
+      michelle: {}
     };
   },
 
@@ -90,7 +83,10 @@ export default {
       axios
         .get("api/users")
         .then(response => {
+          console.log(response.data);
           this.users = response.data;
+          this.goran = response.data[0];
+          this.michelle = response.data[1];
         })
         .catch(function(error) {
           // handle error
@@ -99,10 +95,6 @@ export default {
         .then(function() {
           // always executed
         });
-    },
-
-    applyFilter() {
-      console.log("hej");
     },
 
     createCompetition(competition) {
