@@ -11,11 +11,59 @@
   </div>
 </template>
 <script>
+import axios from "axios";
+
 import gmNavbar from "../base_components/gmNavbar.vue";
 
 export default {
+  data: () => ({
+    user1: {}
+  }),
+
+  computed: {
+    numberOfProducts: function() {
+      return this.shoppingList.length;
+    }
+  },
+
   components: {
     gmNavbar
+  },
+
+  mounted() {
+    this.getUsers();
+    this.getShoppingList();
+  },
+  methods: {
+    getUsers() {
+      axios
+        .get("api/users")
+        .then(response => {
+          this.$store.commit("UpdateUser1", response.data[0]);
+          this.$store.commit("UpdateUser2", response.data[1]);
+        })
+        .catch(function(error) {
+          // handle error
+          console.log(error);
+        })
+        .then(function() {
+          // always executed
+        });
+    },
+
+    getShoppingList() {
+      axios
+        .get("api/shopping-list/uncompleted")
+        .then(response => {
+          this.shoppingList = response.data;
+          this.$store.commit("UpdateNumberOfProducts", this.numberOfProducts);
+        })
+        .catch(function(error) {
+          // handle error
+          console.log(error);
+        })
+        .then(function() {});
+    }
   }
 };
 </script>

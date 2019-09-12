@@ -1,48 +1,19 @@
 <template>
-  <div>
-    <!-- <v-layout row>
-      <v-flex xs12 sm6 offset-sm3>
-        <gmCard title="Notices">
-          <v-layout>
-            <v-flex xs12 sm6>
-              <v-card style="margin: 10px;">
-                <v-img src="https://cdn.vuetifyjs.com/images/cards/desert.jpg" aspect-ratio="2.75"></v-img>
-
-                <v-card-title primary-title>
-                  <div>
-                    <h3 class="headline mb-0">Kangaroo Valley Safari</h3>
-                    <div>ds</div>
-                  </div>
-                </v-card-title>
-
-                <v-card-actions>
-                  <v-btn flat color="orange">Share</v-btn>
-                  <v-btn flat color="orange">Explore</v-btn>
-                </v-card-actions>
-              </v-card>
-            </v-flex>
-            <v-flex xs12 sm6>
-              <v-card style="margin: 10px;">
-                <v-img src="https://cdn.vuetifyjs.com/images/cards/desert.jpg" aspect-ratio="2.75"></v-img>
-
-                <v-card-title primary-title>
-                  <div>
-                    <h3 class="headline mb-0">Kangaroo Valley Safari</h3>
-                    <div>ds</div>
-                  </div>
-                </v-card-title>
-
-                <v-card-actions>
-                  <v-btn flat color="orange">Share</v-btn>
-                  <v-btn flat color="orange">Explore</v-btn>
-                </v-card-actions>
-              </v-card>
-            </v-flex>
-          </v-layout>
-        </gmCard>
-      </v-flex>
-    </v-layout>-->
-  </div>
+  <v-layout>
+    <v-flex xs12 sm6 offset-sm3>
+      <gmCard :hideMenu="true">
+        <div class="flex">
+          <div>
+            <v-icon class="empty-cart-icon" color="orange">shopping_cart</v-icon>
+          </div>
+          <div class="number-text">
+            <div class="header">Shoppinglist</div>
+            <div>{{$store.getters.numberOfProducts}}</div>
+          </div>
+        </div>
+      </gmCard>
+    </v-flex>
+  </v-layout>
 </template>
 
 <script>
@@ -63,18 +34,29 @@ export default {
     productsCount() {
       return this.$store.getters.numberOfProducts;
     }
-  },
-
-  methods: {
-    consoleClick() {
-      console.log("Button clicked");
-    },
-    saveData() {
-      console.log("Data saved");
-    }
   }
 };
 </script>
 
 <style scoped>
+.flex {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.empty-cart-icon {
+  font-size: 30px;
+  margin: 0px 20px 0px 0px;
+}
+
+.header {
+  color: grey;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.number-text {
+  font-size: 20px;
+}
 </style>

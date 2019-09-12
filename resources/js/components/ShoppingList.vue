@@ -82,12 +82,6 @@ export default {
     };
   },
 
-  computed: {
-    numberOfProducts: function() {
-      return this.shoppingList.length;
-    }
-  },
-
   components: {
     Product,
     gmButton,
@@ -117,7 +111,6 @@ export default {
         .then(response => {
           this.shoppingList = response.data;
           this.fetching = false;
-          this.$store.commit("UpdateNumberOfProducts", this.numberOfProducts);
         })
         .catch(function(error) {
           // handle error
