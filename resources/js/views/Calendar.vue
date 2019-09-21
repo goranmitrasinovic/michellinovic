@@ -87,6 +87,7 @@ export default {
   data: () => ({
     start: new Date().toISOString().slice(0, 10),
     today: "2019-01-08",
+    todaysEvents: [],
     editMode: false,
     weekdays: [1, 2, 3, 4, 5, 6, 0],
     menuItems: [

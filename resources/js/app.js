@@ -13,6 +13,7 @@ import Home from './views/Home'
 import Competition from './views/Competition'
 import Calendar from './views/Calendar'
 import Profile from './views/Profile'
+import Todo from './views/Todo'
 
 import 'vuetify/dist/vuetify.min.css'
 
@@ -33,6 +34,10 @@ const router = new VueRouter({
             path: '/competition',
             name: 'competition',
             component: Competition,
+        }, {
+            path: '/todo',
+            name: 'todo',
+            component: Todo,
         },
         {
             path: '/calendar',

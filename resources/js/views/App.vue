@@ -12,7 +12,6 @@
 </template>
 <script>
 import axios from "axios";
-
 import gmNavbar from "../base_components/gmNavbar.vue";
 
 export default {
@@ -23,6 +22,15 @@ export default {
   computed: {
     numberOfProducts: function() {
       return this.shoppingList.length;
+    },
+    todaysEvents: {
+      get: function() {
+        console.log("hej");
+        return this.$store.getters.todaysEvents;
+      },
+      set: function() {
+        console.log("setter");
+      }
     }
   },
 
@@ -33,6 +41,7 @@ export default {
   mounted() {
     this.getUsers();
     this.getShoppingList();
+    this.getEvents();
   },
   methods: {
     getUsers() {
@@ -41,6 +50,22 @@ export default {
         .then(response => {
           this.$store.commit("UpdateUser1", response.data[0]);
           this.$store.commit("UpdateUser2", response.data[1]);
+        })
+        .catch(function(error) {
+          // handle error
+          console.log(error);
+        })
+        .then(function() {
+          // always executed
+        });
+    },
+
+    getEvents() {
+      axios
+        .get("api/events")
+        .then(response => {
+          this.events = response.data;
+          this.$store.commit("UpdateTodaysEvents", this.events);
         })
         .catch(function(error) {
           // handle error

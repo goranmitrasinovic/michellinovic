@@ -13,6 +13,9 @@
           <v-btn class="nav-btn" flat dark to="/competition">
             <v-icon class="navbar-icon">casino</v-icon>Competition
           </v-btn>
+          <v-btn class="nav-btn" flat dark to="/todo">
+            <v-icon class="navbar-icon">list</v-icon>Todo list
+          </v-btn>
           <v-btn class="nav-btn" flat dark to="/calendar">
             <v-icon class="navbar-icon">calendar_today</v-icon>Calendar
           </v-btn>

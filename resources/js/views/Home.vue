@@ -1,19 +1,31 @@
 <template>
-  <v-layout>
-    <v-flex xs12 sm6 offset-sm3>
-      <gmCard :hideMenu="true">
-        <div class="flex">
-          <div>
+  <v-container fluid grid-list-md>
+    <v-layout justify-center row wrap>
+      <v-flex xs12 sm4>
+        <gmCard :hideMenu="true">
+          <div class="icon-container">
             <v-icon class="empty-cart-icon" color="orange">shopping_cart</v-icon>
           </div>
           <div class="number-text">
             <div class="header">Shoppinglist</div>
             <div>{{$store.getters.numberOfProducts}}</div>
           </div>
-        </div>
-      </gmCard>
-    </v-flex>
-  </v-layout>
+        </gmCard>
+      </v-flex>
+      <v-flex xs12 sm4>
+        <gmCard :hideMenu="true">
+          <div class="icon-container">
+            <v-icon class="empty-cart-icon" color="primary">calendar_today</v-icon>
+          </div>
+          <div class="number-text">
+            <div class="header">Events today</div>
+            <div class="event" v-for="daily in dailys" :key="daily.id">{{daily.title}}</div>
+            <span v-if="dailys.length === 0">There are now events today</span>
+          </div>
+        </gmCard>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
@@ -33,16 +45,33 @@ export default {
   computed: {
     productsCount() {
       return this.$store.getters.numberOfProducts;
+    },
+    dailys() {
+      let a = [];
+      let today = new Date().toISOString().slice(0, 10);
+      this.$store.getters.todaysEvents.forEach(e => {
+        if (e.date === today) {
+          a.push(e);
+        }
+      });
+      return a;
     }
   }
 };
 </script>
 
 <style scoped>
-.flex {
+.v-card {
   padding: 10px;
-  display: flex;
-  align-items: center;
+  align-items: stretch;
+}
+
+.event {
+  background: #1867c0;
+  color: white;
+  padding: 10px;
+  margin: 5px 0px;
+  font-size: 18px;
 }
 
 .empty-cart-icon {
