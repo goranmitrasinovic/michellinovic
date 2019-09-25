@@ -1,35 +1,33 @@
 <template>
   <v-container fluid grid-list-md>
-    <!-- <draggable v-model="trelloCardsNotStarted" group="cards" @start="drag=true" @end="drag=false">
-      <div
-        style="border: 1px solid red; padding: 20px; background: grey;"
-        v-for="card in trelloCardsNotStarted"
-        :key="card.id"
-      >{{card.name}}</div>
-    </draggable>
-    <draggable v-model="trelloCardsStarted" group="cards" @start="drag=true" @end="drag=false">
-      <div
-        style="border: 1px solid red; padding: 20px; background: grey;"
-        v-for="card in trelloCardsStarted"
-        :key="card.id"
-      >{{card.name}}</div>
-    </draggable>-->
     <v-layout justify-center row wrap>
       <v-flex xs12 sm4>
         <gmCard class="list" title="Not Started">
           <gmCard
-            class="not-started"
+            class="todo-card not-started"
             :hideMenu="true"
+            @click.native="openModal(card)"
             v-for="card in trelloCardsNotStarted"
             :key="card.id"
           >{{card.name}}</gmCard>
+          <v-container grid-list-md text-xs-center>
+            <v-layout row wrap>
+              <v-flex sm12 md6>
+                <v-text-field v-model="cardName" label="Namn">Namn:</v-text-field>
+              </v-flex>
+              <v-flex sm12 md6>
+                <v-btn @click="createCard()">Skapa kort</v-btn>
+              </v-flex>
+            </v-layout>
+          </v-container>
         </gmCard>
       </v-flex>
       <v-flex xs12 sm4>
         <gmCard class="list" title="In Progress">
           <gmCard
             :hideMenu="true"
-            class="started"
+            @click.native="openModal(card)"
+            class="todo-card started"
             v-for="card in trelloCardsStarted"
             :key="card.id"
           >{{card.name}}</gmCard>
@@ -39,26 +37,46 @@
         <gmCard class="list" title="Completed">
           <gmCard
             :hideMenu="true"
-            class="completed"
+            @click.native="openModal(card)"
+            class="todo-card completed"
             v-for="card in trelloCardsCompleted"
             :key="card.id"
           >{{card.name}}</gmCard>
         </gmCard>
       </v-flex>
+
+      <gmModal ref="modal" title="Card" @save="updateCard(card)">
+        <v-layout row justify-center>
+          <v-container>
+            <slot name="introduction"></slot>
+            <v-text-field v-model="card.name" label="Name">Name</v-text-field>
+            <v-select
+              :items="trelloLists"
+              v-model="listId"
+              label="List"
+              item-text="name"
+              item-value="id"
+            ></v-select>
+          </v-container>
+        </v-layout>
+      </gmModal>
     </v-layout>
-    <v-btn @click="createCard()">Skapa kort</v-btn>
   </v-container>
 </template>
 
 <script>
 import axios from "axios";
-import draggable from "vuedraggable";
+import gmModal from "../base_components/gmModal";
 
 import gmCard from "../base_components/gmCard";
 
 export default {
   data: function() {
     return {
+      cardName: "",
+      card: {},
+      listId: "",
+      dialog: false,
       trelloBoard: [],
       trelloLists: [],
       trelloCards: [],
@@ -70,7 +88,7 @@ export default {
 
   components: {
     gmCard,
-    draggable
+    gmModal
   },
 
   mounted() {
@@ -82,6 +100,11 @@ export default {
   },
 
   methods: {
+    openModal(card) {
+      this.$refs.modal.showModal();
+      this.card = card;
+      this.getCardList(card);
+    },
     getBoards() {
       axios
         .get(
@@ -98,7 +121,7 @@ export default {
         )
         .then(response => {
           this.trelloLists = response.data;
-          console.log(response);
+          console.log(this.trelloLists);
         });
     },
     getNotStartedCards() {
@@ -131,36 +154,79 @@ export default {
     createCard() {
       axios
         .post(
-          "https://api.trello.com/1/cards?name=test&idList=5d8234e9f520502601e63601&keepFromSource=all&key=1238ec18c06ef8fabe9d26357cfbdbd9&token=4be3dcd1677488a9070b1a9f547a82c72593041ac4da008dccdc927f74d27487"
+          "https://api.trello.com/1/cards?name=" +
+            this.cardName +
+            "&idList=5d8234e419c8693d7c0822b1&keepFromSource=all&key=1238ec18c06ef8fabe9d26357cfbdbd9&token=4be3dcd1677488a9070b1a9f547a82c72593041ac4da008dccdc927f74d27487"
         )
         .then(response => {
-          console.log("hej");
+          this.getNotStartedCards();
+          this.cardName = "";
         });
+    },
+    updateCard(card) {
+      axios
+        .put(
+          "https://api.trello.com/1/cards/" +
+            card.id +
+            "?name=" +
+            card.name +
+            "&idList=" +
+            this.listId +
+            "&key=1238ec18c06ef8fabe9d26357cfbdbd9&token=4be3dcd1677488a9070b1a9f547a82c72593041ac4da008dccdc927f74d27487"
+        )
+        .then(response => {
+          this.getNotStartedCards();
+          this.getStartedCards();
+          this.getCompletedCards();
+        });
+    },
+    getCardList(card) {
+      axios
+        .get(
+          "https://api.trello.com/1/cards/" +
+            card.id +
+            "/list?fields=all&key=1238ec18c06ef8fabe9d26357cfbdbd9&token=4be3dcd1677488a9070b1a9f547a82c72593041ac4da008dccdc927f74d27487"
+        )
+        .then(response => {
+          this.card.list = response.data;
+          this.listId = response.data.id;
+          this.getNotStartedCards();
+          this.getStartedCards();
+          this.getCompletedCards();
+        });
+    },
+    moveCard(card) {
+      console.log(card);
     }
   }
 };
 </script>
 
 <style scoped>
+.todo-card {
+  padding: 20px;
+  margin: 10px;
+  font-size: 18px;
+}
+
+.todo-card:hover {
+  cursor: pointer;
+  filter: brightness(125%);
+}
+
 .list.v-card {
   padding-bottom: 10px;
 }
 
 .not-started.v-card {
-  padding: 10px;
-  margin: 10px;
   background: #c0d2de;
 }
 
 .started.v-card {
-  padding: 10px;
-  margin: 10px;
-  background: #fffaa4;
+  background: #fff2a4;
 }
 
 .completed.v-card {
-  padding: 10px;
-  margin: 10px;
   background: #98e88c;
 }
 </style>
