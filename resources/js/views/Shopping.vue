@@ -1,39 +1,35 @@
 <template>
-<div>
-    <Shoppinglist> </Shoppinglist>
-</div>
+  <Shoppinglist></Shoppinglist>
 </template>
 
 <script>
 import Shoppinglist from "../components/ShoppingList.vue";
-import axios from 'axios';
+import axios from "axios";
 
 export default {
+  data: function() {
+    return {};
+  },
 
-    data: function() {
-        return {
-        }
-    },
-
-
-    methods: {
-        getProducts() {
-            axios.get('api/products')
-                .then(response => {
-                    this.products = response.data;
-                })
-                .catch(function(error) {
-                    // handle error
-                    console.log(error);
-                })
-                .then(function() {
-                    // always executed
-                });
-        }
-    },
-
-    components: {
-        Shoppinglist
+  methods: {
+    getProducts() {
+      axios
+        .get("api/products")
+        .then(response => {
+          this.products = response.data;
+        })
+        .catch(function(error) {
+          // handle error
+          console.log(error);
+        })
+        .then(function() {
+          // always executed
+        });
     }
-}
+  },
+
+  components: {
+    Shoppinglist
+  }
+};
 </script>

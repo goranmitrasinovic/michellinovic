@@ -10,14 +10,6 @@ import axios from "axios";
 import gmUserProfile from "../components/gmUserProfile.vue";
 
 export default {
-  data: function() {
-    return {
-      goran: {},
-      michelle: {},
-      users: []
-    };
-  },
-
   components: {
     gmUserProfile
   },

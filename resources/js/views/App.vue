@@ -26,8 +26,7 @@ export default {
     todaysEvents: {
       get: function() {
         return this.$store.getters.todaysEvents;
-      },
-      set: function() {}
+      }
     }
   },
 

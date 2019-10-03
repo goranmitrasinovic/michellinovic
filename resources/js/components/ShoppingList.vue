@@ -41,6 +41,7 @@
             <v-icon class="empty-cart-icon" color="green">shopping_cart</v-icon>
             <p class="empty-cart-text">No items in your shoppinglist. Good job!</p>
           </div>
+
           <transition-group name="card">
             <Product
               class="product"
