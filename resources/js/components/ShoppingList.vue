@@ -110,6 +110,10 @@ export default {
         .get("api/shopping-list/uncompleted")
         .then(response => {
           this.shoppingList = response.data;
+          this.$store.commit(
+            "UpdateNumberOfProducts",
+            this.shoppingList.length
+          );
           this.fetching = false;
         })
         .catch(function(error) {

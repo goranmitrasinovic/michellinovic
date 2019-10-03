@@ -25,12 +25,9 @@ export default {
     },
     todaysEvents: {
       get: function() {
-        console.log("hej");
         return this.$store.getters.todaysEvents;
       },
-      set: function() {
-        console.log("setter");
-      }
+      set: function() {}
     }
   },
 

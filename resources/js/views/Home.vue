@@ -20,7 +20,7 @@
           <div class="number-text">
             <div class="header">Events today</div>
             <div class="event" v-for="daily in dailys" :key="daily.id">{{daily.title}}</div>
-            <span v-if="dailys.length === 0">There are now events today</span>
+            <span v-if="!dailys.length">There are now events today</span>
           </div>
         </gmCard>
       </v-flex>
@@ -46,15 +46,17 @@ export default {
     productsCount() {
       return this.$store.getters.numberOfProducts;
     },
+    // Get all events that matches todays date
     dailys() {
-      let a = [];
+      let dailys = [];
       let today = new Date().toISOString().slice(0, 10);
+
       this.$store.getters.todaysEvents.forEach(e => {
         if (e.date === today) {
-          a.push(e);
+          dailys.push(e);
         }
       });
-      return a;
+      return dailys;
     }
   }
 };

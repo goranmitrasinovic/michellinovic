@@ -71,7 +71,7 @@ export default {
       if (item.title === "Create competition") {
         this.openModal();
       } else {
-        console.log(item.title);
+        console.log("error");
       }
     },
 
@@ -83,7 +83,6 @@ export default {
       axios
         .get("api/users")
         .then(response => {
-          console.log(response.data);
           this.users = response.data;
           this.goran = response.data[0];
           this.michelle = response.data[1];

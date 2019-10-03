@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
-use App\Competition;
 use App\User;
 
 class UsersTableSeeder extends Seeder
@@ -14,7 +13,6 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        // $users = factory(App\User::class, 5)->create();
         DB::table('users')->insert([
             'name' => 'Goran Mitrasinovic',
             'email' => 'goran.mitrasinovic@dynabyte.se',
@@ -25,7 +23,5 @@ class UsersTableSeeder extends Seeder
             'email' => 'michelle.anton.swe@gmail.com',
             'password' => bcrypt('password'),
         ]);
-        // $users = factory(App\User::class,5)->create();
-
     }
 }

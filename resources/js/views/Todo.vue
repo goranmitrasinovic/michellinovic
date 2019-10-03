@@ -121,7 +121,6 @@ export default {
         )
         .then(response => {
           this.trelloLists = response.data;
-          console.log(this.trelloLists);
         });
     },
     getNotStartedCards() {
@@ -194,9 +193,6 @@ export default {
           this.getStartedCards();
           this.getCompletedCards();
         });
-    },
-    moveCard(card) {
-      console.log(card);
     }
   }
 };
