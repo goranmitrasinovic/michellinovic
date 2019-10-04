@@ -2612,6 +2612,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2629,7 +2643,15 @@ __webpack_require__.r(__webpack_exports__);
         title: "Create event"
       }],
       event: {},
-      events: []
+      events: [],
+      type: "month",
+      typeOptions: [{
+        text: "Week",
+        value: "week"
+      }, {
+        text: "Month",
+        value: "month"
+      }]
     };
   },
   components: {
@@ -3383,7 +3405,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.my-event[data-v-3613305d] {\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  border-radius: 2px;\n  background-color: #1867c0;\n  color: #ffffff;\n  border: 1px solid #1867c0;\n  font-size: 14px;\n  padding: 2px;\n  cursor: pointer;\n  margin-bottom: 1px;\n  left: 4px;\n  margin-right: 8px;\n  position: relative;\n}\n.v-calendar[data-v-3613305d] .v-calendar-weekly__day-month {\n  font-size: 20px;\n  text-transform: uppercase;\n}\n.with-time[data-v-3613305d] {\n  position: absolute;\n  right: 4px;\n  margin-right: 0px;\n}\n.create-event-container[data-v-3613305d] {\n  margin-bottom: 20px;\n  border-bottom: 2px solid #3f51b5;\n}\n.theme--light.v-sheet[data-v-3613305d] {\n  border: 1px solid #570fc1;\n}\n.icon-area[data-v-3613305d] {\n  background: gainsboro;\n  padding: 2px 10px;\n}\n@media screen and (max-width: 992px) {\n.v-calendar[data-v-3613305d] .v-calendar-weekly__day-month {\n    font-size: 12px;\n    position: static;\n}\n}\n", ""]);
+exports.push([module.i, "\n.my-event[data-v-3613305d] {\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  border-radius: 2px;\n  background-color: #1867c0;\n  color: #ffffff;\n  border: 1px solid #1867c0;\n  font-size: 14px;\n  padding: 2px;\n  cursor: pointer;\n  margin-bottom: 1px;\n  left: 4px;\n  margin-right: 8px;\n  position: relative;\n}\n.v-calendar[data-v-3613305d] .v-calendar-weekly__day-month {\n  font-size: 20px;\n  text-transform: uppercase;\n}\n.v-calendar[data-v-3613305d] .v-calendar-daily__interval {\n  visibility: hidden;\n}\n.with-time[data-v-3613305d] {\n  position: absolute;\n  right: 4px;\n  margin-right: 0px;\n}\n.create-event-container[data-v-3613305d] {\n  margin-bottom: 20px;\n  border-bottom: 2px solid #3f51b5;\n}\n.theme--light.v-sheet[data-v-3613305d] {\n  border: 1px solid #570fc1;\n}\n.icon-area[data-v-3613305d] {\n  background: gainsboro;\n  padding: 2px 10px;\n}\n@media screen and (max-width: 992px) {\n.v-calendar[data-v-3613305d] .v-calendar-weekly__day-month {\n    font-size: 12px;\n    position: static;\n}\n}\n", ""]);
 
 // exports
 
@@ -7092,11 +7114,37 @@ var render = function() {
                       _c("v-calendar", {
                         ref: "calendar",
                         attrs: {
-                          type: "month",
+                          type: _vm.type,
                           color: "primary",
                           weekdays: _vm.weekdays
                         },
                         scopedSlots: _vm._u([
+                          {
+                            key: "dayHeader",
+                            fn: function(ref) {
+                              var date = ref.date
+                              return [
+                                _vm._l(_vm.eventsMap[date], function(event) {
+                                  return [
+                                    !event.time
+                                      ? _c("div", {
+                                          key: event.title,
+                                          staticClass: "my-event",
+                                          domProps: {
+                                            innerHTML: _vm._s(event.title)
+                                          },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.openModal(event)
+                                            }
+                                          }
+                                        })
+                                      : _vm._e()
+                                  ]
+                                })
+                              ]
+                            }
+                          },
                           {
                             key: "day",
                             fn: function(ref) {
@@ -7216,7 +7264,7 @@ var render = function() {
                 "v-flex",
                 {
                   staticClass: "text-sm-left text-xs-center",
-                  attrs: { sm6: "" }
+                  attrs: { sm3: "" }
                 },
                 [
                   _c(
@@ -7242,9 +7290,27 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "v-flex",
+                { attrs: { "sm-6": "" } },
+                [
+                  _c("v-select", {
+                    attrs: { items: _vm.typeOptions, label: "Type" },
+                    model: {
+                      value: _vm.type,
+                      callback: function($$v) {
+                        _vm.type = $$v
+                      },
+                      expression: "type"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-flex",
                 {
                   staticClass: "text-sm-right text-xs-center",
-                  attrs: { sm6: "" }
+                  attrs: { sm3: "" }
                 },
                 [
                   _c(

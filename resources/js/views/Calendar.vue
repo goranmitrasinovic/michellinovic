@@ -7,10 +7,22 @@
             <v-calendar
               ref="calendar"
               v-model="start"
-              type="month"
+              :type="type"
               color="primary"
               :weekdays="weekdays"
             >
+              <template v-slot:dayHeader="{ date }">
+                <template v-for="event in eventsMap[date]">
+                  <!-- all day events don't have time -->
+                  <div
+                    v-if="!event.time"
+                    :key="event.title"
+                    class="my-event"
+                    @click="openModal(event)"
+                    v-html="event.title"
+                  ></div>
+                </template>
+              </template>
               <template v-slot:day="{ date }">
                 <template v-for="event in eventsMap[date]">
                   <div
@@ -52,13 +64,15 @@
             </v-flex>
           </v-layout>
         </gmModal>
-        <v-flex sm6 class="text-sm-left text-xs-center">
+        <v-flex sm3 class="text-sm-left text-xs-center">
           <v-btn @click="$refs.calendar.prev()">
             <v-icon dark left>keyboard_arrow_left</v-icon>Prev
           </v-btn>
         </v-flex>
-
-        <v-flex sm6 class="text-sm-right text-xs-center">
+        <v-flex sm-6>
+          <v-select v-model="type" :items="typeOptions" label="Type"></v-select>
+        </v-flex>
+        <v-flex sm3 class="text-sm-right text-xs-center">
           <v-btn @click="$refs.calendar.next()">
             Next
             <v-icon right dark>keyboard_arrow_right</v-icon>
@@ -96,7 +110,12 @@ export default {
       }
     ],
     event: {},
-    events: []
+    events: [],
+    type: "month",
+    typeOptions: [
+      { text: "Week", value: "week" },
+      { text: "Month", value: "month" }
+    ]
   }),
 
   components: {
@@ -209,6 +228,10 @@ export default {
 .v-calendar >>> .v-calendar-weekly__day-month {
   font-size: 20px;
   text-transform: uppercase;
+}
+
+.v-calendar >>> .v-calendar-daily__interval {
+  visibility: hidden;
 }
 
 .with-time {
