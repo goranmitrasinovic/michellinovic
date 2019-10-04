@@ -38,6 +38,11 @@
                 <v-list-tile-title>Competition</v-list-tile-title>
               </v-list-tile-content>
             </v-list-tile>
+            <v-list-tile to="/todo">
+              <v-list-tile-content>
+                <v-list-tile-title>Todo list</v-list-tile-title>
+              </v-list-tile-content>
+            </v-list-tile>
             <v-list-tile to="/calendar">
               <v-list-tile-content>
                 <v-list-tile-title>Calendar</v-list-tile-title>

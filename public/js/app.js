@@ -6133,6 +6133,19 @@ var render = function() {
                     _vm._v(" "),
                     _c(
                       "v-list-tile",
+                      { attrs: { to: "/todo" } },
+                      [
+                        _c(
+                          "v-list-tile-content",
+                          [_c("v-list-tile-title", [_vm._v("Todo list")])],
+                          1
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-list-tile",
                       { attrs: { to: "/calendar" } },
                       [
                         _c(
