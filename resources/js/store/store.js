@@ -8,7 +8,7 @@ export const store = new Vuex.Store({
 		numberOfProducts: 0,
 		user1: {},
 		user2: {},
-		todaysEvents: [{}]
+		todaysEvents: [{}],
 	},
 	mutations: {
 		UpdateNumberOfProducts(state, numberOfProducts) {
