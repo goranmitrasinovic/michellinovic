@@ -7,13 +7,17 @@
         </div>
       </div>
       <v-list-tile>
-        <div class="participant participant-home">{{$store.getters.user1.name}}</div>
+        <div class="participant participant-home">
+          <span class="participant-name">{{$store.getters.user1.name}}</span>
+        </div>
         <v-list-tile-content class="score-container">
           <div class="score-box">{{competition.score_home}}</div>
           <span>-</span>
           <div class="score-box">{{competition.score_away}}</div>
         </v-list-tile-content>
-        <div class="participant participant-away">{{$store.getters.user2.name}}</div>
+        <div class="participant participant-away">
+          <span class="participant-name">{{$store.getters.user2.name}}</span>
+        </div>
       </v-list-tile>
     </v-card>
     <v-divider></v-divider>
@@ -194,5 +198,21 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
   font-weight: bold;
+}
+@media screen and (max-width: 992px) {
+  .participant-name {
+    visibility: hidden;
+  }
+
+  .participant-name::first-letter {
+    visibility: visible;
+    padding: 20px;
+  }
+
+  .participant-home,
+  .participant-away {
+    clip-path: polygon(0% 0, 100% 0, 100% 100%, 0% 100%);
+    clip-path: none;
+  }
 }
 </style>

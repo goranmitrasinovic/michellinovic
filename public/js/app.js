@@ -2326,6 +2326,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -3322,7 +3326,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.outer-card[data-v-52e49ec4] {\n  box-shadow: none;\n  margin: 20px 5px;\n  border-radius: 10px;\n}\n.outer-card[data-v-52e49ec4] .v-list__tile {\n  padding: 0px;\n  border: 3px solid #3e3e3e;\n  border-radius: 15px;\n  height: 50px;\n  background: linear-gradient(\n    to bottom,\n    rgba(19, 19, 19, 1) 0%,\n    rgba(76, 76, 76, 1) 100%\n  );\n}\n.theme--light.v-sheet[data-v-52e49ec4] {\n  padding: 5px;\n  background-color: rgba(0, 0, 0, 0);\n}\n.participant[data-v-52e49ec4] {\n  display: flex;\n  flex: 4;\n  height: 100%;\n  align-items: center;\n  justify-content: center;\n  font-size: 18px;\n  color: rgb(47, 47, 47);\n}\n.sport-box[data-v-52e49ec4] {\n  text-align: center;\n  background: #55526f;\n  border-top-left-radius: 10px;\n  border-top-right-radius: 10px;\n  border-left: 2px solid #3e3e3e;\n  border-top: 2px solid #3e3e3e;\n  border-right: 2px solid #3e3e3e;\n  width: 33%;\n  padding: 10px;\n  margin: 0 auto;\n  color: white;\n  font-size: 18px;\n  font-weight: bold;\n}\n.participant-home[data-v-52e49ec4] {\n  -webkit-clip-path: polygon(0 0, 80% 0%, 100% 100%, 0% 100%);\n          clip-path: polygon(0 0, 80% 0%, 100% 100%, 0% 100%);\n  border-top-left-radius: 10px;\n  border-bottom-left-radius: 10px;\n  background: linear-gradient(\n    to right,\n    rgba(255, 149, 130, 1) 0%,\n    rgba(230, 78, 64, 1) 100%\n  );\n}\n.participant-away[data-v-52e49ec4] {\n  -webkit-clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);\n          clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);\n  border-top-right-radius: 10px;\n  border-bottom-right-radius: 10px;\n  background: linear-gradient(\n    to right,\n    rgba(69, 143, 222, 1) 0%,\n    rgba(130, 205, 255, 1) 100%\n  );\n}\n.v-card[data-v-52e49ec4]:hover {\n  cursor: pointer;\n}\n.score-container[data-v-52e49ec4] {\n  flex-direction: row;\n  align-items: center;\n  color: white;\n  background: linear-gradient(\n    to bottom,\n    rgba(19, 19, 19, 1) 0%,\n    rgba(76, 76, 76, 1) 100%\n  );\n}\n.score-box[data-v-52e49ec4] {\n  padding: 5px;\n  width: 75px;\n  white-space: nowrap;\n  text-align: center;\n  font-size: 24px;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  font-weight: bold;\n}\n", ""]);
+exports.push([module.i, "\n.outer-card[data-v-52e49ec4] {\n  box-shadow: none;\n  margin: 20px 5px;\n  border-radius: 10px;\n}\n.outer-card[data-v-52e49ec4] .v-list__tile {\n  padding: 0px;\n  border: 3px solid #3e3e3e;\n  border-radius: 15px;\n  height: 50px;\n  background: linear-gradient(\n    to bottom,\n    rgba(19, 19, 19, 1) 0%,\n    rgba(76, 76, 76, 1) 100%\n  );\n}\n.theme--light.v-sheet[data-v-52e49ec4] {\n  padding: 5px;\n  background-color: rgba(0, 0, 0, 0);\n}\n.participant[data-v-52e49ec4] {\n  display: flex;\n  flex: 4;\n  height: 100%;\n  align-items: center;\n  justify-content: center;\n  font-size: 18px;\n  color: rgb(47, 47, 47);\n}\n.sport-box[data-v-52e49ec4] {\n  text-align: center;\n  background: #55526f;\n  border-top-left-radius: 10px;\n  border-top-right-radius: 10px;\n  border-left: 2px solid #3e3e3e;\n  border-top: 2px solid #3e3e3e;\n  border-right: 2px solid #3e3e3e;\n  width: 33%;\n  padding: 10px;\n  margin: 0 auto;\n  color: white;\n  font-size: 18px;\n  font-weight: bold;\n}\n.participant-home[data-v-52e49ec4] {\n  -webkit-clip-path: polygon(0 0, 80% 0%, 100% 100%, 0% 100%);\n          clip-path: polygon(0 0, 80% 0%, 100% 100%, 0% 100%);\n  border-top-left-radius: 10px;\n  border-bottom-left-radius: 10px;\n  background: linear-gradient(\n    to right,\n    rgba(255, 149, 130, 1) 0%,\n    rgba(230, 78, 64, 1) 100%\n  );\n}\n.participant-away[data-v-52e49ec4] {\n  -webkit-clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);\n          clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);\n  border-top-right-radius: 10px;\n  border-bottom-right-radius: 10px;\n  background: linear-gradient(\n    to right,\n    rgba(69, 143, 222, 1) 0%,\n    rgba(130, 205, 255, 1) 100%\n  );\n}\n.v-card[data-v-52e49ec4]:hover {\n  cursor: pointer;\n}\n.score-container[data-v-52e49ec4] {\n  flex-direction: row;\n  align-items: center;\n  color: white;\n  background: linear-gradient(\n    to bottom,\n    rgba(19, 19, 19, 1) 0%,\n    rgba(76, 76, 76, 1) 100%\n  );\n}\n.score-box[data-v-52e49ec4] {\n  padding: 5px;\n  width: 75px;\n  white-space: nowrap;\n  text-align: center;\n  font-size: 24px;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  font-weight: bold;\n}\n@media screen and (max-width: 992px) {\n.participant-name[data-v-52e49ec4] {\n    visibility: hidden;\n}\n.participant-name[data-v-52e49ec4]::first-letter {\n    visibility: visible;\n    padding: 20px;\n}\n.participant-home[data-v-52e49ec4],\n  .participant-away[data-v-52e49ec4] {\n    -webkit-clip-path: polygon(0% 0, 100% 0, 100% 100%, 0% 100%);\n            clip-path: polygon(0% 0, 100% 0, 100% 100%, 0% 100%);\n    -webkit-clip-path: none;\n            clip-path: none;\n}\n}\n", ""]);
 
 // exports
 
@@ -6749,7 +6753,9 @@ var render = function() {
             "v-list-tile",
             [
               _c("div", { staticClass: "participant participant-home" }, [
-                _vm._v(_vm._s(_vm.$store.getters.user1.name))
+                _c("span", { staticClass: "participant-name" }, [
+                  _vm._v(_vm._s(_vm.$store.getters.user1.name))
+                ])
               ]),
               _vm._v(" "),
               _c("v-list-tile-content", { staticClass: "score-container" }, [
@@ -6765,7 +6771,9 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "participant participant-away" }, [
-                _vm._v(_vm._s(_vm.$store.getters.user2.name))
+                _c("span", { staticClass: "participant-name" }, [
+                  _vm._v(_vm._s(_vm.$store.getters.user2.name))
+                ])
               ])
             ],
             1
