@@ -52,13 +52,13 @@
             </v-flex>
           </v-layout>
         </gmModal>
-        <v-flex sm6 xs12 class="text-sm-left text-xs-center">
+        <v-flex sm6 class="text-sm-left text-xs-center">
           <v-btn @click="$refs.calendar.prev()">
             <v-icon dark left>keyboard_arrow_left</v-icon>Prev
           </v-btn>
         </v-flex>
 
-        <v-flex sm6 xs12 class="text-sm-right text-xs-center">
+        <v-flex sm6 class="text-sm-right text-xs-center">
           <v-btn @click="$refs.calendar.next()">
             Next
             <v-icon right dark>keyboard_arrow_right</v-icon>
@@ -229,5 +229,12 @@ export default {
 .icon-area {
   background: gainsboro;
   padding: 2px 10px;
+}
+
+@media screen and (max-width: 992px) {
+  .v-calendar >>> .v-calendar-weekly__day-month {
+    font-size: 12px;
+    position: static;
+  }
 }
 </style>
