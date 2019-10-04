@@ -7519,7 +7519,7 @@ var render = function() {
                     }),
                     _vm._v(" "),
                     !_vm.dailys.length
-                      ? _c("span", [_vm._v("There are now events today")])
+                      ? _c("span", [_vm._v("There are no events today")])
                       : _vm._e()
                   ],
                   2

@@ -20,7 +20,7 @@
           <div class="number-text">
             <div class="header">Events today</div>
             <div class="event" v-for="daily in dailys" :key="daily.id">{{daily.title}}</div>
-            <span v-if="!dailys.length">There are now events today</span>
+            <span v-if="!dailys.length">There are no events today</span>
           </div>
         </gmCard>
       </v-flex>
