@@ -203,7 +203,7 @@ export default {
 }
 
 .empty-cart-icon {
-  font-size: 250px;
+  font-size: 200px;
 }
 
 .empty-cart-text {
@@ -218,5 +218,14 @@ export default {
 
 .product {
   margin: 10px;
+}
+
+@media screen and (max-width: 992px) {
+  .empty-cart-icon {
+    font-size: 26px;
+  }
+  .empty-cart-text {
+    font-size: 22px;
+  }
 }
 </style>
