@@ -16,7 +16,6 @@ class CreateShoppingListTable extends Migration
         Schema::create('shopping_list', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedBigInteger('product_id');
-            // $table->foreign('product_id')->references('id')->on('product');
             $table->timestamps();
         });
     }

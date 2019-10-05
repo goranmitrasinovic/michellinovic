@@ -18,20 +18,37 @@ class ProductController extends Controller
         return $products;
     }
 
-    public function getUnCompletedProducts(){
-        $products = Product::where('completed', 0)->get();
-        return $products;
-    }
-
     /**
-     * Show the form for creating a new resource.
+     * Get specific category of products
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function getOtherProducts()
     {
+        $products = Product::where([['category', 'Other'], ['completed', 0]])->get();
+        return $products;
+    }
 
+      /**
+     * Get specific category of products
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getGroceryProducts()
+    {
+        $products = Product::where([['category', 'Grocery'], ['completed', 0]])->get();
+        return $products;
+    }
 
+      /**
+     * Get specific category of products
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getClothesProducts()
+    {
+        $products = Product::where([['category', 'Clothes'], ['completed', 0]])->get();
+        return $products;
     }
 
     /**
@@ -43,7 +60,11 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $product = Product::updateOrCreate(['name' => $request->name],
-        ['name' => $request->name, 'completed' => 0, 'quantity' => $request->quantity]);
+        ['name' => $request->name, 
+        'completed' => 0, 
+        'quantity' => $request->quantity,
+        'category' => $request->category,
+        ]);
     }
 
     /**

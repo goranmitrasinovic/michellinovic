@@ -8,7 +8,9 @@
           </div>
           <div class="number-text">
             <div class="header">Shoppinglist</div>
-            <div>{{$store.getters.numberOfProducts}}</div>
+            <div>Grocery: {{$store.getters.numberOfGroceryProducts}}</div>
+            <div>Clothes: {{$store.getters.numberOfClothesProducts}}</div>
+            <div>Other: {{$store.getters.numberOfOtherProducts}}</div>
           </div>
         </gmCard>
       </v-flex>
@@ -44,7 +46,7 @@ export default {
 
   computed: {
     productsCount() {
-      return this.$store.getters.numberOfProducts;
+      return this.$store.getters.numberOfGroceryProducts;
     },
     // Get all events that matches todays date
     dailys() {

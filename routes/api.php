@@ -18,7 +18,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/shopping-list', 'ShoppingListController@index');
-Route::get('/shopping-list/uncompleted', 'ProductController@getUnCompletedProducts');
+Route::get('/shopping-list/other-products', 'ProductController@getOtherProducts');
+Route::get('/shopping-list/grocery-products', 'ProductController@getGroceryProducts');
+Route::get('/shopping-list/clothes-products', 'ProductController@getClothesProducts');
 Route::put('/shopping-list/product/{id}', 'ProductController@completePurchase');
 Route::put('/shopping-list/edit-product/{id}', 'ProductController@update');
 Route::put('/shopping-list/clear-list', 'ProductController@clearShoppingListOfProducts');

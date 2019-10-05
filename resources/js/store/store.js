@@ -5,14 +5,22 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
 	state: {
-		numberOfProducts: 0,
+		numberOfGroceryProducts: 0,
+		numberOfClothesProducts: 0,
+		numberOfOtherProducts: 0,
 		user1: {},
 		user2: {},
 		todaysEvents: [{}],
 	},
 	mutations: {
-		UpdateNumberOfProducts(state, numberOfProducts) {
-			state.numberOfProducts = numberOfProducts;
+		UpdateNumberOfGroceryProducts(state, numberOfGroceryProducts) {
+			state.numberOfGroceryProducts = numberOfGroceryProducts;
+		},
+		UpdateNumberOfClothesProducts(state, numberOfClothesProducts) {
+			state.numberOfClothesProducts = numberOfClothesProducts;
+		},
+		UpdateNumberOfOtherProducts(state, numberOfOtherProducts) {
+			state.numberOfOtherProducts = numberOfOtherProducts;
 		},
 		UpdateUser1(state, user1) {
 			state.user1 = user1;
@@ -25,7 +33,9 @@ export const store = new Vuex.Store({
 		}
 	},
 	getters: {
-		numberOfProducts: state => state.numberOfProducts,
+		numberOfGroceryProducts: state => state.numberOfGroceryProducts,
+		numberOfClothesProducts: state => state.numberOfClothesProducts,
+		numberOfOtherProducts: state => state.numberOfOtherProducts,
 		user1: state => state.user1,
 		user2: state => state.user2,
 		todaysEvents: state => state.todaysEvents

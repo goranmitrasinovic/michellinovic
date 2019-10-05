@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="test">
     <v-list two-line>
       <v-list-tile class="product-container">
         <v-list-tile-action
@@ -116,7 +116,6 @@ export default {
 .theme--light.v-list {
   background: white;
   border-radius: 10px;
-  margin: 10px;
   padding: 0px;
 }
 
@@ -131,6 +130,7 @@ export default {
   flex: none;
   display: block;
   margin: 0 auto;
+  transition: 0.35s all;
 }
 
 .v-list >>> .v-list__tile__content {
@@ -166,13 +166,19 @@ export default {
 .checkbox-container {
   background: #e5fff4;
   border: 1px solid #1ea95e;
-  border-bottom-left-radius: 10px;
-  border-top-left-radius: 10px;
   justify-content: center;
+  box-shadow: none;
+  transition: box-shadow 0.15s;
 }
 
 .checkbox-container:hover {
   cursor: pointer;
+  box-shadow: inset -1px 7px 51px -24px rgba(58, 255, 107, 0.75);
+}
+
+.checkbox-container:hover .v-input--checkbox {
+  animation: scale 0.15s;
+  transition-timing-function: ease-out;
 }
 
 .v-input >>> .v-input--selection-controls__input {
@@ -188,5 +194,23 @@ export default {
 .action-container-edit {
   border: none;
   justify-content: center !important;
+}
+
+@keyframes scale {
+  0% {
+    transform: scale3d(1, 1, 1);
+  }
+  25% {
+    transform: scale3d(1.25, 1.25, 1.25);
+  }
+  50% {
+    transform: scale3d(1, 1, 1);
+  }
+  75% {
+    transform: scale3d(0.75, 0.75, 0.75);
+  }
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
 }
 </style>
