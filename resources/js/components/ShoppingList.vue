@@ -40,7 +40,7 @@
               Other
               <v-icon>shopping_basket</v-icon>
             </v-tab>
-            <v-tab-item :value="'tab-grocery'">
+            <v-tab-item class="tab-content-container" :value="'tab-grocery'">
               <v-card flat>
                 <transition-group name="card">
                   <Product
@@ -53,7 +53,7 @@
                 </transition-group>
               </v-card>
             </v-tab-item>
-            <v-tab-item :value="'tab-clothes'">
+            <v-tab-item class="tab-content-container" :value="'tab-clothes'">
               <v-card flat>
                 <transition-group name="1">
                   <Product
@@ -66,7 +66,7 @@
                 </transition-group>
               </v-card>
             </v-tab-item>
-            <v-tab-item :value="'tab-other'">
+            <v-tab-item class="tab-content-container" :value="'tab-other'">
               <v-card flat>
                 <transition-group name="2">
                   <Product
@@ -302,6 +302,10 @@ export default {
   border: 2px solid #3f51b5;
 }
 
+.tab-content-container {
+  padding: 20px 0px;
+}
+
 .search-card {
   padding: 10px;
   display: flex;
@@ -346,6 +350,10 @@ export default {
 
 .product {
   margin: 10px;
+}
+
+.v-tabs >>> .v-tabs__bar {
+  box-shadow: 0px 3px 8px 0px grey;
 }
 
 #tab-other {
