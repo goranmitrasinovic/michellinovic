@@ -24,7 +24,7 @@
       <v-flex xs12 sm8 offset-sm2>
         <gmCard :title="'Shopping list'" :menuItems="menuItems" @clicked="action">
           <v-tabs centered color="light-blue darken-1" dark icons-and-text grow>
-            <v-tabs-slider color="blue darken-4"></v-tabs-slider>
+            <v-tabs-slider color="white"></v-tabs-slider>
 
             <v-tab href="#tab-grocery" @click="updateCategory('Grocery')">
               Groceries
