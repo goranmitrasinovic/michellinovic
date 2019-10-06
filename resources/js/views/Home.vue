@@ -1,23 +1,34 @@
 <template>
   <v-container fluid grid-list-md>
     <v-layout justify-center row wrap>
-      <v-flex xs12 sm4>
+      <v-flex xs12 sm5>
         <gmCard :hideMenu="true">
           <div class="icon-container">
-            <v-icon class="empty-cart-icon" color="orange">shopping_cart</v-icon>
+            <v-icon class="resume-icon" color="orange">shopping_cart</v-icon>
           </div>
           <div class="number-text">
-            <div class="header">Shoppinglist</div>
-            <div>Grocery: {{$store.getters.numberOfGroceryProducts}}</div>
-            <div>Clothes: {{$store.getters.numberOfClothesProducts}}</div>
-            <div>Other: {{$store.getters.numberOfOtherProducts}}</div>
+            <div class="header">Products in shopping lists</div>
+            <div class="resume-container">
+              <v-flex sm4>
+                Grocery:
+                <div>{{$store.getters.numberOfGroceryProducts}}</div>
+              </v-flex>
+              <v-flex sm4>
+                Clothes:
+                <div>{{$store.getters.numberOfClothesProducts}}</div>
+              </v-flex>
+              <v-flex sm4>
+                Other:
+                <div>{{$store.getters.numberOfOtherProducts}}</div>
+              </v-flex>
+            </div>
           </div>
         </gmCard>
       </v-flex>
-      <v-flex xs12 sm4>
+      <v-flex xs12 sm5>
         <gmCard :hideMenu="true">
           <div class="icon-container">
-            <v-icon class="empty-cart-icon" color="primary">calendar_today</v-icon>
+            <v-icon class="resume-icon" color="primary">calendar_today</v-icon>
           </div>
           <div class="number-text">
             <div class="header">Events today</div>
@@ -78,18 +89,32 @@ export default {
   font-size: 18px;
 }
 
-.empty-cart-icon {
-  font-size: 30px;
-  margin: 0px 20px 0px 0px;
+.icon-container {
+  text-align: center;
+}
+
+.resume-container {
+  display: flex;
+}
+
+.resume-icon {
+  font-size: 42px;
 }
 
 .header {
   color: grey;
   font-size: 14px;
+  text-align: center;
   text-transform: uppercase;
 }
 
 .number-text {
   font-size: 20px;
+}
+
+@media screen and (max-width: 992px) {
+  .resume-icon {
+    font-size: 18px;
+  }
 }
 </style>
