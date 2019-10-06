@@ -213,4 +213,10 @@ export default {
     transform: scale3d(1, 1, 1);
   }
 }
+
+@media screen and (max-width: 992px) {
+  .v-list__tile__title {
+    font-size: 16px;
+  }
+}
 </style>

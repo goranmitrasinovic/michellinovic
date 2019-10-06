@@ -93,15 +93,16 @@
                     prepend-inner-icon="shopping_cart"
                   ></v-combobox>
                 </v-flex>
-                <v-flex sm4>
-                  <v-text-field label="Category" v-model="product.category"></v-text-field>
-                </v-flex>
-                <v-flex sm2>
+
+                <v-flex sm3>
                   <v-text-field
                     label="Amount"
                     prepend-inner-icon="exposure"
                     v-model="product.quantity"
                   ></v-text-field>
+                </v-flex>
+                <v-flex sm3>
+                  <v-text-field disabled label="Category" v-model="product.category"></v-text-field>
                 </v-flex>
                 <v-flex sm2>
                   <gmButton
