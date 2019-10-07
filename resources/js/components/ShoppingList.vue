@@ -26,7 +26,7 @@
           <v-tabs centered color="light-blue darken-1" dark icons-and-text grow>
             <v-tabs-slider color="white"></v-tabs-slider>
 
-            <v-tab href="#tab-grocery" @click="updateCategory('Grocery')">
+            <v-tab href="#tab-grocery" id="tab-grocery" @click="updateCategory('Grocery')">
               Groceries
               <v-icon>restaurant</v-icon>
             </v-tab>
@@ -360,6 +360,18 @@ export default {
 #tab-other {
   background: #3bc3aa;
 }
+
+#tab-other i {
+  /* font-size: 100%; */
+  transition: all 0.1s;
+}
+
+#tab-other:hover i,
+#tab-grocery:hover i,
+#tab-clothes:hover i {
+  font-size: 225%;
+}
+
 #tab-clothes {
   background: #ea5c8a;
 }

@@ -2190,7 +2190,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -2200,10 +2199,11 @@ __webpack_require__.r(__webpack_exports__);
   name: "ShoppingList",
   data: function data() {
     return {
-      shoppingList: [],
       fetching: true,
       products: [],
-      product: {},
+      product: {
+        category: "Grocery"
+      },
       otherProducts: [],
       groceryProducts: [],
       clothesProducts: [],
@@ -2221,13 +2221,13 @@ __webpack_require__.r(__webpack_exports__);
     gmSnackbar: _base_components_gmSnackbar__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   mounted: function mounted() {
-    this.getShoppingList();
     this.getAllProducts();
-    this.getOtherProducts();
-    this.getGroceryProducts();
-    this.getClothesProducts();
   },
   methods: {
+    updateCategory: function updateCategory(category) {
+      this.product.category = category;
+      return this.product;
+    },
     clearList: function clearList(shoppingList) {
       var _this = this;
 
@@ -2262,22 +2262,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios__WEBPACK_IMPORTED_MODULE_4___default.a.get("api/shopping-list/clothes-products").then(function (response) {
         _this4.clothesProducts = response.data;
-        console.log(_this4.clothesProducts);
         _this4.fetching = false;
-      }).catch(function (error) {
-        // handle error
-        console.log(error);
-      }).then(function () {});
-    },
-    getShoppingList: function getShoppingList() {
-      var _this5 = this;
-
-      axios__WEBPACK_IMPORTED_MODULE_4___default.a.get("api/shopping-list/uncompleted").then(function (response) {
-        _this5.shoppingList = response.data;
-
-        _this5.$store.commit("UpdateNumberOfProducts", _this5.shoppingList.length);
-
-        _this5.fetching = false;
       }).catch(function (error) {
         // handle error
         console.log(error);
@@ -2291,22 +2276,15 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     getAllProducts: function getAllProducts() {
-      var _this6 = this;
-
-      axios__WEBPACK_IMPORTED_MODULE_4___default.a.get("api/products").then(function (response) {
-        _this6.products = response.data;
-      }).catch(function (error) {
-        // handle error
-        console.log(error);
-      }).then(function () {// always executed
-      });
+      this.getOtherProducts();
+      this.getGroceryProducts();
+      this.getClothesProducts();
     },
     searchProducts: function searchProducts() {
-      var _this7 = this;
+      var _this5 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_4___default.a.get("https://se.openfoodfacts.org/cgi/search.pl?search_terms=" + this.searchString + "&search_simple=1&action=process&json=1").then(function (response) {
-        console.log(response.data.products);
-        _this7.searchResults = response.data.products;
+        _this5.searchResults = response.data.products;
       }).catch(function (error) {
         // handle error
         console.log(error);
@@ -2314,17 +2292,17 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     addProductToShoppingList: function addProductToShoppingList(product) {
-      var _this8 = this;
+      var _this6 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_4___default.a.post("api/product/create", product).then(function (response) {
-        _this8.getShoppingList();
-
         product.quantity = "";
         product.name = "";
 
-        _this8.$refs.snackbarSuccess.toogleSnackbar();
+        _this6.getAllProducts();
+
+        _this6.$refs.snackbarSuccess.toogleSnackbar();
       }).catch(function (error) {
-        _this8.$refs.snackbarFailure.toogleSnackbar();
+        _this6.$refs.snackbarFailure.toogleSnackbar();
       }).then(function () {});
     }
   }
@@ -2603,8 +2581,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.getUsers();
-    this.getShoppingList();
     this.getEvents();
+    this.getOtherProducts();
+    this.getGroceryProducts();
+    this.getClothesProducts();
   },
   methods: {
     getUsers: function getUsers() {
@@ -2633,13 +2613,50 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function () {// always executed
       });
     },
-    getShoppingList: function getShoppingList() {
+    // getShoppingList() {
+    //   axios
+    //     .get("api/shopping-list/uncompleted")
+    //     .then(response => {
+    //       this.shoppingList = response.data;
+    //       this.$store.commit("UpdateNumberOfProducts", this.numberOfProducts);
+    //     })
+    //     .catch(function(error) {
+    //       // handle error
+    //       console.log(error);
+    //     })
+    //     .then(function() {});
+    // },
+    getOtherProducts: function getOtherProducts() {
       var _this3 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("api/shopping-list/uncompleted").then(function (response) {
-        _this3.shoppingList = response.data;
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("api/shopping-list/other-products").then(function (response) {
+        _this3.numberOfOtherProducts = response.data;
 
-        _this3.$store.commit("UpdateNumberOfProducts", _this3.numberOfProducts);
+        _this3.$store.commit("UpdateNumberOfOtherProducts", _this3.numberOfOtherProducts.length);
+      }).catch(function (error) {
+        // handle error
+        console.log(error);
+      }).then(function () {});
+    },
+    getGroceryProducts: function getGroceryProducts() {
+      var _this4 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("api/shopping-list/grocery-products").then(function (response) {
+        _this4.numberOfGroceryProducts = response.data;
+
+        _this4.$store.commit("UpdateNumberOfGroceryProducts", _this4.numberOfGroceryProducts.length);
+      }).catch(function (error) {
+        // handle error
+        console.log(error);
+      }).then(function () {});
+    },
+    getClothesProducts: function getClothesProducts() {
+      var _this5 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("api/shopping-list/clothes-products").then(function (response) {
+        _this5.numberOfClothesProducts = response.data;
+
+        _this5.$store.commit("UpdateNumberOfClothesProducts", _this5.numberOfClothesProducts.length);
       }).catch(function (error) {
         // handle error
         console.log(error);
@@ -3037,6 +3054,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3050,7 +3080,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     productsCount: function productsCount() {
-      return this.$store.getters.numberOfProducts;
+      return this.$store.getters.numberOfGroceryProducts;
     },
     // Get all events that matches todays date
     dailys: function dailys() {
@@ -3423,7 +3453,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.slide-fade-enter-active[data-v-7e94e6d4] {\n  transition: all 1s ease;\n}\n.slide-fade-leave-active[data-v-7e94e6d4] {\n  transition: all 1s cubic-bezier(1, 0.5, 0.8, 1);\n}\n.slide-fade-enter[data-v-7e94e6d4],\n.slide-fade-leave-to[data-v-7e94e6d4] {\n  -webkit-transform: translateX(10px);\n          transform: translateX(10px);\n  opacity: 0;\n}\n.completed[data-v-7e94e6d4] {\n  text-decoration: line-through;\n}\n.theme--light.v-list[data-v-7e94e6d4] {\n  background: white;\n  border-radius: 10px;\n  padding: 0px;\n}\n.v-list__tile__title[data-v-7e94e6d4] {\n  letter-spacing: 0.5px;\n  margin: 10px;\n  font-size: 22px;\n  color: #585858;\n}\n.v-input--checkbox[data-v-7e94e6d4] {\n  flex: none;\n  display: block;\n  margin: 0 auto;\n  transition: 0.35s all;\n}\n.v-list[data-v-7e94e6d4] .v-list__tile__content {\n  border: 1px solid gainsboro;\n  box-shadow: inset 0px -39px 98px -38px rgba(139, 213, 240, 0.46);\n}\n.theme--light.edit-icon[data-v-7e94e6d4] {\n  color: white;\n  padding: 10px;\n}\n.edit-input[data-v-7e94e6d4] {\n  margin: 10px;\n}\n.v-list__tile__avatar[data-v-7e94e6d4] {\n  justify-content: center;\n}\n.v-input--selection-controls__ripple[data-v-7e94e6d4] {\n  position: inherit;\n}\n.v-list[data-v-7e94e6d4] .v-input--selection-controls__ripple {\n  margin-right: 0px;\n}\n.v-list[data-v-7e94e6d4] .v-list__tile__action--stack {\n  align-items: center;\n}\n.checkbox-container[data-v-7e94e6d4] {\n  background: #e5fff4;\n  border: 1px solid #1ea95e;\n  justify-content: center;\n  box-shadow: none;\n  transition: box-shadow 0.15s;\n}\n.checkbox-container[data-v-7e94e6d4]:hover {\n  cursor: pointer;\n  box-shadow: inset -1px 7px 51px -24px rgba(58, 255, 107, 0.75);\n}\n.checkbox-container:hover .v-input--checkbox[data-v-7e94e6d4] {\n  -webkit-animation: scale-data-v-7e94e6d4 0.15s;\n          animation: scale-data-v-7e94e6d4 0.15s;\n  transition-timing-function: ease-out;\n}\n.v-input[data-v-7e94e6d4] .v-input--selection-controls__input {\n  margin-right: 0px !important;\n}\n.action-container[data-v-7e94e6d4] {\n  background: #1976d2;\n  justify-content: center !important;\n  border: 1px solid #1450d1;\n}\n.action-container-edit[data-v-7e94e6d4] {\n  border: none;\n  justify-content: center !important;\n}\n@-webkit-keyframes scale-data-v-7e94e6d4 {\n0% {\n    -webkit-transform: scale3d(1, 1, 1);\n            transform: scale3d(1, 1, 1);\n}\n25% {\n    -webkit-transform: scale3d(1.25, 1.25, 1.25);\n            transform: scale3d(1.25, 1.25, 1.25);\n}\n50% {\n    -webkit-transform: scale3d(1, 1, 1);\n            transform: scale3d(1, 1, 1);\n}\n75% {\n    -webkit-transform: scale3d(0.75, 0.75, 0.75);\n            transform: scale3d(0.75, 0.75, 0.75);\n}\n100% {\n    -webkit-transform: scale3d(1, 1, 1);\n            transform: scale3d(1, 1, 1);\n}\n}\n@keyframes scale-data-v-7e94e6d4 {\n0% {\n    -webkit-transform: scale3d(1, 1, 1);\n            transform: scale3d(1, 1, 1);\n}\n25% {\n    -webkit-transform: scale3d(1.25, 1.25, 1.25);\n            transform: scale3d(1.25, 1.25, 1.25);\n}\n50% {\n    -webkit-transform: scale3d(1, 1, 1);\n            transform: scale3d(1, 1, 1);\n}\n75% {\n    -webkit-transform: scale3d(0.75, 0.75, 0.75);\n            transform: scale3d(0.75, 0.75, 0.75);\n}\n100% {\n    -webkit-transform: scale3d(1, 1, 1);\n            transform: scale3d(1, 1, 1);\n}\n}\n", ""]);
+exports.push([module.i, "\n.slide-fade-enter-active[data-v-7e94e6d4] {\n  transition: all 1s ease;\n}\n.slide-fade-leave-active[data-v-7e94e6d4] {\n  transition: all 1s cubic-bezier(1, 0.5, 0.8, 1);\n}\n.slide-fade-enter[data-v-7e94e6d4],\n.slide-fade-leave-to[data-v-7e94e6d4] {\n  -webkit-transform: translateX(10px);\n          transform: translateX(10px);\n  opacity: 0;\n}\n.completed[data-v-7e94e6d4] {\n  text-decoration: line-through;\n}\n.theme--light.v-list[data-v-7e94e6d4] {\n  background: white;\n  border-radius: 10px;\n  padding: 0px;\n}\n.v-list__tile__title[data-v-7e94e6d4] {\n  letter-spacing: 0.5px;\n  margin: 10px;\n  font-size: 22px;\n  color: #585858;\n}\n.v-input--checkbox[data-v-7e94e6d4] {\n  flex: none;\n  display: block;\n  margin: 0 auto;\n  transition: 0.35s all;\n}\n.v-list[data-v-7e94e6d4] .v-list__tile__content {\n  border: 1px solid gainsboro;\n  box-shadow: inset 0px -39px 98px -38px rgba(139, 213, 240, 0.46);\n}\n.theme--light.edit-icon[data-v-7e94e6d4] {\n  color: white;\n  padding: 10px;\n}\n.edit-input[data-v-7e94e6d4] {\n  margin: 10px;\n}\n.v-list__tile__avatar[data-v-7e94e6d4] {\n  justify-content: center;\n}\n.v-input--selection-controls__ripple[data-v-7e94e6d4] {\n  position: inherit;\n}\n.v-list[data-v-7e94e6d4] .v-input--selection-controls__ripple {\n  margin-right: 0px;\n}\n.v-list[data-v-7e94e6d4] .v-list__tile__action--stack {\n  align-items: center;\n}\n.checkbox-container[data-v-7e94e6d4] {\n  background: #e5fff4;\n  border: 1px solid #1ea95e;\n  justify-content: center;\n  box-shadow: none;\n  transition: box-shadow 0.15s;\n}\n.checkbox-container[data-v-7e94e6d4]:hover {\n  cursor: pointer;\n  box-shadow: inset -1px 7px 51px -24px rgba(58, 255, 107, 0.75);\n}\n.checkbox-container:hover .v-input--checkbox[data-v-7e94e6d4] {\n  -webkit-animation: scale-data-v-7e94e6d4 0.15s;\n          animation: scale-data-v-7e94e6d4 0.15s;\n  transition-timing-function: ease-out;\n}\n.v-input[data-v-7e94e6d4] .v-input--selection-controls__input {\n  margin-right: 0px !important;\n}\n.action-container[data-v-7e94e6d4] {\n  background: #1976d2;\n  justify-content: center !important;\n  border: 1px solid #1450d1;\n}\n.action-container-edit[data-v-7e94e6d4] {\n  border: none;\n  justify-content: center !important;\n}\n@-webkit-keyframes scale-data-v-7e94e6d4 {\n0% {\n    -webkit-transform: scale3d(1, 1, 1);\n            transform: scale3d(1, 1, 1);\n}\n25% {\n    -webkit-transform: scale3d(1.25, 1.25, 1.25);\n            transform: scale3d(1.25, 1.25, 1.25);\n}\n50% {\n    -webkit-transform: scale3d(1, 1, 1);\n            transform: scale3d(1, 1, 1);\n}\n75% {\n    -webkit-transform: scale3d(0.75, 0.75, 0.75);\n            transform: scale3d(0.75, 0.75, 0.75);\n}\n100% {\n    -webkit-transform: scale3d(1, 1, 1);\n            transform: scale3d(1, 1, 1);\n}\n}\n@keyframes scale-data-v-7e94e6d4 {\n0% {\n    -webkit-transform: scale3d(1, 1, 1);\n            transform: scale3d(1, 1, 1);\n}\n25% {\n    -webkit-transform: scale3d(1.25, 1.25, 1.25);\n            transform: scale3d(1.25, 1.25, 1.25);\n}\n50% {\n    -webkit-transform: scale3d(1, 1, 1);\n            transform: scale3d(1, 1, 1);\n}\n75% {\n    -webkit-transform: scale3d(0.75, 0.75, 0.75);\n            transform: scale3d(0.75, 0.75, 0.75);\n}\n100% {\n    -webkit-transform: scale3d(1, 1, 1);\n            transform: scale3d(1, 1, 1);\n}\n}\n@media screen and (max-width: 992px) {\n.v-list__tile__title[data-v-7e94e6d4] {\n    font-size: 16px;\n}\n}\n", ""]);
 
 // exports
 
@@ -3442,7 +3472,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.bounce[data-v-28c1d9de] {\n  -webkit-animation-name: bounce;\n  animation-name: bounce;\n  -webkit-transform-origin: center bottom;\n  transform-origin: center bottom;\n}\n.add-product[data-v-28c1d9de] {\n  background: #fff;\n  border-bottom: 2px solid #3f51b5;\n}\n.card-enter-active[data-v-28c1d9de] {\n  position: absolute;\n}\n.search-card[data-v-28c1d9de] {\n  padding: 10px;\n  display: flex;\n}\n.search-card-text[data-v-28c1d9de] {\n  padding: 5px;\n}\n.card-leave-active[data-v-28c1d9de] {\n  position: absolute;\n  display: none;\n  right: 0;\n}\n.card-move[data-v-28c1d9de] {\n  transition: all 0.5s;\n}\n.theme--light.v-sheet[data-v-28c1d9de] {\n  margin: 10px;\n  padding-bottom: 10px;\n}\n.product[data-v-28c1d9de] .v-list--two-line .v-list__tile {\n  padding: 0px;\n  border-bottom-left-radius: 10px;\n}\n.empty-cart-icon[data-v-28c1d9de] {\n  font-size: 200px;\n}\n.empty-cart-text[data-v-28c1d9de] {\n  color: grey;\n  font-size: 32px;\n}\n.empty-cart-container[data-v-28c1d9de] {\n  text-align: center;\n  padding: 50px;\n}\n.product[data-v-28c1d9de] {\n  margin: 10px;\n}\n@media screen and (max-width: 992px) {\n.empty-cart-icon[data-v-28c1d9de] {\n    font-size: 26px;\n}\n.empty-cart-text[data-v-28c1d9de] {\n    font-size: 22px;\n}\n}\n", ""]);
+exports.push([module.i, "\n.bounce[data-v-28c1d9de] {\n  -webkit-animation-name: bounce;\n  animation-name: bounce;\n  -webkit-transform-origin: center bottom;\n  transform-origin: center bottom;\n}\n.add-product[data-v-28c1d9de] {\n  background: #ddecff;\n  border: 2px solid #3f51b5;\n}\n.card-enter-active[data-v-28c1d9de] {\n  position: absolute;\n}\n.v-tabs[data-v-28c1d9de] {\n  border: 2px solid #3f51b5;\n}\n.tab-content-container[data-v-28c1d9de] {\n  padding: 20px 0px;\n}\n.search-card[data-v-28c1d9de] {\n  padding: 10px;\n  display: flex;\n}\n.search-card-text[data-v-28c1d9de] {\n  padding: 5px;\n}\n.card-leave-active[data-v-28c1d9de] {\n  position: absolute;\n  display: none;\n  right: 0;\n}\n.card-move[data-v-28c1d9de] {\n  transition: all 0.5s;\n}\n.theme--light.v-sheet[data-v-28c1d9de] {\n  margin: 10px;\n}\n.product[data-v-28c1d9de] .v-list--two-line .v-list__tile {\n  padding: 0px;\n  border-bottom-left-radius: 10px;\n}\n.empty-cart-icon[data-v-28c1d9de] {\n  font-size: 200px;\n}\n.empty-cart-text[data-v-28c1d9de] {\n  color: grey;\n  font-size: 32px;\n}\n.empty-cart-container[data-v-28c1d9de] {\n  text-align: center;\n  padding: 50px;\n}\n.product[data-v-28c1d9de] {\n  margin: 10px;\n}\n.v-tabs[data-v-28c1d9de] .v-tabs__bar {\n  box-shadow: 0px 3px 8px 0px grey;\n}\n#tab-other[data-v-28c1d9de] {\n  background: #3bc3aa;\n}\n#tab-other i[data-v-28c1d9de] {\n  /* font-size: 100%; */\n  transition: all 0.1s;\n}\n#tab-other:hover i[data-v-28c1d9de] {\n  font-size: 225%;\n  color: red;\n}\n#tab-clothes[data-v-28c1d9de] {\n  background: #ea5c8a;\n}\n@media screen and (max-width: 992px) {\n.empty-cart-icon[data-v-28c1d9de] {\n    font-size: 26px;\n}\n.empty-cart-text[data-v-28c1d9de] {\n    font-size: 22px;\n}\n}\n", ""]);
 
 // exports
 
@@ -3575,7 +3605,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.v-card[data-v-63cd6604] {\n  padding: 10px;\n  align-items: stretch;\n}\n.event[data-v-63cd6604] {\n  background: #1867c0;\n  color: white;\n  padding: 10px;\n  margin: 5px 0px;\n  font-size: 18px;\n}\n.empty-cart-icon[data-v-63cd6604] {\n  font-size: 30px;\n  margin: 0px 20px 0px 0px;\n}\n.header[data-v-63cd6604] {\n  color: grey;\n  font-size: 14px;\n  text-transform: uppercase;\n}\n.number-text[data-v-63cd6604] {\n  font-size: 20px;\n}\n", ""]);
+exports.push([module.i, "\n.v-card[data-v-63cd6604] {\n  padding: 10px;\n  align-items: stretch;\n}\n.event[data-v-63cd6604] {\n  background: #1867c0;\n  color: white;\n  padding: 10px;\n  margin: 5px 0px;\n  font-size: 18px;\n}\n.icon-container[data-v-63cd6604] {\n  text-align: center;\n}\n.resume-container[data-v-63cd6604] {\n  display: flex;\n}\n.resume-icon[data-v-63cd6604] {\n  font-size: 42px;\n}\n.header[data-v-63cd6604] {\n  color: grey;\n  font-size: 14px;\n  text-align: center;\n  text-transform: uppercase;\n}\n.number-text[data-v-63cd6604] {\n  font-size: 20px;\n}\n@media screen and (max-width: 992px) {\n.resume-icon[data-v-63cd6604] {\n    font-size: 18px;\n}\n}\n", ""]);
 
 // exports
 
@@ -6584,28 +6614,273 @@ var render = function() {
         "div",
         [
           _c(
+            "v-text-field",
+            {
+              model: {
+                value: _vm.searchString,
+                callback: function($$v) {
+                  _vm.searchString = $$v
+                },
+                expression: "searchString"
+              }
+            },
+            [_vm._v("test")]
+          ),
+          _vm._v(" "),
+          _c(
+            "v-btn",
+            {
+              on: {
+                click: function($event) {
+                  return _vm.searchProducts(_vm.searchString)
+                }
+              }
+            },
+            [_vm._v("sök")]
+          ),
+          _vm._v(" "),
+          _c(
+            "v-container",
+            { attrs: { fluid: "", "grid-list-md": "" } },
+            [
+              _c(
+                "v-layout",
+                { attrs: { row: "", wrap: "" } },
+                _vm._l(_vm.searchResults, function(product) {
+                  return _c(
+                    "v-flex",
+                    {
+                      key: product.id,
+                      attrs: { xs12: "", xs6: "", md4: "", lg3: "" }
+                    },
+                    [
+                      _c("v-card", { staticClass: "search-card" }, [
+                        _c("img", { attrs: { src: product.image_small_url } }),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "search-card-text" }, [
+                          _vm._v(
+                            "\n            Name: " +
+                              _vm._s(product.product_name_sv) +
+                              "\n            "
+                          ),
+                          _c("br"),
+                          _vm._v(
+                            "\n            Ingredients: " +
+                              _vm._s(product.ingredients_text_sv) +
+                              "\n            "
+                          ),
+                          _c("br"),
+                          _vm._v(
+                            "\n            Sugar/100g: " +
+                              _vm._s(product.nutriments.sugars_100g) +
+                              "g\n          "
+                          )
+                        ])
+                      ])
+                    ],
+                    1
+                  )
+                }),
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
             "v-layout",
             { attrs: { row: "" } },
             [
               _c(
                 "v-flex",
-                { attrs: { xs12: "", sm6: "", "offset-sm3": "" } },
+                { attrs: { xs12: "", sm8: "", "offset-sm2": "" } },
                 [
                   _c(
                     "gmCard",
                     {
                       attrs: {
-                        title:
-                          "Shopping list " +
-                          "(" +
-                          _vm.$store.getters.numberOfProducts +
-                          " items" +
-                          ")",
+                        title: "Shopping list",
                         menuItems: _vm.menuItems
                       },
                       on: { clicked: _vm.action }
                     },
                     [
+                      _c(
+                        "v-tabs",
+                        {
+                          attrs: {
+                            centered: "",
+                            color: "light-blue darken-1",
+                            dark: "",
+                            "icons-and-text": "",
+                            grow: ""
+                          }
+                        },
+                        [
+                          _c("v-tabs-slider", { attrs: { color: "white" } }),
+                          _vm._v(" "),
+                          _c(
+                            "v-tab",
+                            {
+                              attrs: { href: "#tab-grocery" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.updateCategory("Grocery")
+                                }
+                              }
+                            },
+                            [
+                              _vm._v("\n            Groceries\n            "),
+                              _c("v-icon", [_vm._v("restaurant")])
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-tab",
+                            {
+                              attrs: {
+                                href: "#tab-clothes",
+                                id: "tab-clothes"
+                              },
+                              on: {
+                                click: function($event) {
+                                  return _vm.updateCategory("Clothes")
+                                }
+                              }
+                            },
+                            [
+                              _vm._v("\n            Clothes\n            "),
+                              _c("v-icon", [_vm._v("accessibility")])
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-tab",
+                            {
+                              attrs: { href: "#tab-other", id: "tab-other" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.updateCategory("Other")
+                                }
+                              }
+                            },
+                            [
+                              _vm._v("\n            Other\n            "),
+                              _c("v-icon", [_vm._v("shopping_basket")])
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-tab-item",
+                            {
+                              staticClass: "tab-content-container",
+                              attrs: { value: "tab-grocery" }
+                            },
+                            [
+                              _c(
+                                "v-card",
+                                { attrs: { flat: "" } },
+                                [
+                                  _c(
+                                    "transition-group",
+                                    { attrs: { name: "card" } },
+                                    _vm._l(_vm.groceryProducts, function(
+                                      product
+                                    ) {
+                                      return _c("Product", {
+                                        key: product.id,
+                                        staticClass: "product",
+                                        attrs: { product: product },
+                                        on: {
+                                          updateShoppingList: _vm.getAllProducts
+                                        }
+                                      })
+                                    }),
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-tab-item",
+                            {
+                              staticClass: "tab-content-container",
+                              attrs: { value: "tab-clothes" }
+                            },
+                            [
+                              _c(
+                                "v-card",
+                                { attrs: { flat: "" } },
+                                [
+                                  _c(
+                                    "transition-group",
+                                    { attrs: { name: "1" } },
+                                    _vm._l(_vm.clothesProducts, function(
+                                      product
+                                    ) {
+                                      return _c("Product", {
+                                        key: product.id,
+                                        staticClass: "product",
+                                        attrs: { product: product },
+                                        on: {
+                                          updateShoppingList: _vm.getAllProducts
+                                        }
+                                      })
+                                    }),
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-tab-item",
+                            {
+                              staticClass: "tab-content-container",
+                              attrs: { value: "tab-other" }
+                            },
+                            [
+                              _c(
+                                "v-card",
+                                { attrs: { flat: "" } },
+                                [
+                                  _c(
+                                    "transition-group",
+                                    { attrs: { name: "2" } },
+                                    _vm._l(_vm.otherProducts, function(
+                                      product
+                                    ) {
+                                      return _c("Product", {
+                                        key: product.id,
+                                        staticClass: "product",
+                                        attrs: { product: product },
+                                        on: {
+                                          updateShoppingList: _vm.getAllProducts
+                                        }
+                                      })
+                                    }),
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
                       _c(
                         "v-form",
                         [
@@ -6619,7 +6894,7 @@ var render = function() {
                                 [
                                   _c(
                                     "v-flex",
-                                    { attrs: { sm4: "", md5: "" } },
+                                    { attrs: { sm4: "" } },
                                     [
                                       _c("v-combobox", {
                                         attrs: {
@@ -6643,7 +6918,7 @@ var render = function() {
                                   _vm._v(" "),
                                   _c(
                                     "v-flex",
-                                    { attrs: { sm4: "", md5: "" } },
+                                    { attrs: { sm3: "" } },
                                     [
                                       _c("v-text-field", {
                                         attrs: {
@@ -6668,14 +6943,32 @@ var render = function() {
                                   _vm._v(" "),
                                   _c(
                                     "v-flex",
-                                    {
-                                      attrs: {
-                                        sm4: "",
-                                        md4: "",
-                                        lg3: "",
-                                        xl1: ""
-                                      }
-                                    },
+                                    { attrs: { sm3: "" } },
+                                    [
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          disabled: "",
+                                          label: "Category"
+                                        },
+                                        model: {
+                                          value: _vm.product.category,
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.product,
+                                              "category",
+                                              $$v
+                                            )
+                                          },
+                                          expression: "product.category"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-flex",
+                                    { attrs: { sm2: "" } },
                                     [
                                       _c(
                                         "gmButton",
@@ -6706,175 +6999,7 @@ var render = function() {
                           )
                         ],
                         1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-tabs",
-                        {
-                          attrs: {
-                            centered: "",
-                            color: "light-blue darken-1",
-                            dark: "",
-                            "icons-and-text": "",
-                            grow: ""
-                          }
-                        },
-                        [
-                          _c("v-tabs-slider", {
-                            attrs: { color: "light-blue lighten-4" }
-                          }),
-                          _vm._v(" "),
-                          _c(
-                            "v-tab",
-                            { attrs: { href: "#tab-1" } },
-                            [
-                              _vm._v("\n            Groceries\n            "),
-                              _c("v-icon", [_vm._v("restaurant")])
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-tab",
-                            { attrs: { href: "#tab-2" } },
-                            [
-                              _vm._v("\n            Clothes\n            "),
-                              _c("v-icon", [_vm._v("accessibility")])
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-tab",
-                            { attrs: { href: "#tab-3" } },
-                            [
-                              _vm._v("\n            Other\n            "),
-                              _c("v-icon", [_vm._v("shopping_basket")])
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-tab-item",
-                            { attrs: { value: "tab-1" } },
-                            [
-                              _c(
-                                "v-card",
-                                { attrs: { flat: "" } },
-                                [
-                                  _c(
-                                    "transition-group",
-                                    { attrs: { name: "card" } },
-                                    _vm._l(_vm.shoppingList, function(product) {
-                                      return _c("Product", {
-                                        key: product.id,
-                                        staticClass: "product",
-                                        attrs: { product: product },
-                                        on: {
-                                          updateShoppingList:
-                                            _vm.getShoppingList
-                                        }
-                                      })
-                                    }),
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-tab-item",
-                            { attrs: { value: "tab-2" } },
-                            [
-                              _c(
-                                "v-card",
-                                { attrs: { flat: "" } },
-                                [
-                                  _c(
-                                    "transition-group",
-                                    { attrs: { name: "1" } },
-                                    _vm._l(_vm.clothesProducts, function(
-                                      product
-                                    ) {
-                                      return _c("Product", {
-                                        key: product.id,
-                                        staticClass: "product",
-                                        attrs: { product: product },
-                                        on: {
-                                          updateShoppingList:
-                                            _vm.getShoppingList
-                                        }
-                                      })
-                                    }),
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-tab-item",
-                            { attrs: { value: "tab-3" } },
-                            [
-                              _c(
-                                "v-card",
-                                { attrs: { flat: "" } },
-                                [
-                                  _c(
-                                    "transition-group",
-                                    { attrs: { name: "2" } },
-                                    _vm._l(_vm.shoppingList, function(product) {
-                                      return _c("Product", {
-                                        key: product.id,
-                                        staticClass: "product",
-                                        attrs: { product: product },
-                                        on: {
-                                          updateShoppingList:
-                                            _vm.getShoppingList
-                                        }
-                                      })
-                                    }),
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _vm.shoppingList.length < 1
-                        ? _c(
-                            "div",
-                            { staticClass: "empty-cart-container" },
-                            [
-                              _c(
-                                "v-icon",
-                                {
-                                  staticClass: "empty-cart-icon",
-                                  attrs: { color: "green" }
-                                },
-                                [_vm._v("shopping_cart")]
-                              ),
-                              _vm._v(" "),
-                              _c("p", { staticClass: "empty-cart-text" }, [
-                                _vm._v(
-                                  "No items in your shoppinglist. Good job!"
-                                )
-                              ])
-                            ],
-                            1
-                          )
-                        : _vm._e()
+                      )
                     ],
                     1
                   )
@@ -7796,7 +7921,7 @@ var render = function() {
         [
           _c(
             "v-flex",
-            { attrs: { xs12: "", sm4: "" } },
+            { attrs: { xs12: "", sm5: "" } },
             [
               _c("gmCard", { attrs: { hideMenu: true } }, [
                 _c(
@@ -7806,7 +7931,7 @@ var render = function() {
                     _c(
                       "v-icon",
                       {
-                        staticClass: "empty-cart-icon",
+                        staticClass: "resume-icon",
                         attrs: { color: "orange" }
                       },
                       [_vm._v("shopping_cart")]
@@ -7817,12 +7942,42 @@ var render = function() {
                 _vm._v(" "),
                 _c("div", { staticClass: "number-text" }, [
                   _c("div", { staticClass: "header" }, [
-                    _vm._v("Shoppinglist")
+                    _vm._v("Products in shopping lists")
                   ]),
                   _vm._v(" "),
-                  _c("div", [
-                    _vm._v(_vm._s(_vm.$store.getters.numberOfProducts))
-                  ])
+                  _c(
+                    "div",
+                    { staticClass: "resume-container" },
+                    [
+                      _c("v-flex", { attrs: { sm4: "" } }, [
+                        _vm._v("\n              Grocery:\n              "),
+                        _c("div", [
+                          _vm._v(
+                            _vm._s(_vm.$store.getters.numberOfGroceryProducts)
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("v-flex", { attrs: { sm4: "" } }, [
+                        _vm._v("\n              Clothes:\n              "),
+                        _c("div", [
+                          _vm._v(
+                            _vm._s(_vm.$store.getters.numberOfClothesProducts)
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("v-flex", { attrs: { sm4: "" } }, [
+                        _vm._v("\n              Other:\n              "),
+                        _c("div", [
+                          _vm._v(
+                            _vm._s(_vm.$store.getters.numberOfOtherProducts)
+                          )
+                        ])
+                      ])
+                    ],
+                    1
+                  )
                 ])
               ])
             ],
@@ -7831,7 +7986,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "v-flex",
-            { attrs: { xs12: "", sm4: "" } },
+            { attrs: { xs12: "", sm5: "" } },
             [
               _c("gmCard", { attrs: { hideMenu: true } }, [
                 _c(
@@ -7841,7 +7996,7 @@ var render = function() {
                     _c(
                       "v-icon",
                       {
-                        staticClass: "empty-cart-icon",
+                        staticClass: "resume-icon",
                         attrs: { color: "primary" }
                       },
                       [_vm._v("calendar_today")]
@@ -50805,14 +50960,22 @@ __webpack_require__.r(__webpack_exports__);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
 var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   state: {
-    numberOfProducts: 0,
+    numberOfGroceryProducts: 0,
+    numberOfClothesProducts: 0,
+    numberOfOtherProducts: 0,
     user1: {},
     user2: {},
     todaysEvents: [{}]
   },
   mutations: {
-    UpdateNumberOfProducts: function UpdateNumberOfProducts(state, numberOfProducts) {
-      state.numberOfProducts = numberOfProducts;
+    UpdateNumberOfGroceryProducts: function UpdateNumberOfGroceryProducts(state, numberOfGroceryProducts) {
+      state.numberOfGroceryProducts = numberOfGroceryProducts;
+    },
+    UpdateNumberOfClothesProducts: function UpdateNumberOfClothesProducts(state, numberOfClothesProducts) {
+      state.numberOfClothesProducts = numberOfClothesProducts;
+    },
+    UpdateNumberOfOtherProducts: function UpdateNumberOfOtherProducts(state, numberOfOtherProducts) {
+      state.numberOfOtherProducts = numberOfOtherProducts;
     },
     UpdateUser1: function UpdateUser1(state, user1) {
       state.user1 = user1;
@@ -50825,8 +50988,14 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     }
   },
   getters: {
-    numberOfProducts: function numberOfProducts(state) {
-      return state.numberOfProducts;
+    numberOfGroceryProducts: function numberOfGroceryProducts(state) {
+      return state.numberOfGroceryProducts;
+    },
+    numberOfClothesProducts: function numberOfClothesProducts(state) {
+      return state.numberOfClothesProducts;
+    },
+    numberOfOtherProducts: function numberOfOtherProducts(state) {
+      return state.numberOfOtherProducts;
     },
     user1: function user1(state) {
       return state.user1;
