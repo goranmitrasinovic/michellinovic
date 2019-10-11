@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import Shoppinglist from "../components/ShoppingList.vue";
+import gmShoppinglist from "../components/gmShoppingList.vue";
 import gmButton from "../base_components/gmButton";
 import gmModal from "../base_components/gmModal";
 import gmCard from "../base_components/gmCard";
@@ -52,7 +52,7 @@ export default {
     gmButton,
     gmModal,
     gmCard,
-    Shoppinglist
+    gmShoppinglist
   },
 
   computed: {

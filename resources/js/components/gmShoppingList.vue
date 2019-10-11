@@ -40,42 +40,42 @@
               Other
               <v-icon>shopping_basket</v-icon>
             </v-tab>
-            <v-tab-item class="tab-content-container" :value="'tab-grocery'">
+            <v-tab-item class="tab-content-container grocery" :value="'tab-grocery'">
               <v-card flat>
                 <transition-group name="card">
-                  <Product
+                  <gm-product
                     class="product"
                     @updateShoppingList="getAllProducts"
                     v-for="product in groceryProducts"
                     :product="product"
                     :key="product.id"
-                  ></Product>
+                  ></gm-product>
                 </transition-group>
               </v-card>
             </v-tab-item>
-            <v-tab-item class="tab-content-container" :value="'tab-clothes'">
+            <v-tab-item class="tab-content-container clothes" :value="'tab-clothes'">
               <v-card flat>
                 <transition-group name="1">
-                  <Product
+                  <gm-product
                     class="product"
                     @updateShoppingList="getAllProducts"
                     v-for="product in clothesProducts"
                     :product="product"
                     :key="product.id"
-                  ></Product>
+                  ></gm-product>
                 </transition-group>
               </v-card>
             </v-tab-item>
-            <v-tab-item class="tab-content-container" :value="'tab-other'">
+            <v-tab-item class="tab-content-container other" :value="'tab-other'">
               <v-card flat>
                 <transition-group name="2">
-                  <Product
+                  <gm-product
                     class="product"
                     @updateShoppingList="getAllProducts"
                     v-for="product in otherProducts"
                     :product="product"
                     :key="product.id"
-                  ></Product>
+                  ></gm-product>
                 </transition-group>
               </v-card>
             </v-tab-item>
@@ -113,22 +113,6 @@
               </v-layout>
             </v-container>
           </v-form>
-          <!-- If list of products is empty -->
-          <!-- <div v-if="shoppingList.length < 1" class="empty-cart-container">
-            <v-icon class="empty-cart-icon" color="green">shopping_cart</v-icon>
-            <p class="empty-cart-text">No items in your shoppinglist. Good job!</p>
-          </div>-->
-
-          <!-- <transition-group name="card">
-            <Product
-              class="product"
-              ref="product1"
-              @updateShoppingList="getShoppingList"
-              v-for="product in shoppingList"
-              :product="product"
-              :key="product.id"
-            ></Product>
-          </transition-group>-->
         </gmCard>
       </v-flex>
       <gmSnackbar ref="snackbarSuccess" type="primary" text="Added product!"></gmSnackbar>
@@ -138,7 +122,7 @@
 </template>
 
 <script>
-import Product from "./Product.vue";
+import gmProduct from "./gmProduct.vue";
 import gmSnackbar from "../base_components/gmSnackbar";
 import gmButton from "../base_components/gmButton";
 import gmCard from "../base_components/gmCard";
@@ -165,7 +149,7 @@ export default {
   },
 
   components: {
-    Product,
+    gmProduct,
     gmButton,
     gmCard,
     gmSnackbar
@@ -307,6 +291,16 @@ export default {
   padding: 20px 0px;
 }
 
+.tab-content-container.grocery >>> .action-container {
+  background-color: #5c9fd4;
+}
+.tab-content-container.clothes >>> .action-container {
+  background-color: #ea5c8a;
+}
+.tab-content-container.other >>> .action-container {
+  background-color: #3bc3aa;
+}
+
 .search-card {
   padding: 10px;
   display: flex;
@@ -359,6 +353,10 @@ export default {
 
 #tab-other {
   background: #3bc3aa;
+}
+
+#tab-grocery {
+  background: #5c9fd4;
 }
 
 #tab-other i {

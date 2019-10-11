@@ -188,7 +188,6 @@ export default {
 .action-container {
   background: #1976d2;
   justify-content: center !important;
-  border: 1px solid #1450d1;
 }
 
 .action-container-edit {

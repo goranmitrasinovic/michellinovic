@@ -1,9 +1,9 @@
 <template>
-  <Shoppinglist></Shoppinglist>
+  <gm-shoppinglist></gm-shoppinglist>
 </template>
 
 <script>
-import Shoppinglist from "../components/ShoppingList.vue";
+import gmShoppinglist from "../components/gmShoppingList.vue";
 import axios from "axios";
 
 export default {
@@ -29,7 +29,7 @@ export default {
   },
 
   components: {
-    Shoppinglist
+    gmShoppinglist
   }
 };
 </script>
